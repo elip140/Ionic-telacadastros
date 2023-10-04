@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { PrimeiroacessoPage } from '../primeiroacesso/primeiroacesso.page';
+
 
 @Component({
   selector: 'app-home',
@@ -6,7 +8,9 @@ import { Component } from '@angular/core';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-
-  constructor() {}
+  component = PrimeiroacessoPage;
+  constructor() {
+    
+  }
 
 }

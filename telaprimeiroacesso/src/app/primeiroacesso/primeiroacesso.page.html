@@ -1,13 +1,54 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>primeiroacesso</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Primeiro Acesso Morador</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">primeiroacesso</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-row class="ion-justify-content-center">
+    <ion-col size="7">
+
+      <ion-card>
+        <ion-card-header>
+          <div>
+            <ion-card-title>Cadastro de Residente para acesso ao sistema</ion-card-title>
+          </div>
+        </ion-card-header>
+    
+        <ion-card-content>
+          <ion-input label="RG" labelPlacement="floating" fill="outline" #RG (ionInput)="OnKeyUpRg($event)"></ion-input>
+          <div [hidden]="ishidden">
+            <ion-input label="Nome" labelPlacement="floating" fill="outline" #Nome (ionInput)="OnKeyUpNome($event)"></ion-input>
+            <ion-input labelPlacement="floating" type="email" fill="outline" #Email (ionInput)="OnKeyUpEmail($event)">
+              <div slot="label">E-mail para acesso
+                <ion-text color="danger">(O E-mail deve ser cadastrado, entre em contato com a Administração)</ion-text>
+              </div>
+            </ion-input>
+            <ion-input label="Senha" labelPlacement="floating" type="password" fill="outline" #Senha (ionInput)="OnKeyUpSenha($event)"></ion-input>
+            <ion-input label="Confirme a Senha" labelPlacement="floating" type="password" fill="outline" #ConfSenha (ionInput)="OnKeyUpConfSenha($event)"></ion-input>
+          </div>
+          
+        </ion-card-content>
+
+        <div>
+          <ion-button (click)="OnClickSubmit()">
+            Salvar2
+          </ion-button>
+          
+        </div>
+      </ion-card>
+
+    </ion-col>
+  </ion-row>
+  
+  
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title></ion-title>
+  </ion-toolbar>
+</ion-footer>
