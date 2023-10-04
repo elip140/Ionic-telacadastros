@@ -18,27 +18,79 @@
           </div>
         </ion-card-header>
     
-        <ion-card-content>
-          <ion-input label="RG" labelPlacement="floating" fill="outline" #RG (ionInput)="OnKeyUpRg($event)"></ion-input>
-          <div [hidden]="ishidden">
-            <ion-input label="Nome" labelPlacement="floating" fill="outline" #Nome (ionInput)="OnKeyUpNome($event)"></ion-input>
-            <ion-input labelPlacement="floating" type="email" fill="outline" #Email (ionInput)="OnKeyUpEmail($event)">
-              <div slot="label">E-mail para acesso
-                <ion-text color="danger">(O E-mail deve ser cadastrado, entre em contato com a Administração)</ion-text>
+        <form [formGroup]="formPAcesso">
+          <ion-card-content>
+          
+            <div>
+              <ion-input formControlName="Rg" labelPlacement="floating" fill="outline" #RG (ionInput)="OnKeyUpRg($event)" >
+                <div slot="label" >Rg</div>
+              </ion-input>
+              <small *ngFor="let validation of validation_messages.Rg">
+                <ion-text color="danger" *ngIf="isSubimitted && formPAcesso.get('Rg')?.hasError(validation.type)">
+                  {{ validation.message }}
+                </ion-text>
+              </small>
+            </div>
+            
+              
+            <div [hidden]="ishidden">
+              <div>
+                <ion-input formControlName="Nome" labelPlacement="floating" fill="outline" #Nome >
+                  <div slot="label">Nome</div>
+                </ion-input>
+                <small *ngFor="let validation of validation_messages.Nome">
+                  <ion-text color="danger" *ngIf="isSubimitted && formPAcesso.get('Nome')?.hasError(validation.type)">
+                    {{ validation.message }}
+                  </ion-text>
+                </small>
               </div>
-            </ion-input>
-            <ion-input label="Senha" labelPlacement="floating" type="password" fill="outline" #Senha (ionInput)="OnKeyUpSenha($event)"></ion-input>
-            <ion-input label="Confirme a Senha" labelPlacement="floating" type="password" fill="outline" #ConfSenha (ionInput)="OnKeyUpConfSenha($event)"></ion-input>
-          </div>
-          
-        </ion-card-content>
+              
 
-        <div>
-          <ion-button (click)="OnClickSubmit()">
-            Salvar2
-          </ion-button>
-          
-        </div>
+              <div>
+                <ion-input formControlName="Email" labelPlacement="floating" type="email" fill="outline" #Email >
+                  <div slot="label" >E-mail para acesso</div>
+                </ion-input>
+                <small *ngFor="let validation of validation_messages.Email">
+                  <ion-text color="danger" *ngIf="isSubimitted && formPAcesso.get('Email')?.hasError(validation.type)">
+                    {{ validation.message }}
+                  </ion-text>
+                </small>
+              </div>
+              
+
+              <div>
+                <ion-input formControlName="Senha" labelPlacement="floating" type="password" fill="outline" #Senha >
+                  <div slot="label" >Senha</div>
+                </ion-input>
+                <small *ngFor="let validation of validation_messages.Senha">
+                  <ion-text color="danger" *ngIf="isSubimitted && formPAcesso.get('Senha')?.hasError(validation.type)">
+                    {{ validation.message }}
+                  </ion-text>
+                </small>
+              </div>
+
+              <div>
+                <ion-input formControlName="ConfSenha" labelPlacement="floating" type="password" fill="outline" #ConfSenha >
+                  <div slot="label" >Confirme a Senha</div>
+                </ion-input>
+                <small *ngFor="let validation of validation_messages.ConfSenha">
+                  <ion-text color="danger" *ngIf="isSubimitted && formPAcesso.get('ConfSenha')?.hasError(validation.type)">
+                    {{ validation.message }}
+                  </ion-text>
+                </small>
+              </div>
+              
+            </div>
+
+          </ion-card-content>
+
+          <div>
+            <ion-button (click)="OnClickSubmit()">
+              Salvar2
+            </ion-button>
+          </div>
+
+        </form>
       </ion-card>
 
     </ion-col>
