@@ -9,31 +9,36 @@ import { AlertController } from '@ionic/angular';
 })
 export class PrimeiroacessoPage implements OnInit {
 
-  public formPAcesso: FormGroup = this.formBuilder.group({
-    Rg: new FormControl('testedenome', Validators.compose([
-      Validators.required
-    ])),
-    Nome: new FormControl('', Validators.compose([
-      Validators.required
-    ])),
-    Email: new FormControl('', Validators.compose([
-      Validators.required
-    ])),
-    Senha: new FormControl('', Validators.compose([
-      Validators.required
-    ])),
-    ConfSenha: new FormControl('', Validators.compose([
-      Validators.required
-    ]))
-  });
+  // Criação e inicialização do formulario
+  public formPAcesso: FormGroup = this.formBuilder.group(
+    {
+      Rg: new FormControl('', Validators.compose([
+        Validators.required
+      ])),
+      Nome: new FormControl('', Validators.compose([
+        Validators.required
+      ])),
+      Email: new FormControl('', Validators.compose([
+        Validators.required
+      ])),
+      Senha: new FormControl('', Validators.compose([
+        Validators.required
+      ])),
+      ConfSenha: new FormControl('', Validators.compose([
+        Validators.required,
+      ]))
+    },
+    {
+      validator: this.confirmedValidator('Senha', 'ConfSenha')
+    }
+  );
 
   rgCount:number = 0;
-  ishidden:boolean = false;
+  ishidden:boolean = true;
 
   public isSubimitted:boolean = false;
 
-  constructor(private formBuilder:FormBuilder, private alertController:AlertController){
-  }
+  constructor(private formBuilder:FormBuilder, private alertController:AlertController){}
 
 
   ngOnInit() {}
@@ -45,6 +50,7 @@ export class PrimeiroacessoPage implements OnInit {
     if(!this.formPAcesso.valid)
       return;
 
+    // Valor do formulario -> this.formPAcesso.value
     alert(JSON.stringify(this.formPAcesso.value));
     
   }
@@ -78,6 +84,7 @@ export class PrimeiroacessoPage implements OnInit {
     this.ConfSenha = event.target.value;
   }*/
 
+  // Menssagens de validação customizadas
   public validation_messages = {
     Rg: [
       {type:'required', message:'(Rg é requirido)'}
@@ -93,9 +100,29 @@ export class PrimeiroacessoPage implements OnInit {
       {type:'required', message:'(Senha é requirida)'}
     ],
     ConfSenha: [
-      {type:'required', message:'(Confirmação de Senha é requirida)'}
+      {type:'required', message:'(Confirmação de Senha é requirida)'},
+      {type:'confirmedValidator', message:'(Senha e Confirmação de Senha devem ser iguais)'},
     ]
 
+  }
+
+  // Validação para verificar se as duas senhas são iguais
+  confirmedValidator(controlName: string, matchingControlName: string){
+    return (formGroup: FormGroup) => {
+      const control = formGroup.controls[controlName];
+
+      const matchingControl = formGroup.controls[matchingControlName];
+
+      if(matchingControl.errors)
+        return;
+
+      if(control.value!== matchingControl.value){
+        matchingControl.setErrors({ 'confirmedValidator':true });
+      }
+      else{
+        matchingControl.setErrors(null);
+      }
+    }
   }
   
 
