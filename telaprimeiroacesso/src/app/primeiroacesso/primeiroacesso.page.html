@@ -22,7 +22,8 @@
           <ion-card-content class="ion-margin">
   
             <div class="ion-margin-bottom">
-              <ion-input formControlName="Rg" labelPlacement="floating" fill="outline" #RG (ionInput)="OnKeyUpRg($event)" >
+              <ion-input formControlName="Rg" labelPlacement="floating" fill="outline" #RG 
+                (ionInput)="OnKeyUpRg($event)" placeholder="XX.XXX.XXX-X" [maskito]="rgMask" [maskitoElement]="maskPredicate">
                 <div slot="label" >Rg</div>
               </ion-input>
               <small *ngFor="let validation of validation_messages.Rg">

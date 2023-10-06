@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
+import { MaskitoOptions, MaskitoElementPredicateAsync } from '@maskito/core';
 
 @Component({
   selector: 'app-primeiroacesso',
@@ -19,7 +20,8 @@ export class PrimeiroacessoPage implements OnInit {
         Validators.required
       ])),
       Email: new FormControl('', Validators.compose([
-        Validators.required
+        Validators.required,
+        Validators.email
       ])),
       Senha: new FormControl('', Validators.compose([
         Validators.required
@@ -34,7 +36,7 @@ export class PrimeiroacessoPage implements OnInit {
   );
 
   rgCount:number = 0;
-  ishidden:boolean = true;
+  ishidden:boolean = false;
 
   public isSubimitted:boolean = false;
 
@@ -94,6 +96,7 @@ export class PrimeiroacessoPage implements OnInit {
     ],
     Email: [
       {type:'required', message:'(Email é requirido)'},
+      {type:'email', message:'(Email Inválido)'},
       {type:'special', message:'(O E-mail deve ser cadastrado, entre em contato com a Administração)'}
     ],
     Senha: [
@@ -124,8 +127,12 @@ export class PrimeiroacessoPage implements OnInit {
       }
     }
   }
-  
 
+  readonly rgMask: MaskitoOptions = {
+    mask: [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/,'-' , /\d/],
+  };
+
+  readonly maskPredicate: MaskitoElementPredicateAsync = async (el) => (el as HTMLIonInputElement).getInputElement();
 }
 
 

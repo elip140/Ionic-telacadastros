@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { PrimeiroacessoPageRoutingModule } from './primeiroacesso-routing.module';
 
 import { PrimeiroacessoPage } from './primeiroacesso.page';
+import { MaskitoModule } from '@maskito/angular';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { PrimeiroacessoPage } from './primeiroacesso.page';
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
-    PrimeiroacessoPageRoutingModule
+    PrimeiroacessoPageRoutingModule,
+    MaskitoModule
   ],
   declarations: [PrimeiroacessoPage]
 })
