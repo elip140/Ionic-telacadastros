@@ -1,7 +1,11 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 import { MaskitoOptions, MaskitoElementPredicateAsync } from '@maskito/core';
+import { DataService } from '../../shared/data.service';
+
+declare var $:any;
 
 @Component({
   selector: 'app-primeiroacesso',
@@ -13,7 +17,7 @@ export class PrimeiroacessoPage implements OnInit {
   // Criação e inicialização do formulario
   public formPAcesso: FormGroup = this.formBuilder.group(
     {
-      Rg: new FormControl('', Validators.compose([
+      Cpf: new FormControl('', Validators.compose([
         Validators.required
       ])),
       Nome: new FormControl('', Validators.compose([
@@ -35,12 +39,52 @@ export class PrimeiroacessoPage implements OnInit {
     }
   );
 
-  rgCount:number = 0;
+  CpfCount:number = 0;
   ishidden:boolean = false;
 
   public isSubimitted:boolean = false;
+  apiURL:string;
 
-  constructor(private formBuilder:FormBuilder, private alertController:AlertController){}
+  constructor(private formBuilder:FormBuilder, private alertController:AlertController, private http:HttpClient){
+    this.apiURL = "";
+    this.makeAjaxRequest();
+  }
+
+  teste(){
+    var cpf:string = "45123415874"
+    this.http.get(`${ this.apiURL }?CPF=${cpf}`)
+           .subscribe(
+              resultado =>{
+                console.log(resultado)
+              },
+              error =>{
+
+              });
+    alert("Teste realizado");
+  }
+
+  makeAjaxRequest() {
+    const url = "https://www.adsportal.com.br/DirectCondoAPI/api/Pessoa/VerificaCPF";
+
+    var cpf = {
+      CPF:"45123415874"
+    };
+
+    $.ajax({
+      type: "POST",
+      url: "https://www.adsportal.com.br/DirectCondoAPI/api/Pessoa/VerificaCPF",
+      contentType:"application/json",
+      dataType: "json",
+      data:cpf,
+      success: (data: any) => {
+        alert("Response: "+JSON.stringify(data));
+        // You can handle the response data here
+      },
+      error: (error: any) => {
+        alert("Failed to load data ->"+JSON.stringify(error));
+      }
+    });
+  }
 
 
   ngOnInit() {}
@@ -58,10 +102,10 @@ export class PrimeiroacessoPage implements OnInit {
   }
 
   // Funções para os Inputs
-  OnKeyUpRg(event: any){
-    this.rgCount = event.target.value.length;
+  OnKeyUpCpf(event: any){
+    this.CpfCount = event.target.value.length;
 
-    if(this.rgCount>=9){
+    if(this.CpfCount>=9){
       this.ishidden = false;
     }
     else{
@@ -88,8 +132,8 @@ export class PrimeiroacessoPage implements OnInit {
 
   // Menssagens de validação customizadas
   public validation_messages = {
-    Rg: [
-      {type:'required', message:'(Rg é requirido)'}
+    Cpf: [
+      {type:'required', message:'(Cpf é requirido)'}
     ],
     Nome: [
       {type:'required', message:'(Nome é requirido)'}
@@ -128,9 +172,9 @@ export class PrimeiroacessoPage implements OnInit {
     }
   }
 
-  readonly rgMask: MaskitoOptions = {
+  /*readonly rgMask: MaskitoOptions = {
     mask: [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/,'-' , /\d/],
-  };
+  };  [maskito]="rgMask" [maskitoElement]="maskPredicate" XX.XXX.XXX-X*/
 
   readonly maskPredicate: MaskitoElementPredicateAsync = async (el) => (el as HTMLIonInputElement).getInputElement();
 }

@@ -22,12 +22,12 @@
           <ion-card-content class="ion-margin">
   
             <div class="ion-margin-bottom">
-              <ion-input formControlName="Rg" labelPlacement="floating" fill="outline" #RG 
-                (ionInput)="OnKeyUpRg($event)" placeholder="XX.XXX.XXX-X" [maskito]="rgMask" [maskitoElement]="maskPredicate">
-                <div slot="label" >Rg</div>
+              <ion-input formControlName="Cpf" labelPlacement="floating" fill="outline" #RG 
+                (ionInput)="OnKeyUpCpf($event)" placeholder="" >
+                <div slot="label" >Cpf</div>
               </ion-input>
-              <small *ngFor="let validation of validation_messages.Rg">
-                <ion-text color="danger" *ngIf="isSubimitted && formPAcesso.get('Rg')?.hasError(validation.type)">
+              <small *ngFor="let validation of validation_messages.Cpf">
+                <ion-text color="danger" *ngIf="isSubimitted && formPAcesso.get('Cpf')?.hasError(validation.type)">
                   {{ validation.message }}
                 </ion-text>
               </small>
@@ -100,3 +100,5 @@
   
   
 </ion-content>
+
+

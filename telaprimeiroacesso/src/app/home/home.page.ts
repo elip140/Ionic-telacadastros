@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { PrimeiroacessoPage } from '../primeiroacesso/primeiroacesso.page';
+import { PrimeiroacessoPage } from '../pages/primeiroacesso/primeiroacesso.page';
 
 
 @Component({

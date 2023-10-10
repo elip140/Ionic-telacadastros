@@ -13,8 +13,13 @@ const routes: Routes = [
   },
   {
     path: 'primeiroacesso',
-    loadChildren: () => import('./primeiroacesso/primeiroacesso.module').then( m => m.PrimeiroacessoPageModule)
+    loadChildren: () => import('./pages/primeiroacesso/primeiroacesso.module').then( m => m.PrimeiroacessoPageModule)
   },
+  {
+    path: 'login',
+    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+  },
+
 ];
 
 @NgModule({
