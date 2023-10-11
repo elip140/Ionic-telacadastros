@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { AlertController } from '@ionic/angular';
 import { MaskitoOptions, MaskitoElementPredicateAsync } from '@maskito/core';
 import { DataService } from '../../shared/data.service';
+import { HttpService } from 'src/app/http-service.service';
 
 declare var $:any;
 
@@ -45,43 +46,52 @@ export class PrimeiroacessoPage implements OnInit {
   public isSubimitted:boolean = false;
   apiURL:string;
 
-  constructor(private formBuilder:FormBuilder, private alertController:AlertController, private http:HttpClient){
+  constructor(private formBuilder:FormBuilder, private alertController:AlertController, private http:HttpService){
     this.apiURL = "";
-    this.makeAjaxRequest();
+    this.teste();
   }
 
   teste(){
-    var cpf:string = "45123415874"
-    this.http.get(`${ this.apiURL }?CPF=${cpf}`)
-           .subscribe(
-              resultado =>{
-                console.log(resultado)
-              },
-              error =>{
-
-              });
+    var data:any = JSON.stringify({
+      CPF: 45123415874
+    });
+    
+    this.http.postData(data).subscribe(
+      (response) => {
+        console.log('POST request was successful', JSON.stringify(response));
+      },
+      (error) => {
+        console.error('Error:', JSON.stringify(error));
+      });
     alert("Teste realizado");
   }
 
-  makeAjaxRequest() {
-    const url = "https://www.adsportal.com.br/DirectCondoAPI/api/Pessoa/VerificaCPF";
+  async makeAjaxRequest() {
 
     var cpf = {
       CPF:"45123415874"
     };
 
+    //contentType:"application/json; charset=utf-8",
+    /*
+      headers: {
+        "Content-Type":"application/json; charset=utf-8",
+        "Content-Length": 0,
+        
+      },
+    */
     $.ajax({
       type: "POST",
-      url: "https://www.adsportal.com.br/DirectCondoAPI/api/Pessoa/VerificaCPF",
+      url: "https://www.adsportal.com.br/DirectCondoAPI/api/Pessoa/VerificaCPF?CPF=45123415874",
       contentType:"application/json",
-      dataType: "json",
-      data:cpf,
+      crossDomain: true,
+      data:JSON.stringify({}),
       success: (data: any) => {
         alert("Response: "+JSON.stringify(data));
         // You can handle the response data here
       },
       error: (error: any) => {
-        alert("Failed to load data ->"+JSON.stringify(error));
+        alert("Failed to load data ->2"+JSON.stringify(error));
       }
     });
   }
