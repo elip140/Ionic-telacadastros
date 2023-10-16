@@ -1,12 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 import { MaskitoOptions, MaskitoElementPredicateAsync } from '@maskito/core';
-import { DataService } from '../../shared/data.service';
 import { HttpService } from 'src/app/http-service.service';
 
-declare var $:any;
 
 @Component({
   selector: 'app-primeiroacesso',
@@ -40,60 +38,28 @@ export class PrimeiroacessoPage implements OnInit {
     }
   );
 
-  CpfCount:number = 0;
-  ishidden:boolean = false;
+  ishidden:boolean = true;
 
   public isSubimitted:boolean = false;
   apiURL:string;
 
   constructor(private formBuilder:FormBuilder, private alertController:AlertController, private http:HttpService){
     this.apiURL = "";
-    this.teste();
+    this.makeRequest("45123415874");
+    //this.makeAjaxRequest();
   }
 
-  teste(){
-    var data:any = JSON.stringify({
-      CPF: 45123415874
-    });
-    
-    this.http.postData(data).subscribe(
+  makeRequest(cpf:string){
+    this.http.postData(cpf).subscribe(
       (response) => {
         console.log('POST request was successful', JSON.stringify(response));
+        return JSON.stringify(response);
       },
       (error) => {
         console.error('Error:', JSON.stringify(error));
-      });
-    alert("Teste realizado");
-  }
-
-  async makeAjaxRequest() {
-
-    var cpf = {
-      CPF:"45123415874"
-    };
-
-    //contentType:"application/json; charset=utf-8",
-    /*
-      headers: {
-        "Content-Type":"application/json; charset=utf-8",
-        "Content-Length": 0,
-        
-      },
-    */
-    $.ajax({
-      type: "POST",
-      url: "https://www.adsportal.com.br/DirectCondoAPI/api/Pessoa/VerificaCPF?CPF=45123415874",
-      contentType:"application/json",
-      crossDomain: true,
-      data:JSON.stringify({}),
-      success: (data: any) => {
-        alert("Response: "+JSON.stringify(data));
-        // You can handle the response data here
-      },
-      error: (error: any) => {
-        alert("Failed to load data ->2"+JSON.stringify(error));
+        return;
       }
-    });
+    );
   }
 
 
@@ -112,11 +78,38 @@ export class PrimeiroacessoPage implements OnInit {
   }
 
   // Funções para os Inputs
-  OnKeyUpCpf(event: any){
-    this.CpfCount = event.target.value.length;
+  async OnKeyUpCpf(event: any){
+    var input:String = event.target.value;
 
-    if(this.CpfCount>=9){
+    // Remove todos os caracteres com exceção dos números
+    var cpf:string = input.replace(/[^0-9]/g, '');
+
+    var cpfCount:number = cpf.length;
+
+    
+    if(cpfCount>=10){
       this.ishidden = false;
+
+      //var result:any = await this.makeRequest(cpf);
+
+      this.http.postData(cpf).subscribe(
+        (response) => {
+          console.log('POST request was successful', JSON.stringify(response));
+          alert(response.length);
+
+          if(response.length>=1){
+            
+            alert("Teste");
+          }
+          else{
+            alert("NULO");
+          }
+        },
+        (error) => {
+          console.error('Error:', JSON.stringify(error));
+          return;
+        }
+      );
     }
     else{
       this.ishidden = true;
