@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { AlertController } from '@ionic/angular';
 import { MaskitoOptions, MaskitoElementPredicateAsync } from '@maskito/core';
 import { HttpService } from 'src/app/http-service.service';
+import { IonInput } from '@ionic/angular';
 
 
 @Component({
@@ -12,7 +13,6 @@ import { HttpService } from 'src/app/http-service.service';
   styleUrls: ['./primeiroacesso.page.scss'],
 })
 export class PrimeiroacessoPage implements OnInit {
-
   // Criação e inicialização do formulario
   public formPAcesso: FormGroup = this.formBuilder.group(
     {
@@ -38,30 +38,15 @@ export class PrimeiroacessoPage implements OnInit {
     }
   );
 
-  ishidden:boolean = true;
+  isformhidden:boolean = true;
+  islisthidden:boolean = true;
 
   public isSubimitted:boolean = false;
-  apiURL:string;
 
-  constructor(private formBuilder:FormBuilder, private alertController:AlertController, private http:HttpService){
-    this.apiURL = "";
-    this.makeRequest("45123415874");
-    //this.makeAjaxRequest();
+  items: any[] = [];
+
+  constructor(private formBuilder:FormBuilder, private http:HttpService){
   }
-
-  makeRequest(cpf:string){
-    this.http.postData(cpf).subscribe(
-      (response) => {
-        console.log('POST request was successful', JSON.stringify(response));
-        return JSON.stringify(response);
-      },
-      (error) => {
-        console.error('Error:', JSON.stringify(error));
-        return;
-      }
-    );
-  }
-
 
   ngOnInit() {}
 
@@ -77,61 +62,57 @@ export class PrimeiroacessoPage implements OnInit {
     
   }
 
-  // Funções para os Inputs
-  async OnKeyUpCpf(event: any){
+  // Função para o INPUT de CPF 
+  // - Quando chaga em 10 números ou maior manda uma Request que retorna os cadastros com o CPF, 
+  // - Transforma o Resultado em uma lista
+  OnKeyUpCpf(event: any){
     var input:String = event.target.value;
 
     // Remove todos os caracteres com exceção dos números
     var cpf:string = input.replace(/[^0-9]/g, '');
 
     var cpfCount:number = cpf.length;
-
     
     if(cpfCount>=10){
-      this.ishidden = false;
-
-      //var result:any = await this.makeRequest(cpf);
+      this.islisthidden = false;
 
       this.http.postData(cpf).subscribe(
         (response) => {
           console.log('POST request was successful', JSON.stringify(response));
-          alert(response.length);
+          this.items = [];
 
           if(response.length>=1){
-            
-            alert("Teste");
-          }
-          else{
-            alert("NULO");
+            response.forEach((e:any) => {
+              let newItem = { Nome: e.Nome, Email: e.Email };
+              this.items.push(newItem);
+            });
           }
         },
         (error) => {
-          console.error('Error:', JSON.stringify(error));
+          console.error('Error no Request');
+          //, JSON.stringify(error)
           return;
         }
       );
     }
     else{
-      this.ishidden = true;
+      this.islisthidden = false;
     }
   }
 
-  /*(ionInput)="OnKeyUpConfSenha($event)"
-  OnKeyUpNome(event: any){
-    this.Nome = event.target.value;
-  }
+  @ViewChild('Nome', { static: true }) NomeInput!: IonInput;
+  @ViewChild('Email', { static: true }) EmailInput!: IonInput;
 
-  OnKeyUpEmail(event: any){
-    this.Email = event.target.value;
-  }
+  OnClickLista(pessoa:any){
+    this.formPAcesso.get('Nome')!.setValue(pessoa.Nome);
+    this.formPAcesso.get('Email')!.setValue(pessoa.Email);
 
-  OnKeyUpSenha(event: any){
-    this.Senha = event.target.value;
-  }
+    this.isformhidden = false;
+    this.islisthidden = true;
+    this.items = [];
 
-  OnKeyUpConfSenha(event: any){
-    this.ConfSenha = event.target.value;
-  }*/
+    this.formPAcesso.updateValueAndValidity();
+  }
 
   // Menssagens de validação customizadas
   public validation_messages = {
