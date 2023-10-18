@@ -23,7 +23,7 @@
   
             <div class="ion-margin-bottom">
               <ion-input formControlName="Cpf" labelPlacement="floating" fill="outline" #CPF 
-                (ionInput)="OnKeyUpCpf($event)" placeholder="" >
+                (ionInput)="OnKeyUpCpf($event)" placeholder="" [maskito]="cpfMask" [maskitoElement]="maskPredicate">
                 <div slot="label" >Cpf</div>
               </ion-input>
               

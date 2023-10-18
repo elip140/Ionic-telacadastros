@@ -96,7 +96,7 @@ export class PrimeiroacessoPage implements OnInit {
       );
     }
     else{
-      this.islisthidden = false;
+      this.islisthidden = true;
     }
   }
 
@@ -156,9 +156,9 @@ export class PrimeiroacessoPage implements OnInit {
     }
   }
 
-  /*readonly rgMask: MaskitoOptions = {
-    mask: [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/,'-' , /\d/],
-  };  [maskito]="rgMask" [maskitoElement]="maskPredicate" XX.XXX.XXX-X*/
+  readonly cpfMask: MaskitoOptions = {
+    mask: [/\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/, '.', /\d/, /\d/, /\d/,'-' , /\d/,/\d/],
+  };  //[maskito]="rgMask" [maskitoElement]="maskPredicate" XX.XXX.XXX-X*/
 
   readonly maskPredicate: MaskitoElementPredicateAsync = async (el) => (el as HTMLIonInputElement).getInputElement();
 }
