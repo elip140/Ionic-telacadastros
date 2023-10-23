@@ -43,7 +43,7 @@ export class PrimeiroacessoPage implements OnInit {
 
   public isSubimitted:boolean = false;
 
-  items: any[] = [];
+  item:any = { Nome: null, Email: null };
 
   constructor(private formBuilder:FormBuilder, private http:HttpService){
   }
@@ -59,6 +59,19 @@ export class PrimeiroacessoPage implements OnInit {
 
     // Valor do formulario -> this.formPAcesso.value
     alert(JSON.stringify(this.formPAcesso.value));
+
+    this.http.CriarUsuario(this.formPAcesso.value.Email, this.formPAcesso.value.Senha).subscribe(
+      (response) => {
+        alert("Usuário criado com sucesso");
+        console.log('POST request was successful', JSON.stringify(response));
+      },
+      (error) => {
+        alert("Erro ao criar usuário");
+        console.error('Error no Request');
+        //, JSON.stringify(error)
+        return;
+      }
+    );
     
   }
 
@@ -76,16 +89,13 @@ export class PrimeiroacessoPage implements OnInit {
     if(cpfCount>=10){
       this.islisthidden = false;
 
-      this.http.postData(cpf).subscribe(
+      this.http.VerificaCPF(cpf).subscribe(
         (response) => {
           console.log('POST request was successful', JSON.stringify(response));
-          this.items = [];
+          this.item = { Nome: null, Email: null };
 
-          if(response.length>=1){
-            response.forEach((e:any) => {
-              let newItem = { Nome: e.Nome, Email: e.Email };
-              this.items.push(newItem);
-            });
+          if(response.PessoaID!==0){
+            this.item = { Nome: response.Nome, Email: response.Email };
           }
         },
         (error) => {
@@ -109,7 +119,7 @@ export class PrimeiroacessoPage implements OnInit {
 
     this.isformhidden = false;
     this.islisthidden = true;
-    this.items = [];
+    this.item = { Nome: null, Email: null };
 
     this.formPAcesso.updateValueAndValidity();
   }

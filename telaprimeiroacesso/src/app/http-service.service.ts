@@ -6,19 +6,36 @@ import { Observable } from 'rxjs/internal/Observable';
   providedIn: 'root'
 })
 export class HttpService {
-  private apiUrl = 'https://www.adsportal.com.br/DirectCondoAPI/api/Pessoa/VerificaCPF?CPF=';
+  private baseUrl = 'https://www.adsportal.com.br/DirectCondoAPI/api/';
 
   constructor(private http: HttpClient) {}
 
-  postData(cpf:string): Observable<any> {
+  VerificaCPF(cpf:string): Observable<any> {
+    var conUrl:string =  "Pessoa/VerificaCPF?CPF=";
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });
 
-    return this.http.post(this.apiUrl+cpf, { headers });
+    return this.http.post(this.baseUrl+conUrl+cpf, { headers });
   }
 
-  /*getData(): Observable<any> {
+  CriarUsuario(email:string, senha:string): Observable<any> {
+    var conUrl:string =  "Pessoa/CriarUsuario";
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+
+    var params:any = {
+      email: email,
+      senha: senha
+    };
+
+    const body = JSON.stringify(params);
+
+    return this.http.post(this.baseUrl+conUrl+"?email="+email+"&senha="+senha, { headers });
+  }
+
+  /*getData(): Observable<any> {/Pessoa/CriarUsuario
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });
