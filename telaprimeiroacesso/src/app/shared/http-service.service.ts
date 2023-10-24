@@ -11,12 +11,12 @@ export class HttpService {
   constructor(private http: HttpClient) {}
 
   VerificaCPF(cpf:string): Observable<any> {
-    var conUrl:string =  "Pessoa/VerificaCPF?CPF=";
+    var conUrl:string =  "Pessoa/VerificaCPF";
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });
 
-    return this.http.post(this.baseUrl+conUrl+cpf, { headers });
+    return this.http.post(this.baseUrl+conUrl+"?CPF="+cpf, { headers });
   }
 
   CriarUsuario(email:string, senha:string): Observable<any> {
@@ -33,6 +33,24 @@ export class HttpService {
     const body = JSON.stringify(params);
 
     return this.http.post(this.baseUrl+conUrl+"?email="+email+"&senha="+senha, { headers });
+  }
+
+  PessoaDados(cpf:string): Observable<any> {
+    var conUrl:string =  "Pessoa/PessoaDados";
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+
+    return this.http.post(this.baseUrl+conUrl+"?CPF="+cpf, { headers });
+  }
+
+  MeusVisitantes(id:string): Observable<any> {
+    var conUrl:string =  "Pessoa/MeusVisitantes/";
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+
+    return this.http.post(this.baseUrl+conUrl+id, { headers });
   }
 
   /*getData(): Observable<any> {/Pessoa/CriarUsuario

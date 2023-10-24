@@ -3,7 +3,7 @@ import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 import { MaskitoOptions, MaskitoElementPredicateAsync } from '@maskito/core';
-import { HttpService } from 'src/app/http-service.service';
+import { HttpService } from 'src/app/shared/http-service.service';
 import { IonInput } from '@ionic/angular';
 
 
@@ -44,8 +44,10 @@ export class PrimeiroacessoPage implements OnInit {
   public isSubimitted:boolean = false;
 
   item:any = { Nome: null, Email: null };
+  message:any = "CPF não cadastrado!";
 
   constructor(private formBuilder:FormBuilder, private http:HttpService){
+    
   }
 
   ngOnInit() {}
@@ -58,7 +60,7 @@ export class PrimeiroacessoPage implements OnInit {
       return;
 
     // Valor do formulario -> this.formPAcesso.value
-    alert(JSON.stringify(this.formPAcesso.value));
+    //alert(JSON.stringify(this.formPAcesso.value));
 
     this.http.CriarUsuario(this.formPAcesso.value.Email, this.formPAcesso.value.Senha).subscribe(
       (response) => {
@@ -97,6 +99,13 @@ export class PrimeiroacessoPage implements OnInit {
           if(response.PessoaID!==0){
             this.item = { Nome: response.Nome, Email: response.Email };
           }
+
+          if(response.Mensagem!==null){
+            this.message = response.Mensagem;
+          }
+          if(response.Message!==null){
+            this.message = response.Message;
+          }
         },
         (error) => {
           console.error('Error no Request');
@@ -133,8 +142,8 @@ export class PrimeiroacessoPage implements OnInit {
       {type:'required', message:'(Nome é requirido)'}
     ],
     Email: [
-      {type:'required', message:'(Email é requirido)'},
-      {type:'email', message:'(Email Inválido)'},
+      {type:'required', message:'(Email é requirido, entre em contato com a Administração)'},
+      {type:'email', message:'(Email Inválido, entre em contato com a Administração)'},
       {type:'special', message:'(O E-mail deve ser cadastrado, entre em contato com a Administração)'}
     ],
     Senha: [

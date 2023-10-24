@@ -29,12 +29,12 @@ html {
     --ion-safe-area-left: 25px;
 }
 
-.ion-color-header {
-	--ion-color-base: var(--ion-color-header);
-	--ion-color-base-rgb: var(--ion-color-header-rgb);
-	--ion-color-contrast: var(--ion-color-header-contrast);
-	--ion-color-contrast-rgb: var(--ion-color-header-contrast-rgb);
-	--ion-color-shade: var(--ion-color-header-shade);
-	--ion-color-tint: var(--ion-color-header-tint);
+.ion-color-basic {
+	--ion-color-base: var(--ion-color-basic);
+	--ion-color-base-rgb: var(--ion-color-basic-rgb);
+	--ion-color-contrast: var(--ion-color-basic-contrast);
+	--ion-color-contrast-rgb: var(--ion-color-basic-contrast-rgb);
+	--ion-color-shade: var(--ion-color-basic-shade);
+	--ion-color-tint: var(--ion-color-basic-tint);
 }
   
