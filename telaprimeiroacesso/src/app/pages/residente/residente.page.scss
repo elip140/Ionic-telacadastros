@@ -10,8 +10,11 @@ ion-card{
     border-color: #bce8f1;
 }
 
-.card-footer{
-    padding: 0.4rem;
-    background-color: #f5f5f5;
-    border-top: 1px solid #ddd;
+.info{
+    font-size: 1.1rem;
+}
+
+.title{
+    color: var(--ion-color-dark);
+    //font-weight: bold;
 }
