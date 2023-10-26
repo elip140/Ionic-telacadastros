@@ -11,10 +11,6 @@
   <ion-row class="ion-justify-content-center">
     <ion-col size-md="7" size="12">
 
-      <ion-input labelPlacement="floating" fill="outline" #CPF (ionInput)="OnKeyUpCpf($event)" placeholder="">
-        <div slot="label" >Cpf</div>
-      </ion-input>
-
       <ion-card>
         <ion-card-header class="basic">
           <ion-card-title color="basic">Meus Dados</ion-card-title>
@@ -62,7 +58,7 @@
         </ion-card-header>
     
         <ion-card-content class="ion-margin">
-          <table>
+          <table class="table visitas" style="width: 100%;">
             <thead>
               <tr>
                 <th>Nome</th>
@@ -71,13 +67,19 @@
               </tr>
             </thead>
             <tbody *ngFor="let visi of visitas">
-              <tr>
+              <tr class="ion-text-center">
                 <td>{{ visi.Nome }}</td>
                 <td>{{ visi.Data }}</td>
                 <td>{{ visi.Hora }}</td>
               </tr>
             </tbody>
+            
           </table>
+          <ion-row class="ion-justify-content-center ion-margin-top" *ngIf="visitas.length<1">
+            <div>
+              <ion-label class="info">Você não recebeu nenhuma visita Hoje!</ion-label>
+            </div>
+          </ion-row>
         </ion-card-content>
       </ion-card>
     </ion-col>
@@ -93,7 +95,28 @@
         </ion-card-header>
     
         <ion-card-content class="ion-margin">
-            
+            <ion-row class="ion-justify-content-end">
+              <ion-button>+</ion-button>
+            </ion-row>
+
+            <ion-row>
+              <table class="table normal" style="width: 100%;">
+                <thead>
+                  <tr>
+                    <th>Nome</th>
+                    <th>Tipo</th>
+                    <th>Agenda Ativa</th>
+                  </tr>
+                </thead>
+                <tbody *ngFor="let vin of vinculos">
+                  <tr class="ion-text-center">
+                    <td>{{ vin.Nome }}</td>
+                    <td>{{ vin.Tipo }}</td>
+                    <td>{{ vin.Agenda }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </ion-row>
         </ion-card-content>
       </ion-card>
 
@@ -109,12 +132,29 @@
         </ion-card-header>
     
         <ion-card-content class="ion-margin">
-            
+          <ion-row>
+            <table class="table normal" style="width: 100%;">
+              <thead>
+                <tr>
+                  <th>Nome</th>
+                  <th>Agenda Ativa</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody *ngFor="let ent of entregas">
+                <tr class="ion-text-center">
+                  <td>{{ ent.Nome }}</td>
+                  <td>{{ ent.Agenda }}</td>
+                  <td>
+                    <ion-button>Liberar Hoje</ion-button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </ion-row>
         </ion-card-content>
       </ion-card>
 
     </ion-col>
   </ion-row>
-  
-  
 </ion-content>

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from 'src/app/shared/http-service.service';
 
+//import { DatePipe } from '@angular/common';
+
 @Component({
   selector: 'app-residente',
   templateUrl: './residente.page.html',
@@ -9,17 +11,26 @@ import { HttpService } from 'src/app/shared/http-service.service';
 export class ResidentePage implements OnInit {
 
   pessoa:any = {
-    Nome:"Eliandro Panacci Cotrim",
-    Rg:"561493121",
-    Cpf:"45123415874",
+    Nome:"",
+    Rg:"",
+    Cpf:"",
     DataNasc:"",
-    Email:"epcotrim@gmial.com",
-    Tipo:"Residente"
+    Email:"",
+    Tipo:""
   }
 
   visitas:any = [];
 
+  vinculos:any = [];
+
+  entregas:any = [];
+
   constructor(private http:HttpService){
+    //12100795007	
+    //45123415874
+    this.RequestInfo("12100795007");
+    this.ColocarVinculos([{Nome:"TesteV2", Tipo:"Teste", Agenda:"02"}]);
+    this.ColocarEntregas([{Nome:"TesteV2", Agenda:"02"}]);
   }
 
   ngOnInit() {
@@ -47,10 +58,18 @@ export class ResidentePage implements OnInit {
         this.http.MeusVisitantes(response.PessoaID).subscribe(
           (response) => {
             console.log('POST MeusVisitantes request was successful', JSON.stringify(response));
-            
+            var dateHoje = new Date(Date.now());
+            var hoje = new Date(dateHoje.getFullYear(), dateHoje.getMonth(), dateHoje.getDate());
+
             response.forEach((e:any) => {
-              let newItem = { Nome: e.NomeVisitante, Data: e.Data, Hora: e.Hora };
-              this.visitas.push(newItem);
+              //e.Data = '26/10/2023';
+              var partesData = e.Data.split('/');
+              var data = new Date(parseInt(partesData[2], 10), parseInt(partesData[1], 10)-1, parseInt(partesData[0], 10));
+
+              if(!(hoje<data || hoje>data)){
+                let newItem = { Nome: e.NomeVisitante, Data: e.Data, Hora: e.Hora };
+                this.visitas.push(newItem);
+              }
             });
           },
           (error) => {
@@ -75,6 +94,22 @@ export class ResidentePage implements OnInit {
     this.pessoa.DataNasc = json.DataNasc;
     this.pessoa.Email = json.Email;
     this.pessoa.Tipo = json.Tipo;
+  }
+
+  ColocarVinculos(json:any){
+    this.vinculos = [];
+    json.forEach((e:any) => {
+      let newItem = { Nome: e.Nome, Tipo: e.Tipo, Agenda: e.Agenda };
+      this.vinculos.push(newItem);
+    });
+  }
+
+  ColocarEntregas(json:any){
+    this.entregas = [];
+    json.forEach((e:any) => {
+      let newItem = { Nome: e.Nome, Agenda: e.Agenda };
+      this.entregas.push(newItem);
+    });
   }
 
 }
