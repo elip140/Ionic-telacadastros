@@ -37,4 +37,22 @@ html {
 	--ion-color-shade: var(--ion-color-basic-shade);
 	--ion-color-tint: var(--ion-color-basic-tint);
 }
+
+.basic{
+    text-align: center;
+    background-color: #d9edf7;
+    --ion-color: #31708f;
+    background-image: linear-gradient(to bottom,#d9edf7 0,#c4e3f3 100%);
+}
+
+ion-card{
+    background-color: #fff;
+    border-color: #bce8f1;
+}
+
+.card-footer{
+    padding: 0.4rem;
+    background-color: #f5f5f5;
+    border-top: 1px solid #ddd;
+}
   

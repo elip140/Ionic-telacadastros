@@ -26,7 +26,7 @@
                 (ionInput)="OnKeyUpCpf($event)" placeholder="" [maskito]="cpfMask" [maskitoElement]="maskPredicate">
                 <div slot="label" >Cpf</div>
               </ion-input>
-              
+
               <small *ngFor="let validation of validation_messages.Cpf">
                 <ion-text color="danger" *ngIf="isSubimitted && formPAcesso.get('Cpf')?.hasError(validation.type)">
                   {{ validation.message }}

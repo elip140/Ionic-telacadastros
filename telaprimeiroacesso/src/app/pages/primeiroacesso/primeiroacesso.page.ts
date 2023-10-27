@@ -153,7 +153,6 @@ export class PrimeiroacessoPage implements OnInit {
       {type:'required', message:'(Confirmação de Senha é requirida)'},
       {type:'confirmedValidator', message:'(Senha e Confirmação de Senha devem ser iguais)'},
     ]
-
   }
 
   // Validação para verificar se as duas senhas são iguais
