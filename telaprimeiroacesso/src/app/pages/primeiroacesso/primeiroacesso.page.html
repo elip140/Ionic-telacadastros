@@ -1,13 +1,13 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
+  <ion-toolbar color="primeiro">
     <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
+      <ion-menu-button></ion-menu-button>
     </ion-buttons>
     <ion-title>Primeiro Acesso Morador</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" >
+<ion-content [fullscreen]="true">
   <ion-row class="ion-justify-content-center">
     <ion-col size-md="7" size="12">
 
@@ -17,14 +17,14 @@
             <ion-card-title color="basic">Cadastro de Residente para acesso ao sistema</ion-card-title>
           </div>
         </ion-card-header>
-    
+
         <form [formGroup]="formPAcesso">
           <ion-card-content class="ion-margin">
-  
+
             <div class="ion-margin-bottom">
-              <ion-input formControlName="Cpf" labelPlacement="floating" fill="outline" #CPF 
+              <ion-input formControlName="Cpf" labelPlacement="floating" fill="outline" #CPF
                 (ionInput)="OnKeyUpCpf($event)" placeholder="" [maskito]="cpfMask" [maskitoElement]="maskPredicate">
-                <div slot="label" >Cpf</div>
+                <div slot="label">Cpf</div>
               </ion-input>
 
               <small *ngFor="let validation of validation_messages.Cpf">
@@ -41,7 +41,7 @@
                   <ion-label>{{ item.Nome }}</ion-label>
                 </ion-item>
               </div>
-            
+
               <div *ngIf="message!==null">
                 <ion-list>
                   <ion-item>
@@ -51,13 +51,13 @@
               </div>
             </div>
 
-            
-            
-              
+
+
+
             <div [hidden]="isformhidden">
 
               <div class="ion-margin-bottom">
-                <ion-input formControlName="Nome" labelPlacement="floating" fill="outline" #Nome >
+                <ion-input formControlName="Nome" labelPlacement="floating" fill="outline" #Nome>
                   <div slot="label">Nome</div>
                 </ion-input>
                 <small *ngFor="let validation of validation_messages.Nome">
@@ -66,11 +66,11 @@
                   </ion-text>
                 </small>
               </div>
-              
+
 
               <div class="ion-margin-bottom">
                 <ion-input formControlName="Email" labelPlacement="floating" type="email" fill="outline" #Email>
-                  <div slot="label" >E-mail para acesso</div>
+                  <div slot="label">E-mail para acesso</div>
                 </ion-input>
                 <small *ngFor="let validation of validation_messages.Email">
                   <ion-text color="danger" *ngIf="isSubimitted && formPAcesso.get('Email')?.hasError(validation.type)">
@@ -78,11 +78,12 @@
                   </ion-text>
                 </small>
               </div>
-              
+
 
               <div class="ion-margin-bottom">
-                <ion-input formControlName="Senha" labelPlacement="floating" type="password" fill="outline" [clearOnEdit]="false" #Senha >
-                  <div slot="label" >Senha</div>
+                <ion-input formControlName="Senha" labelPlacement="floating" type="password" fill="outline"
+                  [clearOnEdit]="false" #Senha>
+                  <div slot="label">Senha</div>
                 </ion-input>
                 <small *ngFor="let validation of validation_messages.Senha">
                   <ion-text color="danger" *ngIf="isSubimitted && formPAcesso.get('Senha')?.hasError(validation.type)">
@@ -92,16 +93,18 @@
               </div>
 
               <div class="ion-margin-bottom">
-                <ion-input formControlName="ConfSenha" labelPlacement="floating" type="password" fill="outline" [clearOnEdit]="false" #ConfSenha >
-                  <div slot="label" >Confirme a Senha</div>
+                <ion-input formControlName="ConfSenha" labelPlacement="floating" type="password" fill="outline"
+                  [clearOnEdit]="false" #ConfSenha>
+                  <div slot="label">Confirme a Senha</div>
                 </ion-input>
                 <small *ngFor="let validation of validation_messages.ConfSenha">
-                  <ion-text color="danger" *ngIf="isSubimitted && formPAcesso.get('ConfSenha')?.hasError(validation.type)">
+                  <ion-text color="danger"
+                    *ngIf="isSubimitted && formPAcesso.get('ConfSenha')?.hasError(validation.type)">
                     {{ validation.message }}
                   </ion-text>
                 </small>
               </div>
-              
+
             </div>
 
           </ion-card-content>
@@ -117,8 +120,4 @@
 
     </ion-col>
   </ion-row>
-  
-  
 </ion-content>
-
-

@@ -38,6 +38,15 @@ html {
 	--ion-color-tint: var(--ion-color-basic-tint);
 }
 
+.ion-color-primeiro {
+	--ion-color-base: var(--ion-color-primeiro);
+	--ion-color-base-rgb: var(--ion-color-primeiro-rgb);
+	--ion-color-contrast: var(--ion-color-primeiro-contrast);
+	--ion-color-contrast-rgb: var(--ion-color-primeiro-contrast-rgb);
+	--ion-color-shade: var(--ion-color-primeiro-shade);
+	--ion-color-tint: var(--ion-color-primeiro-tint);
+}
+
 .basic{
     text-align: center;
     background-color: #d9edf7;
