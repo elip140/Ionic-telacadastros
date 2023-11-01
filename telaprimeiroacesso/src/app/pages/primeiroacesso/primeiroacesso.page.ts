@@ -40,6 +40,7 @@ export class PrimeiroacessoPage implements OnInit {
 
   isformhidden:boolean = true;
   islisthidden:boolean = true;
+  isbuttondisabled:boolean = true;
 
   public isSubimitted:boolean = false;
 
@@ -98,14 +99,14 @@ export class PrimeiroacessoPage implements OnInit {
 
           if(response.PessoaID!==0){
             this.item = { Nome: response.Nome, Email: response.Email };
+            this.isbuttondisabled = false;
+            this.message = null;
           }
-
-          if(response.Mensagem!==null){
+          else if(response.Mensagem!==null){
             this.message = response.Mensagem;
           }
-          if(response.Message!==null){
-            this.message = response.Message;
-          }
+
+          
         },
         (error) => {
           console.error('Error no Request');

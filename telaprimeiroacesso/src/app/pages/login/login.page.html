@@ -7,17 +7,17 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content color="fundo">
   <ion-row>
     <ion-col size-md="7" size="12">
-      Login
     </ion-col>
   </ion-row>
+
   <ion-row class="ion-justify-content-center">
     <ion-col size-md="7" size-lg="5" size="9">
       <ion-card>
-        <ion-card-header class="basic">
-          <ion-card-title color="basic">Dados de Acesso</ion-card-title>
+        <ion-card-header class="ion-text-center" color="primeiro">
+          <ion-card-title >Dados de Acesso</ion-card-title>
         </ion-card-header>
         
         <form [formGroup]="formLogin">
@@ -62,7 +62,7 @@
           <ion-row class="card-footer ion-justify-content-center">
             <!--(click)="OnClickSubmit()"  [formGroup]="formPAcesso"
             formControlName="Usuario" formControlName="Senha"-->
-            <ion-button (click)="OnClickSubmit()">
+            <ion-button color="secundario" (click)="OnClickSubmit()">
               Enviar
             </ion-button>
           </ion-row>
