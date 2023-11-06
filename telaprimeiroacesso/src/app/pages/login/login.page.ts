@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { HttpService } from 'src/app/shared/http-service.service';
 
+import { Title } from '@angular/platform-browser';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -22,17 +24,19 @@ export class LoginPage implements OnInit {
 
   isSubimitted = false;
 
-  constructor(private formBuilder:FormBuilder, private http:HttpService) { }
+  constructor(private formBuilder: FormBuilder, private http: HttpService, private titleService: Title) {
+    this.titleService.setTitle('Login - DirectCondo');
+  }
 
   ngOnInit() {
   }
 
-  OnClickSubmit(){
+  OnClickSubmit() {
     this.isSubimitted = true;
 
     alert(JSON.stringify(this.formLogin.value));
 
-    if(!this.formLogin.valid)
+    if (!this.formLogin.valid)
       return;
 
     alert("Form Enviado");
@@ -42,10 +46,10 @@ export class LoginPage implements OnInit {
   // Menssagens de validação customizadas
   public validation_messages = {
     Usuario: [
-      {type:'required', message:'(Usuário é requirido)'}
+      { type: 'required', message: '(Usuário é requirido)' }
     ],
     Senha: [
-      {type:'required', message:'(Senha é requirida)'}
+      { type: 'required', message: '(Senha é requirida)' }
     ]
   }
 

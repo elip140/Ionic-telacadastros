@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpService } from 'src/app/shared/http-service.service';
 
 //import { DatePipe } from '@angular/common';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-residente',
@@ -25,7 +26,8 @@ export class ResidentePage implements OnInit {
 
   entregas:any = [];
 
-  constructor(private http:HttpService){
+  constructor(private http:HttpService, private titleService: Title){
+    this.titleService.setTitle('Residente - DirectCondo'); 
     //12100795007	
     //45123415874
     this.RequestInfo("12100795007");

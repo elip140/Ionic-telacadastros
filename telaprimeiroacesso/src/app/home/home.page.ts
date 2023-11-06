@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { PrimeiroacessoPage } from '../pages/primeiroacesso/primeiroacesso.page';
 
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
@@ -9,8 +10,8 @@ import { PrimeiroacessoPage } from '../pages/primeiroacesso/primeiroacesso.page'
 })
 export class HomePage {
   component = PrimeiroacessoPage;
-  constructor() {
-    
+  constructor(private titleService: Title) {
+    this.titleService.setTitle('Home - DirectCondo');
   }
 
 }

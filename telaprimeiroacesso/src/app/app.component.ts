@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonMenu } from '@ionic/angular';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -14,4 +15,6 @@ export class AppComponent {
   OnClickLeftMenu(){
     this.menu.close();
   }
+
+  
 }

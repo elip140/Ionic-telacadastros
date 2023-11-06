@@ -6,6 +6,7 @@ import { MaskitoOptions, MaskitoElementPredicateAsync } from '@maskito/core';
 import { HttpService } from 'src/app/shared/http-service.service';
 import { IonInput } from '@ionic/angular';
 
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-primeiroacesso',
@@ -47,8 +48,8 @@ export class PrimeiroacessoPage implements OnInit {
   item:any = { Nome: null, Email: null };
   message:any = "CPF não cadastrado!";
 
-  constructor(private formBuilder:FormBuilder, private http:HttpService){
-    
+  constructor(private formBuilder:FormBuilder, private http:HttpService, private titleService: Title){
+    this.titleService.setTitle('Primeiro Acesso - DirectCondo'); 
   }
 
   ngOnInit() {}
