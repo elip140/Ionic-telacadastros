@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Primeiro Acesso Morador</ion-title>
+    <ion-title><i class="bi bi-person-add"></i> Primeiro Acesso Morador</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -12,15 +12,15 @@
     <ion-col size-md="7" size="12">
 
       <ion-card>
-        <ion-card-header class="ion-text-center" color="primeiro">
-            <ion-card-title >Cadastro de Residente para acesso ao sistema</ion-card-title>
+        <ion-card-header class="ion-text-center" color="secondary">
+            <ion-card-title><i class="bi bi-person-plus-fill"></i> Cadastro de Residente para acesso ao sistema</ion-card-title>
         </ion-card-header>
 
         <form [formGroup]="formPAcesso">
           <ion-card-content class="ion-margin">
 
             <div class="ion-margin-bottom">
-              <ion-input formControlName="Cpf" labelPlacement="floating" fill="outline" #CPF
+              <ion-input formControlName="Cpf" labelPlacement="floating" fill="outline" #CPF color="secondary"
                 (ionInput)="OnKeyUpCpf($event)" placeholder="" [maskito]="cpfMask" [maskitoElement]="maskPredicate">
                 <div slot="label">Cpf</div>
               </ion-input>
@@ -36,14 +36,14 @@
               <ion-label>Cadstros Encontrados no Sistema:</ion-label>
               <div *ngIf="item.Nome!==null">
                 <ion-item [button]="true" (click)="OnClickLista(item)">
-                  <ion-label>{{ item.Nome }}</ion-label>
+                  <ion-label><i class="bi bi-person"></i> {{ item.Nome }}</ion-label>
                 </ion-item>
               </div>
 
               <div *ngIf="message!==null">
                 <ion-list>
                   <ion-item>
-                    <ion-label>{{ message }}</ion-label>
+                    <ion-label><i class="bi bi-person-x"></i> {{ message }}</ion-label>
                   </ion-item>
                 </ion-list>
               </div>
@@ -55,7 +55,7 @@
             <div [hidden]="isformhidden">
 
               <div class="ion-margin-bottom">
-                <ion-input formControlName="Nome" labelPlacement="floating" fill="outline" #Nome>
+                <ion-input formControlName="Nome" labelPlacement="floating" fill="outline" #Nome color="secondary">
                   <div slot="label">Nome</div>
                 </ion-input>
                 <small *ngFor="let validation of validation_messages.Nome">
@@ -67,7 +67,7 @@
 
 
               <div class="ion-margin-bottom">
-                <ion-input formControlName="Email" labelPlacement="floating" type="email" fill="outline" #Email>
+                <ion-input formControlName="Email" labelPlacement="floating" type="email" fill="outline" #Email color="secondary">
                   <div slot="label">E-mail para acesso</div>
                 </ion-input>
                 <small *ngFor="let validation of validation_messages.Email">
@@ -80,7 +80,7 @@
 
               <div class="ion-margin-bottom">
                 <ion-input formControlName="Senha" labelPlacement="floating" type="password" fill="outline"
-                  [clearOnEdit]="false" #Senha>
+                  [clearOnEdit]="false" #Senha color="secondary">
                   <div slot="label">Senha</div>
                 </ion-input>
                 <small *ngFor="let validation of validation_messages.Senha">
@@ -92,7 +92,7 @@
 
               <div class="ion-margin-bottom">
                 <ion-input formControlName="ConfSenha" labelPlacement="floating" type="password" fill="outline"
-                  [clearOnEdit]="false" #ConfSenha>
+                  [clearOnEdit]="false" #ConfSenha color="secondary">
                   <div slot="label">Confirme a Senha</div>
                 </ion-input>
                 <small *ngFor="let validation of validation_messages.ConfSenha">
@@ -109,7 +109,8 @@
 
           <ion-row class="card-footer ion-justify-content-center ion-margin-bottom">
             <ion-button (click)="OnClickSubmit()" [disabled]="isbuttondisabled" color="secundario">
-              Enviar
+              <i class="bi bi-save2"></i> 
+              <span style="padding-left: 0.3rem;"> Enviar</span>
             </ion-button>
           </ion-row>
 

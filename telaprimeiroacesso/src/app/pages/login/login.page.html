@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>Login</ion-title>
+    <ion-title><i class="bi bi-box-arrow-in-right"></i> Login</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -16,7 +16,7 @@
   <ion-row class="ion-justify-content-center">
     <ion-col size-md="7" size-lg="5" size="9">
       <ion-card>
-        <ion-card-header class="ion-text-center" color="primeiro">
+        <ion-card-header class="ion-text-center" color="secondary">
           <ion-card-title >Dados de Acesso</ion-card-title>
         </ion-card-header>
         
@@ -24,7 +24,7 @@
           <ion-card-content>
             <ion-row class="ion-margin">
               <div class="ion-margin-bottom" style="width: 100%;">
-                <ion-input formControlName="Usuario" labelPlacement="floating" fill="outline" #Usuario >
+                <ion-input formControlName="Usuario" labelPlacement="floating" fill="outline" #Usuario color="secondary">
                   <div slot="label">Usuário</div>
                 </ion-input>
 
@@ -36,7 +36,7 @@
               </div>
               
               <div class="ion-margin-bottom" style="width: 100%;">
-                <ion-input formControlName="Senha" labelPlacement="floating" type="password" fill="outline" [clearOnEdit]="false" #Senha >
+                <ion-input formControlName="Senha" labelPlacement="floating" type="password" fill="outline" [clearOnEdit]="false" #Senha color="secondary">
                   <div slot="label" >Senha</div>
                 </ion-input>
 
@@ -49,10 +49,10 @@
               
               <ion-row style="width: 100%;">
                 <ion-col size="6">
-                  <ion-checkbox formControlName="Lembrar">Lembrar?</ion-checkbox>
+                  <ion-checkbox formControlName="Lembrar" color="secondary">Lembrar?</ion-checkbox>
                 </ion-col>
                 <ion-col class="" size="6" style="text-align: end;">
-                  <a [routerLink]="['/primeiroacesso']">Primeiro acesso Residente?</a>
+                  <a [routerLink]="['/primeiroacesso']" color="secondary">Primeiro acesso Residente?</a>
                 </ion-col>
               </ion-row>
               
@@ -62,8 +62,9 @@
           <ion-row class="card-footer ion-justify-content-center">
             <!--(click)="OnClickSubmit()"  [formGroup]="formPAcesso"
             formControlName="Usuario" formControlName="Senha"-->
-            <ion-button color="secundario" (click)="OnClickSubmit()">
-              Enviar
+            <ion-button color="secundario" (click)="OnClickSubmit()" color="secondary">
+              <i class="bi bi-save2"></i> 
+              <span style="padding-left: 0.3rem;"> Enviar</span>
             </ion-button>
           </ion-row>
         </form>

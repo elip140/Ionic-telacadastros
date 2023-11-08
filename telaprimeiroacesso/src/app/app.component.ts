@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonMenu } from '@ionic/angular';
+import { IonMenu, IonToggle, ToggleChangeEventDetail } from '@ionic/angular';
 
 
 @Component({
@@ -9,12 +9,19 @@ import { IonMenu } from '@ionic/angular';
 })
 export class AppComponent {
   @ViewChild('leftmenu') menu!: IonMenu;
+  @ViewChild('darktoggle') toggle!: IonToggle;
 
-  constructor() {}
+  constructor() {
+  }
 
   OnClickLeftMenu(){
     this.menu.close();
   }
+
+  toggleDarkMode(){
+    document.body.classList.toggle('dark', this.toggle.checked);
+  }
+
 
   
 }
