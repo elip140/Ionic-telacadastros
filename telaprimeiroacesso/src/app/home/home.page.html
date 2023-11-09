@@ -15,10 +15,85 @@
   </ion-header>
 
   <div id="container">
-    <ion-button [routerLink]="['/primeiroacesso']">Primeiro acesso</ion-button>
-    <ion-button [routerLink]="['/residente']">Residente</ion-button>
-    <ion-button [routerLink]="['/login']">Login</ion-button>
+    <ion-row>
+      
+      <ion-col size-md="4" size="12">
+        <ion-card>
+          <ion-card-header color="secondary">
+            <ion-card-title><i class="bi bi-person-add"></i> Primeiro acesso</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-row class="ion-margin ion-justify-content-center">
+              <ion-row>
+                <span class="info">Crie sua conta aqui, se esse é o seu primeiro acesso:</span>
+              </ion-row>
+
+              <ion-row class="ion-margin-top">
+                <ion-button [routerLink]="['/primeiroacesso']" color="secondary">
+                  <i class="bi bi-person-add"></i>
+                  <span style="padding-left: 0.3rem;">Primeiro acesso</span>
+                </ion-button>
+              </ion-row>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size-md="4" size="12">
+        <ion-card>
+          <ion-card-header color="secondary">
+            <ion-card-title><i class="bi bi-person-circle"></i> Residente</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-row class="ion-margin ion-justify-content-center">
+              <ion-row>
+                <ion-col>
+                  <span class="info">Verifique suas informações cadastradas aqui:</span>
+                </ion-col>
+              </ion-row>
+
+              <ion-row class="ion-margin-top">
+                <ion-button [routerLink]="['/residente']" color="secondary">
+                  <ion-col>
+                  <i class="bi bi-person-circle"></i>
+                  <span style="padding-left: 0.3rem;">Residente</span>
+                </ion-col>
+                </ion-button>
+              </ion-row>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+      <ion-col size-md="4" size="12">
+        <ion-card>
+          <ion-card-header color="secondary">
+            <ion-card-title><i class="bi bi-box-arrow-in-right"></i> Login</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content>
+            <ion-row class="ion-margin ion-justify-content-center">
+              <ion-row>
+                <span class="info">Já possui um cadastro, acesse sua conta aqui:</span>
+              </ion-row>
+              <ion-row class="ion-margin-top">
+                <ion-button [routerLink]="['/login']" color="secondary">
+                  <i class="bi bi-box-arrow-in-right"></i>
+                  <span style="padding-left: 0.3rem;">Login</span>
+                </ion-button>
+              </ion-row>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+
+    </ion-row>
+
+
+
   </div>
 
-  
+
 </ion-content>

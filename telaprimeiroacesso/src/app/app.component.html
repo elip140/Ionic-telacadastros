@@ -20,7 +20,14 @@
           <ion-label><i class="bi bi-box-arrow-in-right"></i> Login</ion-label>
         </ion-item>
       </ion-list>
-      <ion-toggle class="ion-margin" color="light" #darktoggle (ionChange)="toggleDarkMode()">Modo Escuro</ion-toggle>
+      <ion-row>
+        <ion-toggle class="ion-margin" color="light" #darktoggle (ionChange)="toggleDarkMode()">
+          <span style="padding-right: 0.4rem;">Modo Escuro</span>
+          <i class="bi bi-brightness-high" id="sun"></i>
+          <i class="bi bi-moon ion-hide" id="moon"></i>
+        </ion-toggle>
+      </ion-row>
+      
     </ion-content>
 
     

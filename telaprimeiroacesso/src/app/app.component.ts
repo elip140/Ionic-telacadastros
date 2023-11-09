@@ -20,6 +20,8 @@ export class AppComponent {
 
   toggleDarkMode(){
     document.body.classList.toggle('dark', this.toggle.checked);
+    document.getElementById('sun')?.classList.toggle('ion-hide', this.toggle.checked);
+    document.getElementById('moon')?.classList.toggle('ion-hide', !(this.toggle.checked));
   }
 
 
