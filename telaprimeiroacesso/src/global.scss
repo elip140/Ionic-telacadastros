@@ -27,6 +27,8 @@
 
 html {
     --ion-safe-area-left: 25px;
+	--ion-dynamic-font: var(--ion-default-dynamic-font);
+	--ion-font-family: 'Poppins', sans-serif;
 }
 
 .ion-color-basic {
