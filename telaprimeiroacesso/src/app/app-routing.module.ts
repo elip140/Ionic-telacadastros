@@ -23,6 +23,18 @@ const routes: Routes = [
     path: 'residente',
     loadChildren: () => import('./pages/residente/residente.module').then( m => m.ResidentePageModule)
   },
+  
+  {
+    path: 'pessoas',
+    loadChildren: () => import('./pages/pessoas/index/index.module').then( m => m.IndexPageModule)
+  },
+  {
+    path: 'pessoas/index',
+    redirectTo: 'pessoas',
+    pathMatch: 'full'
+  },
+
+
 
 
 ];
