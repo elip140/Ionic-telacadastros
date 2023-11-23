@@ -53,6 +53,15 @@ export class HttpService {
     return this.http.post(this.baseUrl+conUrl+id, { headers });
   }
 
+  Login(email:string, senha:string): Observable<any> {
+    var conUrl:string =  "Pessoa/Login";
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+
+    return this.http.post(this.baseUrl+conUrl+"?email="+email+"&senha="+senha, { headers });
+  }
+
   /*getData(): Observable<any> {/Pessoa/CriarUsuario
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',

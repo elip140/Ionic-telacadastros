@@ -34,12 +34,19 @@ export class LoginPage implements OnInit {
   OnClickSubmit() {
     this.isSubimitted = true;
 
-    alert(JSON.stringify(this.formLogin.value));
-
     if (!this.formLogin.valid)
       return;
 
-    alert("Form Enviado");
+      this.http.Login("email","senha").subscribe(
+        (response) => {
+          console.log('POST Login request was successful', JSON.stringify(response));
+        },
+        (error) => {
+          console.error('Error no Request');
+          //, JSON.stringify(error)
+          return;
+        }
+      );
   }
 
 
