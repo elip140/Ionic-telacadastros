@@ -30,7 +30,7 @@ export class ResidentePage implements OnInit {
     this.titleService.setTitle('Residente - DirectCondo'); 
     //12100795007	
     //45123415874
-    this.RequestInfo("12100795007");
+    this.RequestInfo("45123415874");
     this.ColocarVinculos([{Nome:"TesteV2", Tipo:"Teste", Agenda:"02"}]);
     this.ColocarEntregas([{Nome:"TesteV2", Agenda:"02"}]);
   }
