@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpService } from 'src/app/shared/http-service.service';
+import { HttpService } from 'src/app/services/http-service.service';
 
 //import { DatePipe } from '@angular/common';
 import { Title } from '@angular/platform-browser';

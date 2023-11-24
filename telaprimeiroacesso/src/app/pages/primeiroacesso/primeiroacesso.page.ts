@@ -3,7 +3,7 @@ import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 import { MaskitoOptions, MaskitoElementPredicateAsync } from '@maskito/core';
-import { HttpService } from 'src/app/shared/http-service.service';
+import { HttpService } from 'src/app/services/http-service.service';
 import { IonInput } from '@ionic/angular';
 
 import { Title } from '@angular/platform-browser';

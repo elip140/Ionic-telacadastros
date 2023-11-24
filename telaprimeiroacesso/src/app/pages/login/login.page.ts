@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { HttpService } from 'src/app/shared/http-service.service';
+import { HttpService } from 'src/app/services/http-service.service';
+import { Router } from '@angular/router';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 import { Title } from '@angular/platform-browser';
 
@@ -24,7 +26,7 @@ export class LoginPage implements OnInit {
 
   isSubimitted = false;
 
-  constructor(private formBuilder: FormBuilder, private http: HttpService, private titleService: Title) {
+  constructor(private formBuilder: FormBuilder, private http: HttpService, private titleService: Title, private router: Router, private user: UsuarioService) {
     this.titleService.setTitle('Login - DirectCondo');
   }
 
@@ -37,17 +39,46 @@ export class LoginPage implements OnInit {
     if (!this.formLogin.valid)
       return;
 
-      this.http.Login("email","senha").subscribe(
-        (response) => {
+    this.user.Login(this.formLogin.value.Usuario, this.formLogin.value.Senha);
+
+    /*this.http.Login(this.formLogin.value.Usuario, this.formLogin.value.Senha).subscribe(
+      {
+        next: (response) => {
           console.log('POST Login request was successful', JSON.stringify(response));
+
+          if (response.success) {
+            localStorage.setItem('logado', response.success);
+            localStorage.setItem('token', "");
+            localStorage.setItem('usuario', this.formLogin.value.Usuario);
+
+            this.router.navigate(['/']);
+          }
+
+          alert(response.message);
+          return;
+
         },
-        (error) => {
+        error: (e) => {
           console.error('Error no Request');
           //, JSON.stringify(error)
           return;
-        }
-      );
+        },
+        complete: () => console.info('complete')
+      }
+    );*/
   }
+
+  /*
+  (response) => {
+        
+      },
+      (error) => {
+        console.error('Error no Request');
+        //, JSON.stringify(error)
+        return;
+      }
+  
+  */
 
 
   // Menssagens de validação customizadas
