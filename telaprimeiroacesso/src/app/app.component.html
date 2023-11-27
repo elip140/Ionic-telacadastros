@@ -5,8 +5,8 @@
         <ion-title>Direct Condo</ion-title>
       </ion-toolbar>
     </ion-header>
-    <ion-content class="ion-padding-top">
-      <ion-list>
+    <ion-content class="ion-padding-top" [fullscreen]="true">
+      <ion-list *ngIf="logado">
         <ion-item [button]="true" [routerLink]="['/']" (click)="OnClickLeftMenu()">
           <ion-label><i class="bi bi-house"></i> Home</ion-label>
         </ion-item>
@@ -16,18 +16,41 @@
         <ion-item [button]="true" [routerLink]="['/residente']" (click)="OnClickLeftMenu()">
           <ion-label><i class="bi bi-person-circle"></i> Residente</ion-label>
         </ion-item>
+      </ion-list>
+      <ion-list *ngIf="!logado">
         <ion-item [button]="true" [routerLink]="['/login']" (click)="OnClickLeftMenu()">
           <ion-label><i class="bi bi-box-arrow-in-right"></i> Login</ion-label>
         </ion-item>
       </ion-list>
-      <ion-row>
-        <ion-toggle class="ion-margin" color="light" #darktoggle (ionChange)="toggleDarkMode()">
-          <span style="padding-right: 0.4rem;">Modo Escuro</span>
-          <i class="bi bi-brightness-high" id="sun"></i>
-          <i class="bi bi-moon ion-hide" id="moon"></i>
-        </ion-toggle>
-      </ion-row>
+
     </ion-content>
+
+    <ion-footer collapse="fade">
+      <ion-toolbar>
+        <ion-row>
+          <ion-toggle class="ion-margin" color="light" #darktoggle (ionChange)="toggleDarkMode()">
+            <span style="padding-right: 0.4rem;">Modo Escuro</span>
+            <i class="bi bi-brightness-high" id="sun"></i>
+            <i class="bi bi-moon ion-hide" id="moon"></i>
+          </ion-toggle>
+        </ion-row>
+
+        <ion-row *ngIf="logado">
+          <ion-col style="margin-left: 0.65rem;">
+            <ion-row>
+              Usuario: {{ email }}
+            </ion-row>
+            <ion-row>
+              <ion-button (click)="Deslogar()" color="danger">
+                <i class="bi bi-box-arrow-right"></i>
+                <span style="padding-left: 0.3rem;">Sair</span>
+              </ion-button>
+            </ion-row>
+          </ion-col>
+
+        </ion-row>
+      </ion-toolbar>
+    </ion-footer>
   </ion-menu>
 
   <div class="ion-page" id="main-content">

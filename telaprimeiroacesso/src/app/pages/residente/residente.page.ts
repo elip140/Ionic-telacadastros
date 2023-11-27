@@ -21,9 +21,7 @@ export class ResidentePage implements OnInit {
   }
 
   visitas:any = [];
-
   vinculos:any = [];
-
   entregas:any = [];
 
   constructor(private http:HttpService, private titleService: Title){

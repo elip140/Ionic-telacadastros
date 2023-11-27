@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonMenu, IonToggle, ToggleChangeEventDetail } from '@ionic/angular';
+import { UsuarioService } from './services/usuario.service';
 
 
 @Component({
@@ -11,11 +12,21 @@ export class AppComponent {
   @ViewChild('leftmenu') menu!: IonMenu;
   @ViewChild('darktoggle') toggle!: IonToggle;
 
-  constructor() {
+  email:string = "";
+  logado:boolean = false;
+
+  constructor(private usu:UsuarioService) {
+    this.email = usu.GetUsuarioNomeLogado();
+    this.logado = usu.GetLogado();
   }
+
 
   OnClickLeftMenu(){
     this.menu.close();
+  }
+
+  Deslogar(){
+    this.usu.Deslogar();
   }
 
   toggleDarkMode(){

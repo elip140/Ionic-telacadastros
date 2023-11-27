@@ -67,7 +67,7 @@
 
 
               <div class="ion-margin-bottom">
-                <ion-input formControlName="Email" labelPlacement="floating" type="email" fill="outline" #Email color="secondary">
+                <ion-input formControlName="Email" labelPlacement="floating" type="email" fill="outline" #Email color="secondary" [readonly]="true">
                   <div slot="label">E-mail para acesso</div>
                 </ion-input>
                 <small *ngFor="let validation of validation_messages.Email">

@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { UsuarioGuard } from './services/usuario.guard';
+import { NaologadoGuard } from './services/naologado.guard';
 
 const routes: Routes = [
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule),
+    canActivate: [UsuarioGuard]
   },
   {
     path: '',
@@ -13,20 +16,24 @@ const routes: Routes = [
   },
   {
     path: 'primeiroacesso',
-    loadChildren: () => import('./pages/primeiroacesso/primeiroacesso.module').then( m => m.PrimeiroacessoPageModule)
+    loadChildren: () => import('./pages/primeiroacesso/primeiroacesso.module').then( m => m.PrimeiroacessoPageModule),
+    canActivate: [NaologadoGuard]
   },
   {
     path: 'login',
-    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule),
+    canActivate: [NaologadoGuard]
   },
   {
     path: 'residente',
-    loadChildren: () => import('./pages/residente/residente.module').then( m => m.ResidentePageModule)
+    loadChildren: () => import('./pages/residente/residente.module').then( m => m.ResidentePageModule),
+    canActivate: [UsuarioGuard]
   },
   
   {
     path: 'pessoas',
-    loadChildren: () => import('./pages/pessoas/index/index.module').then( m => m.IndexPageModule)
+    loadChildren: () => import('./pages/pessoas/index/index.module').then( m => m.IndexPageModule),
+    canActivate: [UsuarioGuard]
   },
   {
     path: 'pessoas/index',

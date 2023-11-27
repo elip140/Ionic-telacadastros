@@ -28,7 +28,7 @@ export class UsuarioService {
         localStorage.setItem('token', "TOKEN");
         localStorage.setItem('usuario', email);
         localStorage.setItem('logado', JSON.stringify(true));
-        this.router.navigate(['']);
+        this.router.navigate(['/home']).then(() => location.reload());
       },
       error: () => {
         console.error('Error no Request');
@@ -37,4 +37,33 @@ export class UsuarioService {
     })
     
   }
+
+  Deslogar() {
+      localStorage.clear();
+      this.router.navigate(['login']).then(() => location.reload());
+      
+  }
+
+  GetUsuarioLogado(): string{
+    let usu = {
+      email: localStorage.getItem('usuario') || "",
+      token: localStorage.getItem('token') || "",
+      logado: localStorage.getItem('logado') || false,
+    };
+    return JSON.stringify(usu);
+  }
+
+  GetUsuarioNomeLogado(): string{
+    return localStorage.getItem('usuario') || "";
+  }
+
+  GetTokenLogado(): string {
+    return localStorage.getItem('token') || "";
+  }
+
+  GetLogado(): boolean {
+    return localStorage.getItem('logado') ? true : false;
+  }
+  
+  
 }

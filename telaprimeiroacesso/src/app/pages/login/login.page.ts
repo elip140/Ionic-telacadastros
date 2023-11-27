@@ -40,32 +40,6 @@ export class LoginPage implements OnInit {
       return;
 
     this.user.Login(this.formLogin.value.Usuario, this.formLogin.value.Senha);
-
-    /*this.http.Login(this.formLogin.value.Usuario, this.formLogin.value.Senha).subscribe(
-      {
-        next: (response) => {
-          console.log('POST Login request was successful', JSON.stringify(response));
-
-          if (response.success) {
-            localStorage.setItem('logado', response.success);
-            localStorage.setItem('token', "");
-            localStorage.setItem('usuario', this.formLogin.value.Usuario);
-
-            this.router.navigate(['/']);
-          }
-
-          alert(response.message);
-          return;
-
-        },
-        error: (e) => {
-          console.error('Error no Request');
-          //, JSON.stringify(error)
-          return;
-        },
-        complete: () => console.info('complete')
-      }
-    );*/
   }
 
   /*
