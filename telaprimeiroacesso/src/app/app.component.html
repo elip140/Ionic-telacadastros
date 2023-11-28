@@ -10,16 +10,18 @@
         <ion-item [button]="true" [routerLink]="['/']" (click)="OnClickLeftMenu()">
           <ion-label><i class="bi bi-house"></i> Home</ion-label>
         </ion-item>
-        <ion-item [button]="true" [routerLink]="['/primeiroacesso']" (click)="OnClickLeftMenu()">
-          <ion-label><i class="bi bi-person-add"></i> Primeiro Acesso</ion-label>
-        </ion-item>
         <ion-item [button]="true" [routerLink]="['/residente']" (click)="OnClickLeftMenu()">
           <ion-label><i class="bi bi-person-circle"></i> Residente</ion-label>
         </ion-item>
       </ion-list>
+
+
       <ion-list *ngIf="!logado">
         <ion-item [button]="true" [routerLink]="['/login']" (click)="OnClickLeftMenu()">
           <ion-label><i class="bi bi-box-arrow-in-right"></i> Login</ion-label>
+        </ion-item>
+        <ion-item [button]="true" [routerLink]="['/primeiroacesso']" (click)="OnClickLeftMenu()">
+          <ion-label><i class="bi bi-person-add"></i> Primeiro Acesso</ion-label>
         </ion-item>
       </ion-list>
 
