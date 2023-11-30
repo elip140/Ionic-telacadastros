@@ -3,12 +3,14 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
-
 import { IndexPageRoutingModule } from './index-routing.module';
-
 import { IndexPage } from './index.page';
 
-import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   imports: [
@@ -16,8 +18,13 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
     FormsModule,
     IonicModule,
     IndexPageRoutingModule,
-    NgxDatatableModule
+
+    MatFormFieldModule, 
+    MatInputModule, 
+    MatTableModule, 
+    MatSortModule, 
+    MatPaginatorModule
   ],
   declarations: [IndexPage]
 })
-export class IndexPageModule {}
+export class IndexPageModule { }
