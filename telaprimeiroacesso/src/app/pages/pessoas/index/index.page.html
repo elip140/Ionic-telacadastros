@@ -14,7 +14,7 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-row class="ion-justify-content-center teste">
+  <ion-row class="ion-justify-content-center">
     <ion-col size-md="11" size="12">
       <ion-card>
         <ion-card-header class="ion-text-center" color="secondary">
@@ -43,23 +43,74 @@
               </ion-item>
             </ion-list>
           </div>
-          <ngx-datatable class="material ngx-datatable" [limit]="4" [rows]="rows" [rowHeight]="50" [columns]="columns"
-            [columnMode]="'force'" [sortType]="'multi'" [headerHeight]="50" [footerHeight]="50">
+
+
+
+
+          <ngx-datatable class="material expandable ngx-datatable" [limit]="4" [rows]="rows" rowHeight="auto"
+            [columns]="columns" [columnMode]="'force'" [sortType]="'multi'" [headerHeight]="50" [footerHeight]="50"
+            #Table>
+
+            <!-- Row com os detalhes que serão escondidos-->
+            <ngx-datatable-row-detail [rowHeight]="100" #myDetailRow (toggle)="onDetailToggle($event)" >
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
+                <div style="padding-left:60px; font-size:14px">
+                  <ion-row>
+                    <ion-col>
+                      <span>Nome</span>
+                      <span>{{ row.nome }}</span>
+                    </ion-col>
+                    <ion-col>
+                      <span>RG</span>
+                      <span>{{ row.rg }}</span>
+                    </ion-col>
+                    <ion-col>
+                      <span>CPF</span>
+                      <span>{{ row.cpf }}</span>
+                    </ion-col>
+                    
+                    <ion-col>
+                      <span>Tipo</span>
+                      <span>{{ row.cpf }}</span>
+                    </ion-col>
+                    <ion-col>
+                      <span>Data</span>
+                      <span>{{ row.data }}</span>
+                    </ion-col>
+                  </ion-row>
+                </div>
+              </ng-template>
+            </ngx-datatable-row-detail>
+
+
+            <ngx-datatable-column [width]="50" [resizeable]="false" [sortable]="false" [draggable]="false"
+              [canAutoResize]="false" >
+              <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+                <a [class.datatable-icon-right]="!expanded" [class.datatable-icon-down]="expanded"
+                  title="Expand/Collapse Row" (click)="toggleExpandRow(row)" class="desktop-hidden">
+                </a>
+              </ng-template>
+            </ngx-datatable-column>
+
+
 
             <ngx-datatable-column name="Id"></ngx-datatable-column>
+            <ngx-datatable-column name="Nome"></ngx-datatable-column>
             <ngx-datatable-column name="RG"></ngx-datatable-column>
             <ngx-datatable-column name="CPF"></ngx-datatable-column>
-            <ngx-datatable-column name="Datanasc"></ngx-datatable-column>
-            <ngx-datatable-column name="Email"></ngx-datatable-column>
+            <!--<ngx-datatable-column name="Datanasc"></ngx-datatable-column>
+            <ngx-datatable-column name="Email"></ngx-datatable-column>-->
             <ngx-datatable-column name="Tipo"></ngx-datatable-column>
             <ngx-datatable-column name="Data"></ngx-datatable-column>
 
-            <ngx-datatable-column name="Actions" [sortable]="false">
+            <ngx-datatable-column name="Actions"  [sortable]="false">
               <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-                  <ion-button size="small" (click)="open(row)">I</ion-button>
-                  <ion-button size="small" (click)="open(row)">I</ion-button>
-                  <ion-button size="small" (click)="open(row)">I</ion-button>
-                  <ion-button size="small" (click)="open(row)">I</ion-button>
+                <ion-row>
+                  <ion-button size="small" >I</ion-button>
+                  <ion-button size="small" >I</ion-button>
+                  <ion-button size="small" >I</ion-button>
+                  <ion-button size="small" >I</ion-button>
+                </ion-row>
               </ng-template>
             </ngx-datatable-column>
           </ngx-datatable>

@@ -1,0 +1,24 @@
+@media screen and (max-width: 800px) {
+    .teste{
+        display: initial;
+    }
+
+    .desktop-hidden {
+      display: initial;
+    }
+    .mobile-hidden {
+      display: none;
+    }
+  }
+  @media screen and (min-width: 800px) {
+    .teste{
+        display: none;
+    }
+    
+    .desktop-hidden {
+      display: none;
+    }
+    .mobile-hidden {
+      display: initial;
+    }
+  }
