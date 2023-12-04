@@ -68,6 +68,15 @@ html {
 	--ion-color-tint: var(--ion-color-fundo-tint);
 }
 
+.ion-color-info {
+	--ion-color-base: var(--ion-color-info);
+	--ion-color-base-rgb: var(--ion-color-info-rgb);
+	--ion-color-contrast: var(--ion-color-info-contrast);
+	--ion-color-contrast-rgb: var(--ion-color-info-contrast-rgb);
+	--ion-color-shade: var(--ion-color-info-shade);
+	--ion-color-tint: var(--ion-color-info-tint);
+}
+
 .basic{
     text-align: center;
     /*background-color: #d9edf7;*/

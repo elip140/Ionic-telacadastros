@@ -1,20 +1,29 @@
+/* Brakpoints de Quando certos elementos vão desaparecer da tabela */
 @media screen and (max-width: 800px) {
-  .desktop-hidden {
-    display: initial;
+  .mobile4-hidden {
+    display: none;
   }
-
-  .mobile-hidden {
+}
+@media screen and (max-width: 800px) {
+  .mobile3-hidden {
+    display: none;
+  }
+}
+@media screen and (max-width: 800px) {
+  .mobile2-hidden {
+    display: none;
+  }
+}
+@media screen and (max-width: 800px) {
+  .mobile1-hidden {
     display: none;
   }
 }
 
+
 @media screen and (min-width: 800px) {
   .desktop-hidden {
     display: none;
-  }
-
-  .mobile-hidden {
-    display: initial;
   }
 }
 

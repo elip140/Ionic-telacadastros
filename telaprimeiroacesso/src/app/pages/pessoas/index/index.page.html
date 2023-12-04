@@ -33,8 +33,8 @@
 
               <!-- Coluna para Expandir -->
               <ng-container matColumnDef="expand">
-                <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
-                <td mat-cell *matCellDef="let element">
+                <th mat-header-cell *matHeaderCellDef aria-label="row actions" class="desktop-hidden">&nbsp;</th>
+                <td mat-cell *matCellDef="let element" class="desktop-hidden">
                   <button mat-icon-button aria-label="expand row"
                     (click)="(expandedElement = expandedElement === element ? null : element); $event.stopPropagation()">
                     <div *ngIf="expandedElement === element">
@@ -61,8 +61,8 @@
 
               <!-- RG Coluna -->
               <ng-container matColumnDef="rg">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> RG </th>
-                <td mat-cell *matCellDef="let row"> {{row.rg}} </td>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header class="mobile1-hidden"> RG </th>
+                <td mat-cell *matCellDef="let row" class="mobile1-hidden"> {{row.rg}} </td>
               </ng-container>
 
               <!-- CPF Coluna -->
@@ -73,43 +73,43 @@
 
               <!-- Data Nascimento Coluna -->
               <ng-container matColumnDef="datanasc">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Data de Nascimento </th>
-                <td mat-cell *matCellDef="let row"> {{row.datanasc}} </td>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header class="mobile1-hidden"> Data de Nascimento </th>
+                <td mat-cell *matCellDef="let row" class="mobile1-hidden"> {{row.datanasc}} </td>
               </ng-container>
 
               <!-- E-mail Coluna -->
               <ng-container matColumnDef="email">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> E-mail </th>
-                <td mat-cell *matCellDef="let row"> {{row.email}} </td>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header class="mobile1-hidden"> E-mail </th>
+                <td mat-cell *matCellDef="let row" class="mobile1-hidden"> {{row.email}} </td>
               </ng-container>
 
               <!-- Tipo Coluna -->
               <ng-container matColumnDef="tipo">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Tipo </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header > Tipo </th>
                 <td mat-cell *matCellDef="let row"> {{row.tipo}} </td>
               </ng-container>
 
               <!-- Data Coluna -->
               <ng-container matColumnDef="data">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Data </th>
-                <td mat-cell *matCellDef="let row"> {{row.data}} </td>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header class="mobile1-hidden"> Data </th>
+                <td mat-cell *matCellDef="let row" class="mobile1-hidden"> {{row.data}} </td>
               </ng-container>
 
               <!-- Ações Coluna -->
               <ng-container matColumnDef="actions">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Ações </th>
-                <td mat-cell *matCellDef="let row">
-                  <ion-button>
-                    I
+                <td mat-cell *matCellDef="let row" class="ion-text-center">
+                  <ion-button color="">
+                    <i class="bi bi-pencil-fill"></i>
                   </ion-button>
-                  <ion-button>
-                    I
+                  <ion-button color="info">
+                    <i class="bi bi-image"></i>
                   </ion-button>
-                  <ion-button>
-                    I
+                  <ion-button color="success">
+                    <i class="bi bi-box-arrow-in-right"></i>
                   </ion-button>
-                  <ion-button>
-                    I
+                  <ion-button color="danger">
+                    <i class="bi bi-trash-fill"></i>
                   </ion-button>
                 </td>
               </ng-container>
@@ -144,7 +144,7 @@
 
               <!-- Row shown when there is no matching data. -->
               <tr class="mat-row" *matNoDataRow>
-                <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                <td class="mat-cell" colspan="3">No data matching the filter "{{input.value}}"</td>
               </tr>
               
             </table>
