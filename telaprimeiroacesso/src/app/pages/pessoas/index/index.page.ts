@@ -50,6 +50,7 @@ export class IndexPage implements OnInit {
     }
   }
 
+  // Gera uma pessoa aleatória para testes
   TestePessoa(id: number = 0): PessoaData {
     const nome = NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' + NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
     const rg = Random(100000000, 999999999).toString();

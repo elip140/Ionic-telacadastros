@@ -14,7 +14,7 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-row class="ion-justify-content-center">
+  <ion-row class="ion-justify-content-center teste">
     <ion-col size-md="11" size="12">
       <ion-card>
         <ion-card-header class="ion-text-center" color="secondary">
@@ -25,16 +25,16 @@
 
           <mat-form-field>
             <mat-label>Filter</mat-label>
-            <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+            <input matInput (keyup)="applyFilter($event)" placeholder="" #input>
           </mat-form-field>
 
           <div class="mat-elevation-z8">
-            <table mat-table [dataSource]="dataSource" matSort multiTemplateDataRows>
+            <mat-table [dataSource]="dataSource" matSort class="mat-table"> <!-- multiTemplateDataRows -->
 
               <!-- Coluna para Expandir -->
-              <ng-container matColumnDef="expand">
-                <th mat-header-cell *matHeaderCellDef aria-label="row actions" class="desktop-hidden">&nbsp;</th>
-                <td mat-cell *matCellDef="let element" class="desktop-hidden">
+              <!--<ng-container matColumnDef="expand">
+                <mat-header-cell *matHeaderCellDef aria-label="row actions" class="desktop-hidden">&nbsp;</th>
+                <mat-cell *matCellDef="let element" class="desktop-hidden">
                   <button mat-icon-button aria-label="expand row"
                     (click)="(expandedElement = expandedElement === element ? null : element); $event.stopPropagation()">
                     <div *ngIf="expandedElement === element">
@@ -45,79 +45,83 @@
                     </div>
                   </button>
                 </td>
-              </ng-container>
+              </ng-container>-->
 
               <!-- ID Coluna -->
               <ng-container matColumnDef="id">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
-                <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+                <mat-header-cell *matHeaderCellDef mat-sort-header [style.flex]="'0 0 0%'"> ID </mat-header-cell>
+                <mat-cell *matCellDef="let row" data-label="ID" [style.flex]="'0 0 0%'"> {{row.id}} </mat-cell>
               </ng-container>
 
               <!-- Nome Coluna -->
               <ng-container matColumnDef="nome">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Nome </th>
-                <td mat-cell *matCellDef="let row"> {{row.nome}} </td>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Nome </mat-header-cell>
+                <mat-cell *matCellDef="let row" data-label="Nome"> {{row.nome}} </mat-cell>
               </ng-container>
 
               <!-- RG Coluna -->
               <ng-container matColumnDef="rg">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header class="mobile1-hidden"> RG </th>
-                <td mat-cell *matCellDef="let row" class="mobile1-hidden"> {{row.rg}} </td>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> RG </mat-header-cell>
+                <mat-cell *matCellDef="let row" data-label="RG" > {{row.rg}} </mat-cell>
               </ng-container>
 
               <!-- CPF Coluna -->
               <ng-container matColumnDef="cpf">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> CPF </th>
-                <td mat-cell *matCellDef="let row"> {{row.cpf}} </td>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> CPF </mat-header-cell>
+                <mat-cell *matCellDef="let row" data-label="CPF"> {{row.cpf}} </mat-cell>
               </ng-container>
 
               <!-- Data Nascimento Coluna -->
               <ng-container matColumnDef="datanasc">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header class="mobile1-hidden"> Data de Nascimento </th>
-                <td mat-cell *matCellDef="let row" class="mobile1-hidden"> {{row.datanasc}} </td>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Data de Nascimento
+                </mat-header-cell>
+                <mat-cell *matCellDef="let row" data-label="Data de Nascimento"> {{row.datanasc}} </mat-cell>
               </ng-container>
 
               <!-- E-mail Coluna -->
               <ng-container matColumnDef="email">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header class="mobile1-hidden"> E-mail </th>
-                <td mat-cell *matCellDef="let row" class="mobile1-hidden"> {{row.email}} </td>
+                <mat-header-cell *matHeaderCellDef> E-mail </mat-header-cell>
+                <mat-cell *matCellDef="let row" data-label="E-mail"> {{row.email}} </mat-cell>
               </ng-container>
 
               <!-- Tipo Coluna -->
               <ng-container matColumnDef="tipo">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header > Tipo </th>
-                <td mat-cell *matCellDef="let row"> {{row.tipo}} </td>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Tipo </mat-header-cell>
+                <mat-cell *matCellDef="let row" data-label="Tipo"> {{row.tipo}} </mat-cell>
               </ng-container>
 
               <!-- Data Coluna -->
               <ng-container matColumnDef="data">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header class="mobile1-hidden"> Data </th>
-                <td mat-cell *matCellDef="let row" class="mobile1-hidden"> {{row.data}} </td>
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Data </mat-header-cell>
+                <mat-cell *matCellDef="let row" data-label="Data"> {{row.data}} </mat-cell>
               </ng-container>
 
               <!-- Ações Coluna -->
               <ng-container matColumnDef="actions">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Ações </th>
-                <td mat-cell *matCellDef="let row" class="ion-text-center">
-                  <ion-button color="">
-                    <i class="bi bi-pencil-fill"></i>
-                  </ion-button>
-                  <ion-button color="info">
-                    <i class="bi bi-image"></i>
-                  </ion-button>
-                  <ion-button color="success">
-                    <i class="bi bi-box-arrow-in-right"></i>
-                  </ion-button>
-                  <ion-button color="danger">
-                    <i class="bi bi-trash-fill"></i>
-                  </ion-button>
-                </td>
+                <mat-header-cell *matHeaderCellDef [style.flex]="'3 0 0%'"> Ações </mat-header-cell>
+                <mat-cell *matCellDef="let row" class="ion-text-center" [style.flex]="'3 0 0%'">
+                  <div>
+                    <ion-button color="">
+                      <i class="bi bi-pencil-fill"></i>
+                    </ion-button>
+                    <ion-button color="info">
+                      <i class="bi bi-image"></i>
+                    </ion-button>
+                    <ion-button color="success">
+                      <i class="bi bi-box-arrow-in-right"></i>
+                    </ion-button>
+                    <ion-button color="danger">
+                      <i class="bi bi-trash-fill"></i>
+                    </ion-button>
+                  </div>
+
+                </mat-cell>
               </ng-container>
 
 
               <!-- Layout dos Detalhes de uma linha -->
-              <ng-container matColumnDef="expandedDetail">
-                <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplayWithExpand.length">
+              <!--<ng-container matColumnDef="expandedDetail">
+                <mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplayWithExpand.length">
                   <div class="example-element-detail" [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
                     <div class="example-element-diagram">
                       <div class="example-element-position"> {{element.nome}} Teste</div>
@@ -127,29 +131,29 @@
                     </div>
                   </div>
                 </td>
-              </ng-container>
+              </ng-container>-->
 
 
-              <!-- Renderização da Tabela -->
+              <!-- Renderização da Tabela --
               <tr mat-header-row *matHeaderRowDef="columnsToDisplayWithExpand"></tr>
               <tr mat-row *matRowDef="let element; columns: columnsToDisplayWithExpand;" class="example-element-row"
                 [class.example-expanded-row]="expandedElement === element"
                 (click)="expandedElement = expandedElement === element ? null : element">
               </tr>
-              <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+              <!--<tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>-->
 
-              <!--<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>-->
+              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 
 
               <!-- Row shown when there is no matching data. -->
-              <tr class="mat-row" *matNoDataRow>
+              <!--<tr class="mat-row" *matNoDataRow>
                 <td class="mat-cell" colspan="3">No data matching the filter "{{input.value}}"</td>
-              </tr>
-              
-            </table>
+              </tr>-->
 
-            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+            </mat-table>
+
+            <mat-paginator [pageSizeOptions]="[10, 25, 100]" aria-label="Select page of users"></mat-paginator>
           </div>
 
 
