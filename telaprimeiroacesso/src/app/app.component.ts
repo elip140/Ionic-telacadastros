@@ -1,5 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
-import { IonMenu, IonToggle, ToggleChangeEventDetail } from '@ionic/angular';
+import { Component, ViewChild, ViewChildren, QueryList } from '@angular/core';
+import { IonMenu, IonToggle, ToggleChangeEventDetail, IonList, IonItem, IonInput } from '@ionic/angular';
 import { UsuarioService } from './services/usuario.service';
 
 
@@ -11,6 +11,10 @@ import { UsuarioService } from './services/usuario.service';
 export class AppComponent {
   @ViewChild('leftmenu') menu!: IonMenu;
   @ViewChild('darktoggle') toggle!: IonToggle;
+
+  @ViewChild('PesquisaMenu') searchMenu!: IonInput;
+  @ViewChildren('ListaMenu') ionItems: QueryList<IonItem>;
+
 
   email:string = "";
   logado:boolean = false;
@@ -35,6 +39,12 @@ export class AppComponent {
     document.getElementById('moon')?.classList.toggle('ion-hide', !(this.toggle.checked));
   }
 
-
+  handleInput(event:any ) {
+    const query = event.target.value.toLowerCase();
+    
+    this.ionItems.forEach(element => {
+      //alert(JSON.stringify(element));
+    });
+  }
   
 }
