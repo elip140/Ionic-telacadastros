@@ -101,16 +101,16 @@
                 <mat-header-cell *matHeaderCellDef [style.flex]="'3 0 0%'"> Ações </mat-header-cell>
                 <mat-cell *matCellDef="let row" class="ion-text-center" [style.flex]="'3 0 0%'">
                   <div>
-                    <ion-button color="">
+                    <ion-button color="" [routerLink]="['./edit', row.id]" >
                       <i class="bi bi-pencil-fill"></i>
                     </ion-button>
-                    <ion-button color="info">
+                    <ion-button color="info" [routerLink]="['./imagem', row.id]">
                       <i class="bi bi-image"></i>
                     </ion-button>
-                    <ion-button color="success">
+                    <ion-button color="success" [routerLink]="['./enviar', row.id]">
                       <i class="bi bi-box-arrow-in-right"></i>
                     </ion-button>
-                    <ion-button color="danger">
+                    <ion-button color="danger" [routerLink]="['/delete', row.id]">
                       <i class="bi bi-trash-fill"></i>
                     </ion-button>
                   </div>
@@ -147,9 +147,9 @@
 
 
               <!-- Row shown when there is no matching data. -->
-              <!--<tr class="mat-row" *matNoDataRow>
-                <td class="mat-cell" colspan="3">No data matching the filter "{{input.value}}"</td>
-              </tr>-->
+              <tr class="mat-row ion-text-center ion-margin" *matNoDataRow>
+                <td class="mat-cell" colspan="11">Não tem nenhuma informação com o valor "{{input.value}}"</td>
+              </tr>
 
             </mat-table>
 

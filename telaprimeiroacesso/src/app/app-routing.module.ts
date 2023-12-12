@@ -40,6 +40,11 @@ const routes: Routes = [
     redirectTo: 'pessoas',
     pathMatch: 'full'
   },
+  {
+    path: 'pessoas/edit',
+    loadChildren: () => import('./pages/pessoas/edit/edit.module').then( m => m.EditPageModule)
+  },
+
 
 
 ];
