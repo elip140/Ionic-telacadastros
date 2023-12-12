@@ -15,36 +15,46 @@ export class AppComponent {
   @ViewChild('PesquisaMenu') searchMenu!: IonInput;
   @ViewChildren('ListaMenu') ionItems: QueryList<IonItem>;
 
+  pesquisa:any = new Map();
 
-  email:string = "";
-  logado:boolean = false;
 
-  constructor(private usu:UsuarioService) {
+  email: string = "";
+  logado: boolean = false;
+
+  constructor(private usu: UsuarioService) {
     this.email = usu.GetUsuarioNomeLogado();
     this.logado = usu.GetLogado();
+
+    // Todos os links para eles serem pesquisados
+    this.pesquisa.set('home', {value:false});
+    this.pesquisa.set('residente', {value:false});
+    this.pesquisa.set('pessoas', {value:false});
   }
 
 
-  OnClickLeftMenu(){
+  OnClickLeftMenu() {
     this.menu.close();
   }
 
-  Deslogar(){
+  Deslogar() {
     this.usu.Deslogar();
   }
 
-  toggleDarkMode(){
+  toggleDarkMode() {
     document.body.classList.toggle('dark', this.toggle.checked);
     document.getElementById('sun')?.classList.toggle('ion-hide', this.toggle.checked);
     document.getElementById('moon')?.classList.toggle('ion-hide', !(this.toggle.checked));
   }
 
-  handleInput(event:any ) {
+  handleInput(event: any) {
     const query = event.target.value.toLowerCase();
-    
-    this.ionItems.forEach(element => {
-      //alert(JSON.stringify(element));
+
+    this.pesquisa.forEach((element:any, key:any) => {
+      if(key.includes(query))
+        element.value = false;
+      else
+        element.value = true;
     });
   }
-  
+
 }
