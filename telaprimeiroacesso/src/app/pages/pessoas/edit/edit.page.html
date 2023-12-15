@@ -14,7 +14,7 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-row class="ion-justify-content-center teste">
+  <ion-row class="ion-justify-content-center">
     <ion-col size-md="11" size="12">
       <ion-card>
         <ion-card-header class="ion-text-center" color="secondary">
@@ -22,7 +22,156 @@
         </ion-card-header>
 
         <ion-card-content class="ion-margin">
+          <ion-grid>
+            <ion-row class="info">
+              <ion-col size="12" size-md="6" push-md="6">
+                <div [hidden]="false">
+                  <form [formGroup]="formEdit">
 
+                    <div class="ion-margin-bottom">
+                      <ion-input formControlName="Nome" labelPlacement="floating" fill="outline" #Nome color="secondary" style="">
+                        <div slot="label" class="teste">Nome</div>
+                      </ion-input>
+                      <small *ngFor="let validation of validation_messages.Nome">
+                        <ion-text color="danger"
+                          *ngIf="isSubimitted && formEdit.get('Nome')?.hasError(validation.type)">
+                          {{ validation.message }}
+                        </ion-text>
+                      </small>
+                    </div>
+
+                    <div class="ion-margin-bottom">
+                      <ion-input formControlName="Cpf" labelPlacement="floating" fill="outline" #Cpf color="secondary">
+                        <div slot="label">CPF</div>
+                      </ion-input>
+                      <small *ngFor="let validation of validation_messages.Cpf">
+                        <ion-text color="danger"
+                          *ngIf="isSubimitted && formEdit.get('Cpf')?.hasError(validation.type)">
+                          {{ validation.message }}
+                        </ion-text>
+                      </small>
+                    </div>
+
+                    <div class="ion-margin-bottom">
+                      <ion-input formControlName="Rg" labelPlacement="floating" fill="outline" #Rg color="secondary">
+                        <div slot="label">Rg</div>
+                      </ion-input>
+                      <small *ngFor="let validation of validation_messages.Rg">
+                        <ion-text color="danger"
+                          *ngIf="isSubimitted && formEdit.get('Rg')?.hasError(validation.type)">
+                          {{ validation.message }}
+                        </ion-text>
+                      </small>
+                    </div>
+
+                    <div class="ion-margin-bottom">
+                      <ion-input formControlName="Tipo" labelPlacement="floating" fill="outline" #Tipo color="secondary">
+                        <div slot="label">Tipo</div>
+                      </ion-input>
+                      <small *ngFor="let validation of validation_messages.Tipo">
+                        <ion-text color="danger"
+                          *ngIf="isSubimitted && formEdit.get('Tipo')?.hasError(validation.type)">
+                          {{ validation.message }}
+                        </ion-text>
+                      </small>
+                    </div>
+
+                    <div class="ion-margin-bottom">
+                      <ion-input formControlName="DataNasc" labelPlacement="floating" fill="outline" #DataNasc color="secondary">
+                        <div slot="label">Data de Nascimento</div>
+                      </ion-input>
+                      <small *ngFor="let validation of validation_messages.DataNasc">
+                        <ion-text color="danger"
+                          *ngIf="isSubimitted && formEdit.get('DataNasc')?.hasError(validation.type)">
+                          {{ validation.message }}
+                        </ion-text>
+                      </small>
+                    </div>
+
+                    <div class="ion-margin-bottom">
+                      <ion-input formControlName="Email" labelPlacement="floating" fill="outline" #Email color="secondary">
+                        <div slot="label">E-mail</div>
+                      </ion-input>
+                      <small *ngFor="let validation of validation_messages.Email">
+                        <ion-text color="danger"
+                          *ngIf="isSubimitted && formEdit.get('Email')?.hasError(validation.type)">
+                          {{ validation.message }}
+                        </ion-text>
+                      </small>
+                    </div>
+
+                    <div class="ion-margin-bottom">
+                      <ion-input formControlName="Observacao" labelPlacement="floating" fill="outline" #Observacao color="secondary">
+                        <div slot="label">Observação</div>
+                      </ion-input>
+                      <small *ngFor="let validation of validation_messages.Observacao">
+                        <ion-text color="danger"
+                          *ngIf="isSubimitted && formEdit.get('Observacao')?.hasError(validation.type)">
+                          {{ validation.message }}
+                        </ion-text>
+                      </small>
+                    </div>
+                  </form>
+                </div>
+
+                <div [hidden]="true">
+                  <ion-row>
+                    <ion-col>
+                      <ion-label class="title">Nome: </ion-label>
+                      <ion-label>{{ pessoa.nome }}</ion-label>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col>
+                      <ion-label class="title">CPF: </ion-label>
+                      <ion-label>{{ pessoa.cpf }}</ion-label>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col>
+                      <ion-label class="title">RG: </ion-label>
+                      <ion-label>{{ pessoa.rg }}</ion-label>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col>
+                      <ion-label class="title">Tipo: </ion-label>
+                      <ion-label>{{ pessoa.tipo }}</ion-label>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col>
+                      <ion-label class="title">Data Nascimento: </ion-label>
+                      <ion-label>{{ pessoa.datanasc }}</ion-label>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col>
+                      <ion-label class="title">E-mail: </ion-label>
+                      <ion-label>{{ pessoa.email }}</ion-label>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row>
+                    <ion-col>
+                      <ion-label class="title">Observação: </ion-label>
+                      <ion-label>{{ pessoa.observacao }}</ion-label>
+                    </ion-col>
+                  </ion-row>
+                </div>
+              </ion-col>
+
+              <ion-col size="12" size-md="6" pull-md="6" class="ion-text-center">
+                <ion-label class="title">Imagem {{ pessoa.id }}</ion-label>
+                <div class="img">
+                  <ion-img src="./assets/Placeholder.png" alt="Imagem de Pessoa"></ion-img>
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+
+          <div class="card-footer">
+            
+          </div>
         </ion-card-content>
       </ion-card>
     </ion-col>

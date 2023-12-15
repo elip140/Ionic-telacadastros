@@ -5,6 +5,9 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 
+import { PessoaData } from '../PessoaData';
+import { TestePessoa } from '../TestePessoa';
+
 @Component({
   selector: 'app-index',
   templateUrl: './index.page.html',
@@ -29,7 +32,7 @@ export class IndexPage implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
 
   constructor() {
-    const users = Array.from({ length: 100 }, (_, k) => this.TestePessoa(k + 1));
+    const users = Array.from({ length: 100 }, (_, k) => TestePessoa(k + 1));
     this.dataSource = new MatTableDataSource(users);
   }
 
@@ -49,65 +52,6 @@ export class IndexPage implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-
-  // Gera uma pessoa aleatória para testes
-  TestePessoa(id: number = 0): PessoaData {
-    const nome = NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' + NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
-    const rg = Random(100000000, 999999999).toString();
-    const cpf = Random(100000000000, 999999999999).toString();
-    const datanasc = (Random(1, 30) + '/' + Random(1, 12) + '/' + Random(1970, 2010));
-    const email = nome.toLocaleLowerCase() + "@gmail.com";
-    const tipo = "RESIDENTE";
-    const data = (Random(1, 30) + '/' + Random(1, 12) + '/' + Random(2022, 2023));
-
-    return {
-      id: id,
-      nome: nome,
-      rg: rg,
-      cpf: cpf,
-      datanasc: datanasc,
-      email: email,
-      tipo: tipo,
-      data: data,
-    };
-  }
-}
-
-export interface PessoaData {
-  id: number;
-  nome?: string;
-  rg?: string;
-  cpf?: string;
-  datanasc?: string;
-  email?: string;
-  tipo?: string;
-  data?: string;
-}
-
-const NAMES: string[] = [
-  'Maia',
-  'Asher',
-  'Olivia',
-  'Atticus',
-  'Amelia',
-  'Jack',
-  'Charlotte',
-  'Theodore',
-  'Isla',
-  'Oliver',
-  'Isabella',
-  'Jasper',
-  'Cora',
-  'Levi',
-  'Violet',
-  'Arthur',
-  'Mia',
-  'Thomas',
-  'Elizabeth',
-];
-
-function Random(min: number, max: number): number {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 /*@ViewChild('Table') table: any;

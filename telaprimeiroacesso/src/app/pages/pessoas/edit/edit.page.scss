@@ -1,0 +1,25 @@
+.info {
+    font-size: 1.2rem;
+}
+
+.title {
+    color: var(--ion-color-dark);
+    //font-weight: bold;
+}
+
+.img {
+    ion-img {
+        margin: auto;
+        display: block;
+        align-items: center;
+        max-width: 20rem;
+    }
+}
+
+// Codigo para manter o floating label no centro do input .input-label-placement-floating
+.input-label-placement-floating {
+    &:not(.has-value):not(.has-focus) div {
+        transform: translateY(-50%);
+        transition: transform 0.2s ease;
+    }
+}

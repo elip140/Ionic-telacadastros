@@ -30,6 +30,7 @@ const routes: Routes = [
     canActivate: [UsuarioGuard]
   },
   
+
   {
     path: 'pessoas',
     loadChildren: () => import('./pages/pessoas/index/index.module').then( m => m.IndexPageModule),
@@ -41,7 +42,7 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'pessoas/edit',
+    path: 'pessoas/edit/:id',
     loadChildren: () => import('./pages/pessoas/edit/edit.module').then( m => m.EditPageModule)
   },
 

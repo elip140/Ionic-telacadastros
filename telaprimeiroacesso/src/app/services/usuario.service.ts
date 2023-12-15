@@ -7,7 +7,7 @@ import { Observable } from 'rxjs/internal/Observable';
   providedIn: 'root'
 })
 export class UsuarioService {
-  private baseUrl = 'https://www.adsportal.com.br/DirectCondoAPI/api/';
+  private baseUrl = 'http://www.adsportal.com.br/DirectCondoAPI/api/';
 
   constructor(private http: HttpClient, private router: Router) { }
 
