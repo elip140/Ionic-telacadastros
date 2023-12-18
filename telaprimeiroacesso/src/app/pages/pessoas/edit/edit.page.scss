@@ -23,3 +23,14 @@
         transition: transform 0.2s ease;
     }
 }
+
+
+/*.select-label-placement-floating {
+    background-color: red !important;
+
+    &:not(.has-value):not(.has-focus) div {
+        transform: translateY(-50%);
+        transition: transform 0.2s ease;
+    }
+
+}*/

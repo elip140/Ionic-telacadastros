@@ -50,9 +50,11 @@ export class PrimeiroacessoPage implements OnInit {
 
   constructor(private formBuilder:FormBuilder, private http:HttpService, private titleService: Title){
     this.titleService.setTitle('Primeiro Acesso - DirectCondo'); 
+    
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   // Botão para enviar
   async OnClickSubmit() {

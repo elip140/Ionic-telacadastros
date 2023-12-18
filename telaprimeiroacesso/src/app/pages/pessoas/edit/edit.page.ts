@@ -53,11 +53,22 @@ export class EditPage implements OnInit {
         }
       );
     });
+    
 
    
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
+
+  SalvarBtn(){
+    this.isSubimitted = true;
+
+    if(!this.formEdit.valid)
+      return;
+
+    alert("Salvar \n"+JSON.stringify(this.formEdit.value));
+  }
 
   // Variaveis de Validação do formulario
   public isSubimitted:boolean = false;
@@ -83,8 +94,8 @@ export class EditPage implements OnInit {
       {type:'required', message:'(Data de Nascimento é requirido)'}
     ],
     Email: [
-      {type:'required', message:'(Email é requirido, entre em contato com a Administração)'},
-      {type:'email', message:'(Email Inválido, entre em contato com a Administração)'},
+      {type:'required', message:'(Email é requirido)'},
+      {type:'email', message:'(Email Inválido)'},
       {type:'special', message:'(O E-mail deve ser cadastrado, entre em contato com a Administração)'}
     ],
     Observacao: [
