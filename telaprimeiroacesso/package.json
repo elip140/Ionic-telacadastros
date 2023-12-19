@@ -37,6 +37,8 @@
     "@ionic/pwa-elements": "^3.2.2",
     "@maskito/angular": "^1.7.0",
     "@maskito/core": "^1.7.0",
+    "@types/cordova": "^11.0.3",
+    "cordova-plugin-file-transfer": "^2.0.0",
     "ionicons": "^7.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
