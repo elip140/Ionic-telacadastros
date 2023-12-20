@@ -8,13 +8,17 @@ import { EditPageRoutingModule } from './edit-routing.module';
 
 import { EditPage } from './edit.page';
 
+import { MaterialModule } from 'src/app/material.module';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
-    EditPageRoutingModule
+    EditPageRoutingModule,
+
+    MaterialModule,
   ],
   declarations: [EditPage]
 })

@@ -5,7 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 
-import { PessoaData } from '../PessoaData';
+import { PessoaData } from 'src/app/models';
 import { TestePessoa } from '../TestePessoa';
 
 @Component({

@@ -1,8 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { PessoaData } from '../PessoaData';
+import { PessoaData, Unidade, Telefone, Endereco, Veiculo, Vinculo, Empresa, Agenda } from '../../../models';
 import { TestePessoa } from '../TestePessoa';
+
+// MatTable
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 
 // Fotos
 import { PhotoService } from 'src/app/services/photo.service';
@@ -20,6 +25,12 @@ export class EditPage implements OnInit {
 
   pessoa: PessoaData;
   public formEdit: FormGroup;
+
+  // Unidade
+  unidadeSource: MatTableDataSource<Unidade>;
+  displayedColumns: string[] = ['id', 'actions'];
+
+
 
   constructor(private route: ActivatedRoute, private router: Router, private formBuilder: FormBuilder, public photoService: PhotoService) {
     this.route.paramMap.subscribe(params => {
@@ -62,6 +73,8 @@ export class EditPage implements OnInit {
         filepath: "soon...",
         webviewPath: "./assets/Placeholder.png"
       }
+
+      
     });
 
 
@@ -115,7 +128,7 @@ export class EditPage implements OnInit {
   // Funções e variaveis do Modal (Mudar Foto)
   @ViewChild(IonModal) modal: IonModal;
 
-  TesteFoto() {
+  TirarFoto() {
     this.photoService.addNewToGallery();
   }
 

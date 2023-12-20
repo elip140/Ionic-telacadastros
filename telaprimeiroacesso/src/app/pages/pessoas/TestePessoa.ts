@@ -1,4 +1,4 @@
-import { PessoaData } from "./PessoaData";
+import { PessoaData } from "../../models/PessoaData";
 
 // Gera uma pessoa aleatória para testes
 export function TestePessoa(id: number = 0): PessoaData {
