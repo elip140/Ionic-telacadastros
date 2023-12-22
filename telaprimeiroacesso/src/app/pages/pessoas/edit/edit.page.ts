@@ -27,10 +27,46 @@ export class EditPage implements OnInit {
   public formEdit: FormGroup;
 
   // Unidade
-  unidadeSource: MatTableDataSource<Unidade>;
-  displayedColumns: string[] = ['id', 'actions'];
+  @ViewChild('unidadePaginator') unidadePaginator: MatPaginator;
+  @ViewChild('unidadeTableSort') unidadeSort: MatSort;
+  unidadeSource: MatTableDataSource<Unidade> = new MatTableDataSource;
+  unidadeColumns: string[] = ['local', 'actions'];
 
+  // Telefone
+  @ViewChild('telefonePaginator') telefonePaginator: MatPaginator;
+  @ViewChild('telefoneTableSort') telefoneSort: MatSort;
+  telefoneSource: MatTableDataSource<Telefone> = new MatTableDataSource;
+  telefoneColumns: string[] = ['tipo', 'ddd', 'telefone', 'actions'];
 
+  // Endereço
+  @ViewChild('enderecoPaginator') enderecoPaginator: MatPaginator;
+  @ViewChild('enderecoTableSort') enderecoSort: MatSort;
+  enderecoSource: MatTableDataSource<Endereco> = new MatTableDataSource;
+  enderecoColumns: string[] = ['cep', 'tipo', 'endereco', 'numero', 'bairro', 'cidade', 'complemento', 'actions'];
+
+  // Veículos
+  @ViewChild('veiculoPaginator') veiculoPaginator: MatPaginator;
+  @ViewChild('veiculoTableSort') veiculoSort: MatSort;
+  veiculoSource: MatTableDataSource<Veiculo> = new MatTableDataSource;
+  veiculoColumns: string[] = ['modelo', 'fabricante', 'cor', 'placa', 'actions'];
+
+  // Vínculos
+  @ViewChild('vinculoPaginator') vinculoPaginator: MatPaginator;
+  @ViewChild('vinculoTableSort') vinculoSort: MatSort;
+  vinculoSource: MatTableDataSource<Vinculo> = new MatTableDataSource;
+  vinculoColumns: string[] = ['nome', 'tipo', 'descricao', 'actions'];
+
+  // Empresas
+  @ViewChild('empresaPaginator') empresaPaginator: MatPaginator;
+  @ViewChild('empresaTableSort') empresaSort: MatSort;
+  empresaSource: MatTableDataSource<Empresa> = new MatTableDataSource;
+  empresaColumns: string[] = ['nome', 'actions'];
+
+  // Empresas
+  @ViewChild('agendaPaginator') agendaPaginator: MatPaginator;
+  @ViewChild('agendaTableSort') agendaSort: MatSort;
+  agendaSource: MatTableDataSource<Agenda> = new MatTableDataSource;
+  agendaColumns: string[] = ['descricao', 'tipo', 'inicio', 'fim', 'actions'];
 
   constructor(private route: ActivatedRoute, private router: Router, private formBuilder: FormBuilder, public photoService: PhotoService) {
     this.route.paramMap.subscribe(params => {
@@ -40,7 +76,7 @@ export class EditPage implements OnInit {
         this.pessoa = TestePessoa(parseInt(id));
       }
 
-
+      // Card de Editar
       this.formEdit = this.formBuilder.group(
         {
           Nome: new FormControl(this.pessoa.nome, Validators.compose([
@@ -74,14 +110,88 @@ export class EditPage implements OnInit {
         webviewPath: "./assets/Placeholder.png"
       }
 
+      // Card de Unidade
+      var dataUn = this.unidadeSource.data;
+      for(var i = 1; i<=100; i++){
+        dataUn.push({id: i, pessoaId: 0, local: i+"B"});
+      }
+      this.unidadeSource.data = dataUn;
+
+      // Card de Telefone
+      var tel = this.telefoneSource.data;
+      for(var i = 1; i<=100; i++){
+        tel.push({id: i, tipo: "CELULAR", ddd: "11", telefone: "3123-3123"+i});
+      }
+      this.telefoneSource.data = tel;
+
+      // Card de Endereço
+      var end = this.enderecoSource.data;
+      for(var i = 1; i<=100; i++){
+        end.push({id: i, tipo: "RESIDENCIA", cep: "12345-"+i, endereco:"RUA LOREM IPSUM DOLOR SIT AMET", numero:i, bairro:"LOREM IPSUM", cidade:"ITATIBA DO SUL", complemento: "Qtd 1 lt 1"});
+      }
+      this.enderecoSource.data = end;
+
+      // Card de Veiculos
+      var vei = this.veiculoSource.data;
+      for(var i = 1; i<=100; i++){
+        vei.push({id: i, fabricante: "Teste", modelo: "202"+i, cor:"TESTE", placa:"EEE-2"+i, renavan:"Teste"});
+      }
+      this.veiculoSource.data = vei;
+
+      // Card de Vinculo
+      var vin = this.vinculoSource.data;
+      for(var i = 1; i<=100; i++){
+        vin.push({id: i, nome: "Teste Teste Teste"+i, tipo: "DEPENDENTE", descricao:"LOREM IPSUM DOLOR SIT AMET"});
+      }
+      this.vinculoSource.data = vin;
+
+      // Card de Vinculo
+      var vin = this.vinculoSource.data;
+      for(var i = 1; i<=100; i++){
+        vin.push({id: i, nome: "Teste Teste Teste"+i, tipo: "DEPENDENTE", descricao:"LOREM IPSUM DOLOR SIT AMET"});
+      }
+      this.vinculoSource.data = vin;
+
+      // Card de Empresa
+      var emp = this.empresaSource.data;
+      for(var i = 1; i<=100; i++){
+        emp.push({id: i, nome: "Teste Teste Teste Teste - "+i });
+      }
+      this.empresaSource.data = emp;
+
+      // Card de Inicio
+      var ag = this.agendaSource.data;
+      for(var i = 1; i<=100; i++){
+        ag.push({id: i, descricao: "Teste Teste Teste Teste - "+i, tipo:"TESTE", inicio:"20/12/202"+i, fim:"21/12/202"+i });
+      }
+      this.agendaSource.data = ag;
       
     });
-
-
-
   }
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  ngAfterViewInit(){
+    this.unidadeSource.paginator = this.unidadePaginator;
+    this.unidadeSource.sort = this.unidadeSort;
+
+    this.telefoneSource.paginator = this.telefonePaginator;
+    this.telefoneSource.sort = this.telefoneSort;
+
+    this.enderecoSource.paginator = this.enderecoPaginator;
+    this.enderecoSource.sort = this.enderecoSort;
+
+    this.veiculoSource.paginator = this.veiculoPaginator;
+    this.veiculoSource.sort = this.veiculoSort;
+
+    this.vinculoSource.paginator = this.vinculoPaginator;
+    this.vinculoSource.sort = this.vinculoSort;
+
+    this.empresaSource.paginator = this.empresaPaginator;
+    this.empresaSource.sort = this.empresaSort;
+
+    this.agendaSource.paginator = this.agendaPaginator;
+    this.agendaSource.sort = this.agendaSort;
   }
 
   SalvarBtn() {
@@ -123,6 +233,8 @@ export class EditPage implements OnInit {
       { type: 'required', message: '(Tipo é requirido)' }
     ],
   }
+
+
 
 
   // Funções e variaveis do Modal (Mudar Foto)
