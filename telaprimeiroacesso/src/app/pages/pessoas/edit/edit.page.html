@@ -223,17 +223,20 @@
     <!-- Unidade Card -->
     <ion-row class="ion-justify-content-center">
       <ion-col size-md="11" size="12">
-        <ion-card>
-          <ion-card-header class="ion-text-center" color="primary">
-            <ion-card-title><i class="bi bi-pin-map"></i> Unidade</ion-card-title>
+        <ion-card class="collapse">
+          <ion-card-header class="ion-text-center"  color="primary" (click)="cardshow($event)" >
+              <ion-card-title class="teste3"  style="width: 100%;">
+                <ion-label><i class="bi bi-pin-map"></i> Unidade</ion-label>
+              </ion-card-title>
           </ion-card-header>
 
-          <ion-card-content class="ion-margin" style="display: none !important; ">
+          <ion-card-content class="ion-margin">
             <ion-row class="ion-justify-content-end">
               <ion-button color="primary">+</ion-button>
             </ion-row>
-            <ion-row *ngIf="unidadeSource.data.length!=0" class="mat-elevation-z8">
-              <mat-table [dataSource]="unidadeSource" matSort class="mat-table" #unidadeTable #unidadeTableSort="matSort">
+            <ion-row *ngIf="unidadeSource.data.length==0" class="mat-elevation-z8">
+              <mat-table [dataSource]="unidadeSource" matSort class="mat-table" #unidadeTable
+                #unidadeTableSort="matSort">
 
                 <!-- Unidade Coluna -->
                 <ng-container matColumnDef="local">
@@ -284,7 +287,8 @@
               <ion-button color="primary">+</ion-button>
             </ion-row>
             <ion-row *ngIf="telefoneSource.data.length!=0" class="mat-elevation-z8">
-              <mat-table [dataSource]="telefoneSource" matSort class="mat-table" #telefoneTable #telefoneTableSort="matSort">
+              <mat-table [dataSource]="telefoneSource" matSort class="mat-table" #telefoneTable
+                #telefoneTableSort="matSort">
 
                 <!-- Tipo Telefone Coluna -->
                 <ng-container matColumnDef="tipo">
@@ -347,7 +351,8 @@
               <ion-button color="primary">+</ion-button>
             </ion-row>
             <ion-row *ngIf="enderecoSource.data.length!=0" class="mat-elevation-z8">
-              <mat-table [dataSource]="enderecoSource" matSort class="mat-table" #enderecoTable #enderecoTableSort="matSort">
+              <mat-table [dataSource]="enderecoSource" matSort class="mat-table" #enderecoTable
+                #enderecoTableSort="matSort">
 
                 <!-- CEP Coluna -->
                 <ng-container matColumnDef="cep">
@@ -363,8 +368,10 @@
 
                 <!-- Endereço Coluna -->
                 <ng-container matColumnDef="endereco">
-                  <mat-header-cell *matHeaderCellDef mat-sort-header [style.flex]="'2 0 0%'"> Endereço </mat-header-cell>
-                  <mat-cell *matCellDef="let row" data-label="endereco" [style.flex]="'2 0 0%'"> {{row.endereco}} </mat-cell>
+                  <mat-header-cell *matHeaderCellDef mat-sort-header [style.flex]="'2 0 0%'"> Endereço
+                  </mat-header-cell>
+                  <mat-cell *matCellDef="let row" data-label="endereco" [style.flex]="'2 0 0%'"> {{row.endereco}}
+                  </mat-cell>
                 </ng-container>
 
                 <!-- Numero Coluna -->
@@ -394,7 +401,8 @@
 
                 <!-- Ações Coluna -->
                 <ng-container matColumnDef="actions">
-                  <mat-header-cell *matHeaderCellDef class="ion-justify-content-center" [style.flex]="'2 0 0%'"> Ações </mat-header-cell>
+                  <mat-header-cell *matHeaderCellDef class="ion-justify-content-center" [style.flex]="'2 0 0%'"> Ações
+                  </mat-header-cell>
                   <mat-cell *matCellDef="let row" class="ion-justify-content-center" [style.flex]="'2 0 0%'">
                     <div>
                       <ion-button color="" [routerLink]="['./edit', row.id]">
@@ -434,7 +442,8 @@
               <ion-button color="primary">+</ion-button>
             </ion-row>
             <ion-row *ngIf="veiculoSource.data.length!=0" class="mat-elevation-z8">
-              <mat-table [dataSource]="veiculoSource" matSort class="mat-table" #veiculoTable #veiculoTableSort="matSort">
+              <mat-table [dataSource]="veiculoSource" matSort class="mat-table" #veiculoTable
+                #veiculoTableSort="matSort">
 
                 <!-- Modelo Coluna -->
                 <ng-container matColumnDef="modelo">
@@ -503,7 +512,8 @@
               <ion-button color="primary">+</ion-button>
             </ion-row>
             <ion-row *ngIf="vinculoSource.data.length!=0" class="mat-elevation-z8">
-              <mat-table [dataSource]="vinculoSource" matSort class="mat-table" #vinculoTable #vinculoTableSort="matSort">
+              <mat-table [dataSource]="vinculoSource" matSort class="mat-table" #vinculoTable
+                #vinculoTableSort="matSort">
 
                 <!-- Nome Coluna -->
                 <ng-container matColumnDef="nome">
@@ -565,7 +575,8 @@
               <ion-button color="primary">+</ion-button>
             </ion-row>
             <ion-row *ngIf="empresaSource.data.length!=0" class="mat-elevation-z8">
-              <mat-table [dataSource]="empresaSource" matSort class="mat-table" #empresaTable #empresaTableSort="matSort">
+              <mat-table [dataSource]="empresaSource" matSort class="mat-table" #empresaTable
+                #empresaTableSort="matSort">
 
                 <!-- Unidade Coluna -->
                 <ng-container matColumnDef="nome">
@@ -671,7 +682,7 @@
         </ion-card>
       </ion-col>
     </ion-row>
-    
+
   </ion-grid>
 
   <!-- Modal de Foto -->

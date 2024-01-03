@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Renderer2 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { PessoaData, Unidade, Telefone, Endereco, Veiculo, Vinculo, Empresa, Agenda } from '../../../models';
@@ -68,7 +68,7 @@ export class EditPage implements OnInit {
   agendaSource: MatTableDataSource<Agenda> = new MatTableDataSource;
   agendaColumns: string[] = ['descricao', 'tipo', 'inicio', 'fim', 'actions'];
 
-  constructor(private route: ActivatedRoute, private router: Router, private formBuilder: FormBuilder, public photoService: PhotoService) {
+  constructor(private route: ActivatedRoute, private router: Router, private formBuilder: FormBuilder, public photoService: PhotoService, private renderer: Renderer2) {
     this.route.paramMap.subscribe(params => {
       let id = params.get('id');
 
@@ -112,66 +112,66 @@ export class EditPage implements OnInit {
 
       // Card de Unidade
       var dataUn = this.unidadeSource.data;
-      for(var i = 1; i<=100; i++){
-        dataUn.push({id: i, pessoaId: 0, local: i+"B"});
+      for (var i = 1; i <= 100; i++) {
+        dataUn.push({ id: i, pessoaId: 0, local: i + "B" });
       }
       this.unidadeSource.data = dataUn;
 
       // Card de Telefone
       var tel = this.telefoneSource.data;
-      for(var i = 1; i<=100; i++){
-        tel.push({id: i, tipo: "CELULAR", ddd: "11", telefone: "3123-3123"+i});
+      for (var i = 1; i <= 100; i++) {
+        tel.push({ id: i, tipo: "CELULAR", ddd: "11", telefone: "3123-3123" + i });
       }
       this.telefoneSource.data = tel;
 
       // Card de Endereço
       var end = this.enderecoSource.data;
-      for(var i = 1; i<=100; i++){
-        end.push({id: i, tipo: "RESIDENCIA", cep: "12345-"+i, endereco:"RUA LOREM IPSUM DOLOR SIT AMET", numero:i, bairro:"LOREM IPSUM", cidade:"ITATIBA DO SUL", complemento: "Qtd 1 lt 1"});
+      for (var i = 1; i <= 100; i++) {
+        end.push({ id: i, tipo: "RESIDENCIA", cep: "12345-" + i, endereco: "RUA LOREM IPSUM DOLOR SIT AMET", numero: i, bairro: "LOREM IPSUM", cidade: "ITATIBA DO SUL", complemento: "Qtd 1 lt 1" });
       }
       this.enderecoSource.data = end;
 
       // Card de Veiculos
       var vei = this.veiculoSource.data;
-      for(var i = 1; i<=100; i++){
-        vei.push({id: i, fabricante: "Teste", modelo: "202"+i, cor:"TESTE", placa:"EEE-2"+i, renavan:"Teste"});
+      for (var i = 1; i <= 100; i++) {
+        vei.push({ id: i, fabricante: "Teste", modelo: "202" + i, cor: "TESTE", placa: "EEE-2" + i, renavan: "Teste" });
       }
       this.veiculoSource.data = vei;
 
       // Card de Vinculo
       var vin = this.vinculoSource.data;
-      for(var i = 1; i<=100; i++){
-        vin.push({id: i, nome: "Teste Teste Teste"+i, tipo: "DEPENDENTE", descricao:"LOREM IPSUM DOLOR SIT AMET"});
+      for (var i = 1; i <= 100; i++) {
+        vin.push({ id: i, nome: "Teste Teste Teste" + i, tipo: "DEPENDENTE", descricao: "LOREM IPSUM DOLOR SIT AMET" });
       }
       this.vinculoSource.data = vin;
 
       // Card de Vinculo
       var vin = this.vinculoSource.data;
-      for(var i = 1; i<=100; i++){
-        vin.push({id: i, nome: "Teste Teste Teste"+i, tipo: "DEPENDENTE", descricao:"LOREM IPSUM DOLOR SIT AMET"});
+      for (var i = 1; i <= 100; i++) {
+        vin.push({ id: i, nome: "Teste Teste Teste" + i, tipo: "DEPENDENTE", descricao: "LOREM IPSUM DOLOR SIT AMET" });
       }
       this.vinculoSource.data = vin;
 
       // Card de Empresa
       var emp = this.empresaSource.data;
-      for(var i = 1; i<=100; i++){
-        emp.push({id: i, nome: "Teste Teste Teste Teste - "+i });
+      for (var i = 1; i <= 100; i++) {
+        emp.push({ id: i, nome: "Teste Teste Teste Teste - " + i });
       }
       this.empresaSource.data = emp;
 
       // Card de Inicio
       var ag = this.agendaSource.data;
-      for(var i = 1; i<=100; i++){
-        ag.push({id: i, descricao: "Teste Teste Teste Teste - "+i, tipo:"TESTE", inicio:"20/12/202"+i, fim:"21/12/202"+i });
+      for (var i = 1; i <= 100; i++) {
+        ag.push({ id: i, descricao: "Teste Teste Teste Teste - " + i, tipo: "TESTE", inicio: "20/12/202" + i, fim: "21/12/202" + i });
       }
       this.agendaSource.data = ag;
-      
+
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
-  ngAfterViewInit(){
+  ngAfterViewInit() {
     this.unidadeSource.paginator = this.unidadePaginator;
     this.unidadeSource.sort = this.unidadeSort;
 
@@ -232,6 +232,19 @@ export class EditPage implements OnInit {
     Observacao: [
       { type: 'required', message: '(Tipo é requirido)' }
     ],
+  }
+
+  cardshow(event: Event) {
+    const ionCard = (event.target as HTMLElement).closest('ion-card');
+    
+    if (ionCard) {
+      if(ionCard.classList.contains('show')){
+        this.renderer.removeClass(ionCard, 'show');
+      }
+      else{
+        this.renderer.addClass(ionCard, 'show');
+      }
+    }
   }
 
 

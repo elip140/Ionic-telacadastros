@@ -7,6 +7,15 @@
     //font-weight: bold;
 }
 
+/*.teste3::after {
+
+
+
+    &:not(.show) {
+        transform: rotate(90deg);
+    }
+}*/
+
 .img {
     ion-img {
         margin: auto;
@@ -34,3 +43,34 @@
     }
 
 }*/
+
+
+// Codigo para collapse de cards
+.collapse {
+    ion-card-header {
+        ion-card-title::after {
+            content: "<";
+            float: right;
+            transition: transform 0.3s ease-in-out;
+        }
+    }
+
+    &.show{
+        ion-card-header {
+            ion-card-title::after {
+                transform: rotate(-90deg);
+                transition: transform 0.3s ease-in-out;
+            }
+        }
+    }
+
+    ion-card-content {
+        overflow: hidden;
+    }
+
+    &:not(.show)ion-card-content {
+        display: none;
+        max-height: 0;
+        transition: 0.2s all linear;
+    }
+}
