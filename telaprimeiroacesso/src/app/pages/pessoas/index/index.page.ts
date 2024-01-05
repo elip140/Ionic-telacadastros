@@ -8,6 +8,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { PessoaData } from 'src/app/models';
 import { TestePessoa } from '../TestePessoa';
 
+import { Title } from '@angular/platform-browser';
+
 @Component({
   selector: 'app-index',
   templateUrl: './index.page.html',
@@ -31,7 +33,9 @@ export class IndexPage implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor() {
+  constructor(private titleService: Title) {
+    this.titleService.setTitle('Listagem Pessoas - DirectCondo');
+
     const users = Array.from({ length: 100 }, (_, k) => TestePessoa(k + 1));
     this.dataSource = new MatTableDataSource(users);
   }

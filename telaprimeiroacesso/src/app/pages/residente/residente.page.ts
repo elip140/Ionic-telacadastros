@@ -24,7 +24,7 @@ export class ResidentePage implements OnInit {
   vinculos:any = [];
   entregas:any = [];
 
-  constructor(private http:HttpService, private titleService: Title){
+  constructor(private titleService: Title, private http:HttpService){
     this.titleService.setTitle('Residente - DirectCondo'); 
     //12100795007	
     //45123415874

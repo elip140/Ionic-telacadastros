@@ -44,7 +44,27 @@ const routes: Routes = [
   {
     path: 'pessoas/edit/:id',
     loadChildren: () => import('./pages/pessoas/edit/edit.module').then( m => m.EditPageModule)
+  },  {
+    path: 'edit',
+    loadChildren: () => import('./pages/pessoasTelefone/edit/edit/edit.module').then( m => m.EditPageModule)
   },
+  {
+    path: 'edit',
+    loadChildren: () => import('./pages/pessoasTelefone/edit/edit.module').then( m => m.EditPageModule)
+  },
+  {
+    path: 'edit',
+    loadChildren: () => import('./pages/pessoaTelefone/edit/edit.module').then( m => m.EditPageModule)
+  },
+  {
+    path: 'create',
+    loadChildren: () => import('./pages/pessoaTelefone/create/create.module').then( m => m.CreatePageModule)
+  },
+  {
+    path: 'delete',
+    loadChildren: () => import('./pages/pessoaTelefone/delete/delete.module').then( m => m.DeletePageModule)
+  },
+
 
 
 

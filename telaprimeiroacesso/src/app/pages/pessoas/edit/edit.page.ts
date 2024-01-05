@@ -15,6 +15,7 @@ import { IonModal } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core/components';
 
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-edit',
@@ -68,7 +69,8 @@ export class EditPage implements OnInit {
   agendaSource: MatTableDataSource<Agenda> = new MatTableDataSource;
   agendaColumns: string[] = ['descricao', 'tipo', 'inicio', 'fim', 'actions'];
 
-  constructor(private route: ActivatedRoute, private router: Router, private formBuilder: FormBuilder, public photoService: PhotoService, private renderer: Renderer2) {
+  constructor(private route: ActivatedRoute, private router: Router, private formBuilder: FormBuilder, public photoService: PhotoService, private renderer: Renderer2, private titleService: Title) {
+    this.titleService.setTitle('Editar Residente - DirectCondo');
     this.route.paramMap.subscribe(params => {
       let id = params.get('id');
 
@@ -166,6 +168,10 @@ export class EditPage implements OnInit {
       }
       this.agendaSource.data = ag;
 
+
+      // Colocar titulo
+      this.titleService.setTitle(this.pessoa.nome+' - DirectCondo');
+
     });
   }
 
@@ -240,6 +246,7 @@ export class EditPage implements OnInit {
     if (ionCard) {
       if(ionCard.classList.contains('show')){
         this.renderer.removeClass(ionCard, 'show');
+        
       }
       else{
         this.renderer.addClass(ionCard, 'show');

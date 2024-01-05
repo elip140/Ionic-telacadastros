@@ -48,6 +48,7 @@
 // Codigo para collapse de cards
 .collapse {
     ion-card-header {
+        cursor: pointer;
         ion-card-title::after {
             content: "<";
             float: right;
@@ -65,12 +66,31 @@
     }
 
     ion-card-content {
+        padding: 0;
+        max-height: 0;
         overflow: hidden;
+        transition: max-height 0.5s ease; 
     }
 
-    &:not(.show)ion-card-content {
+    &.show{
+        ion-card-content{
+            overflow: auto;
+            max-height: 30rem;
+        }
+    }
+
+    /*&:not(.show){
+        ion-card-content{
+            height: 0;
+            background-color: blue;
+        }
+    }*/
+
+
+    /*&:not(.show)ion-card-content {
         display: none;
         max-height: 0;
-        transition: 0.2s all linear;
-    }
+        transition: height 0.2s all linear;
+        height: 400px;
+    }*/
 }
