@@ -44,14 +44,8 @@ const routes: Routes = [
   {
     path: 'pessoas/edit/:id',
     loadChildren: () => import('./pages/pessoas/edit/edit.module').then( m => m.EditPageModule)
-  },  {
-    path: 'edit',
-    loadChildren: () => import('./pages/pessoasTelefone/edit/edit/edit.module').then( m => m.EditPageModule)
   },
-  {
-    path: 'edit',
-    loadChildren: () => import('./pages/pessoasTelefone/edit/edit.module').then( m => m.EditPageModule)
-  },
+ 
   {
     path: 'edit',
     loadChildren: () => import('./pages/pessoaTelefone/edit/edit.module').then( m => m.EditPageModule)
