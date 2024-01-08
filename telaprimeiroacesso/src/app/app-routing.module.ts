@@ -47,15 +47,15 @@ const routes: Routes = [
   },
  
   {
-    path: 'edit',
+    path: 'pessoaTelefone/edit',
     loadChildren: () => import('./pages/pessoaTelefone/edit/edit.module').then( m => m.EditPageModule)
   },
   {
-    path: 'create',
+    path: 'pessoaTelefone/create',
     loadChildren: () => import('./pages/pessoaTelefone/create/create.module').then( m => m.CreatePageModule)
   },
   {
-    path: 'delete',
+    path: 'pessoaTelefone/delete',
     loadChildren: () => import('./pages/pessoaTelefone/delete/delete.module').then( m => m.DeletePageModule)
   },
 
