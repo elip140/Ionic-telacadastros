@@ -43,20 +43,25 @@ const routes: Routes = [
   },
   {
     path: 'pessoas/edit/:id',
-    loadChildren: () => import('./pages/pessoas/edit/edit.module').then( m => m.EditPageModule)
+    loadChildren: () => import('./pages/pessoas/edit/edit.module').then( m => m.EditPageModule),
+    canActivate: [UsuarioGuard]
   },
  
+  
   {
-    path: 'pessoaTelefone/edit',
-    loadChildren: () => import('./pages/pessoaTelefone/edit/edit.module').then( m => m.EditPageModule)
+    path: 'pessoaTelefone/create/:id',
+    loadChildren: () => import('./pages/pessoaTelefone/create/create.module').then( m => m.CreatePageModule),
+    canActivate: [UsuarioGuard]
   },
   {
-    path: 'pessoaTelefone/create',
-    loadChildren: () => import('./pages/pessoaTelefone/create/create.module').then( m => m.CreatePageModule)
+    path: 'pessoaTelefone/edit/:id',
+    loadChildren: () => import('./pages/pessoaTelefone/edit/edit.module').then( m => m.EditPageModule),
+    canActivate: [UsuarioGuard]
   },
   {
-    path: 'pessoaTelefone/delete',
-    loadChildren: () => import('./pages/pessoaTelefone/delete/delete.module').then( m => m.DeletePageModule)
+    path: 'pessoaTelefone/delete/:id',
+    loadChildren: () => import('./pages/pessoaTelefone/delete/delete.module').then( m => m.DeletePageModule),
+    canActivate: [UsuarioGuard]
   },
 
 

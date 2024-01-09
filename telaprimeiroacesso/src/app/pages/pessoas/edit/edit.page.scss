@@ -33,17 +33,13 @@
     }
 }
 
-
-/*.select-label-placement-floating {
-    background-color: red !important;
-
-    &:not(.has-value):not(.has-focus) div {
+// Codigo para manter o floating label no centro do select .select-label-placement-floating
+.select-label-placement-floating {
+    &:not(.has-value):not(.select-expanded) div {
         transform: translateY(-50%);
         transition: transform 0.2s ease;
     }
-
-}*/
-
+}
 
 // Codigo para collapse de cards
 .collapse {

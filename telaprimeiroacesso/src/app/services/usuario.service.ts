@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/internal/Observable';
 
+// Funções para manipulação de usuarios
 @Injectable({
   providedIn: 'root'
 })

@@ -3,6 +3,7 @@ import { ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree, Rout
 import { UsuarioService } from './usuario.service';
 import { Observable } from 'rxjs';
 
+// Guard para redirecionar usuarios não logados para a tela de login, impedindo de entrar nas telas (Usado na maioria das telas)
 @Injectable({
   providedIn: 'root'
 })

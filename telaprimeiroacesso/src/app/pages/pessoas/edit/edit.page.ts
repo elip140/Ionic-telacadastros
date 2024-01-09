@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, Renderer2 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { PessoaData, Unidade, Telefone, Endereco, Veiculo, Vinculo, Empresa, Agenda } from '../../../models';
-import { TestePessoa } from '../TestePessoa';
+import { PessoaService } from 'src/app/services/pessoa/pessoa.service';
 
 // MatTable
 import { MatPaginator } from '@angular/material/paginator';
@@ -63,19 +63,19 @@ export class EditPage implements OnInit {
   empresaSource: MatTableDataSource<Empresa> = new MatTableDataSource;
   empresaColumns: string[] = ['nome', 'actions'];
 
-  // Empresas
+  // Agenda
   @ViewChild('agendaPaginator') agendaPaginator: MatPaginator;
   @ViewChild('agendaTableSort') agendaSort: MatSort;
   agendaSource: MatTableDataSource<Agenda> = new MatTableDataSource;
   agendaColumns: string[] = ['descricao', 'tipo', 'inicio', 'fim', 'actions'];
 
-  constructor(private route: ActivatedRoute, private router: Router, private formBuilder: FormBuilder, public photoService: PhotoService, private renderer: Renderer2, private titleService: Title) {
+  constructor(private route: ActivatedRoute, private router: Router, private formBuilder: FormBuilder, public photoService: PhotoService, private renderer: Renderer2, private titleService: Title, private pessoaService: PessoaService) {
     this.titleService.setTitle('Editar Residente - DirectCondo');
     this.route.paramMap.subscribe(params => {
       let id = params.get('id');
 
       if (id !== null) {
-        this.pessoa = TestePessoa(parseInt(id));
+        this.pessoa = this.pessoaService.GetPessoa(parseInt(id));
       }
 
       // Card de Editar

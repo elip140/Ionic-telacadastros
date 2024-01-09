@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { UsuarioService } from './usuario.service';
 import { Observable } from 'rxjs';
 
+// Guard para permitir usuarios não logados de entrar na tela mesmo sem login (Usado apenas para telas especificas)
 @Injectable({
   providedIn: 'root'
 })

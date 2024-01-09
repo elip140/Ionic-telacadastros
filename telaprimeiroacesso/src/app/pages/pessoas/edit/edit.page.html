@@ -26,6 +26,7 @@
           <ion-card-content class="ion-margin">
             <ion-grid>
               <ion-row class="info">
+                <!-- Dados Pessoa -->
                 <ion-col size="12" size-md="6" push-md="6">
                   <div [hidden]="false">
                     <form [formGroup]="formEdit">
@@ -69,8 +70,9 @@
                       </div>
 
                       <div class="ion-margin-bottom">
-                        <ion-select formControlName="Tipo" label="Tipo" label-placement="floating" fill="outline" #Tipo
+                        <ion-select formControlName="Tipo" label-placement="floating" fill="outline" #Tipo
                           color="secondary">
+                          <div slot="label">Tipo</div>
                           <ion-select-option value="RESIDENTE">RESIDENTE</ion-select-option>
                           <ion-select-option value="DEPENDENTE">DEPENDENTE</ion-select-option>
                           <ion-select-option value="VISITANTE">VISITANTE</ion-select-option>
@@ -133,6 +135,7 @@
                   </div>
                 </ion-col>
 
+                <!-- Imagem Pessoa -->
                 <ion-col size="12" size-md="6" pull-md="6" class="ion-text-center">
                   <ion-label class="title">Imagem {{ pessoa.id }}</ion-label>
                   <div class="img">
@@ -243,7 +246,7 @@
           <ion-card-content>
             <div class="ion-margin">
               <ion-row class="ion-justify-content-end">
-                <ion-button color="primary">+</ion-button>
+                <ion-button color="primary" [routerLink]="['/pessoaTelefone/create', pessoa.id]">+</ion-button>
               </ion-row>
               <ion-row *ngIf="telefoneSource.data.length!=0" class="mat-elevation-z8">
                 <mat-table [dataSource]="telefoneSource" matSort class="mat-table" #telefoneTable
@@ -273,10 +276,10 @@
                     <mat-header-cell *matHeaderCellDef class="ion-justify-content-center"> Ações </mat-header-cell>
                     <mat-cell *matCellDef="let row" class="ion-justify-content-center">
                       <div>
-                        <ion-button color="" [routerLink]="['./edit', row.id]">
+                        <ion-button color="" [routerLink]="['/pessoaTelefone/edit', row.id]">
                           <i class="bi bi-pencil-fill"></i>
                         </ion-button>
-                        <ion-button color="danger" [routerLink]="['/delete', row.id]">
+                        <ion-button color="danger" [routerLink]="['/pessoaTelefone/delete', row.id]">
                           <i class="bi bi-trash-fill"></i>
                         </ion-button>
                       </div>

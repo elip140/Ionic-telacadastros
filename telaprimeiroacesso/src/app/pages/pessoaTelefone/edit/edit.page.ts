@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+
+// Models
+import { PessoaData, Telefone } from 'src/app/models';
+import { PessoaService } from 'src/app/services/pessoa/pessoa.service';
+
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-edit',
@@ -7,9 +14,66 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditPage implements OnInit {
 
-  constructor() { }
+  pessoa: PessoaData;
+  pessoaTelefone: Telefone;
+  public formEdit: FormGroup;
+
+  constructor(private route: ActivatedRoute, private formBuilder: FormBuilder, private pessoaService: PessoaService) {
+    this.route.paramMap.subscribe(params => {
+      let id = params.get('id');
+
+      if (id !== null) {
+        this.pessoa = this.pessoaService.GetPessoa(parseInt(id));
+        this.pessoaTelefone = this.pessoaService.GetPessoaTelefone(parseInt(id));
+      }
+
+      // Form de Adicionar pessoaTelefone
+      this.formEdit = this.formBuilder.group(
+        {
+          TelefoneTipo: new FormControl(this.pessoaTelefone.tipo, Validators.compose([
+            Validators.required
+          ])),
+          DDD: new FormControl(this.pessoaTelefone.ddd, Validators.compose([
+            Validators.required
+          ])),
+          Telefone: new FormControl(this.pessoaTelefone.telefone, Validators.compose([
+            Validators.required
+          ])),
+        }
+      );
+    });
+  }
 
   ngOnInit() {
   }
 
+  // Criar telefonePessoa
+  CreateBtn() {
+    this.isSubimitted = true;
+
+    if (!this.formEdit.valid)
+      return;
+
+    alert("Editar telefonePessoa \n" + JSON.stringify(this.formEdit.value));
+  }
+
+
+
+  // Variaveis de Validação do formulario
+  public isSubimitted: boolean = false;
+
+  // Menssagens de validação customizadas
+  public validation_messages = {
+    TelefoneTipo: [
+      { type: 'required', message: '(Tipo do Telefone é requirido)' }
+    ],
+    DDD: [
+      { type: 'required', message: '(DDD é requirido)' }
+    ],
+    Telefone: [
+      { type: 'required', message: '(Telefone é requirido)' }
+    ],
+  }
+
 }
+
