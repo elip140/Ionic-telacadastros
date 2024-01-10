@@ -30,7 +30,7 @@ const routes: Routes = [
     canActivate: [UsuarioGuard]
   },
   
-
+  // Telas Pessoas
   {
     path: 'pessoas',
     loadChildren: () => import('./pages/pessoas/index/index.module').then( m => m.IndexPageModule),
@@ -47,7 +47,7 @@ const routes: Routes = [
     canActivate: [UsuarioGuard]
   },
  
-  
+  // Telas PessoaTelefone
   {
     path: 'pessoaTelefone/create/:id',
     loadChildren: () => import('./pages/pessoaTelefone/create/create.module').then( m => m.CreatePageModule),
@@ -63,6 +63,24 @@ const routes: Routes = [
     loadChildren: () => import('./pages/pessoaTelefone/delete/delete.module').then( m => m.DeletePageModule),
     canActivate: [UsuarioGuard]
   },
+
+  // Telas PessoaLocal
+  {
+    path: 'pessoaLocal/create/:id',
+    loadChildren: () => import('./pages/pessoaLocal/create/create.module').then( m => m.CreatePageModule),
+    canActivate: [UsuarioGuard]
+  },
+  {
+    path: 'pessoaLocal/edit/:id',
+    loadChildren: () => import('./pages/pessoaLocal/edit/edit.module').then( m => m.EditPageModule),
+    canActivate: [UsuarioGuard]
+  },
+  {
+    path: 'pessoaLocal/delete/:id',
+    loadChildren: () => import('./pages/pessoaLocal/delete/delete.module').then( m => m.DeletePageModule),
+    canActivate: [UsuarioGuard]
+  },
+
 
 
 

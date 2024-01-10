@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, Renderer2 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { PessoaData, Unidade, Telefone, Endereco, Veiculo, Vinculo, Empresa, Agenda } from '../../../models';
+import { Pessoa, Local, Telefone, Endereco, Veiculo, Vinculo, Empresa, Agenda } from '../../../models';
 import { PessoaService } from 'src/app/services/pessoa/pessoa.service';
 
 // MatTable
@@ -24,14 +24,14 @@ import { Title } from '@angular/platform-browser';
 })
 export class EditPage implements OnInit {
 
-  pessoa: PessoaData;
+  pessoa: Pessoa;
   public formEdit: FormGroup;
 
-  // Unidade
-  @ViewChild('unidadePaginator') unidadePaginator: MatPaginator;
-  @ViewChild('unidadeTableSort') unidadeSort: MatSort;
-  unidadeSource: MatTableDataSource<Unidade> = new MatTableDataSource;
-  unidadeColumns: string[] = ['local', 'actions'];
+  // Local
+  @ViewChild('LocalPaginator') LocalPaginator: MatPaginator;
+  @ViewChild('LocalTableSort') LocalSort: MatSort;
+  LocalSource: MatTableDataSource<Local> = new MatTableDataSource;
+  LocalColumns: string[] = ['local', 'actions'];
 
   // Telefone
   @ViewChild('telefonePaginator') telefonePaginator: MatPaginator;
@@ -112,12 +112,12 @@ export class EditPage implements OnInit {
         webviewPath: "./assets/Placeholder.png"
       }
 
-      // Card de Unidade
-      var dataUn = this.unidadeSource.data;
+      // Card de Local
+      var dataUn = this.LocalSource.data;
       for (var i = 1; i <= 100; i++) {
-        dataUn.push({ id: i, pessoaId: 0, local: i + "B" });
+        dataUn.push({ id: i, local: i + "B" });
       }
-      this.unidadeSource.data = dataUn;
+      this.LocalSource.data = dataUn;
 
       // Card de Telefone
       var tel = this.telefoneSource.data;
@@ -178,8 +178,8 @@ export class EditPage implements OnInit {
   ngOnInit() { }
 
   ngAfterViewInit() {
-    this.unidadeSource.paginator = this.unidadePaginator;
-    this.unidadeSource.sort = this.unidadeSort;
+    this.LocalSource.paginator = this.LocalPaginator;
+    this.LocalSource.sort = this.LocalSort;
 
     this.telefoneSource.paginator = this.telefonePaginator;
     this.telefoneSource.sort = this.telefoneSort;

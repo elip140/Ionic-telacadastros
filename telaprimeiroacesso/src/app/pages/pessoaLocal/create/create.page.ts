@@ -2,44 +2,40 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 // Models
-import { Pessoa, Telefone } from 'src/app/models';
+import { Local, Pessoa } from 'src/app/models';
 import { PessoaService } from 'src/app/services/pessoa/pessoa.service';
 
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 
 @Component({
-  selector: 'app-edit',
-  templateUrl: './edit.page.html',
-  styleUrls: ['./edit.page.scss'],
+  selector: 'app-create',
+  templateUrl: './create.page.html',
+  styleUrls: ['./create.page.scss'],
 })
-export class EditPage implements OnInit {
+export class CreatePage implements OnInit {
 
   pessoa: Pessoa;
-  pessoaTelefone: Telefone;
-  public formEdit: FormGroup;
+  public formAdd: FormGroup;
+
+  locais: Array<Local> = [];
 
   constructor(private route: ActivatedRoute, private formBuilder: FormBuilder, private pessoaService: PessoaService, private titleService: Title) {
     this.route.paramMap.subscribe(params => {
-      this.titleService.setTitle('Editar Telefone - DirectCondo'); 
+      this.titleService.setTitle('Adicionar Local - DirectCondo'); 
       let id = params.get('id');
 
       if (id !== null) {
         this.pessoa = this.pessoaService.GetPessoa(parseInt(id));
-        this.pessoaTelefone = this.pessoaService.GetPessoaTelefone(parseInt(id));
-        this.titleService.setTitle(this.pessoa.nome+' - Editar Telefone - DirectCondo'); 
+        this.titleService.setTitle(this.pessoa.nome+' - Adicionar Local - DirectCondo'); 
+        
+        this.locais = this.pessoaService.GetPessoaLocals(parseInt(id));
       }
 
       // Form de Adicionar pessoaTelefone
-      this.formEdit = this.formBuilder.group(
+      this.formAdd = this.formBuilder.group(
         {
-          TelefoneTipo: new FormControl(this.pessoaTelefone.tipo, Validators.compose([
-            Validators.required
-          ])),
-          DDD: new FormControl(this.pessoaTelefone.ddd, Validators.compose([
-            Validators.required
-          ])),
-          Telefone: new FormControl(this.pessoaTelefone.telefone, Validators.compose([
+          TelefoneTipo: new FormControl("", Validators.compose([
             Validators.required
           ])),
         }
@@ -54,10 +50,10 @@ export class EditPage implements OnInit {
   CreateBtn() {
     this.isSubimitted = true;
 
-    if (!this.formEdit.valid)
+    if (!this.formAdd.valid)
       return;
 
-    alert("Editar telefonePessoa \n" + JSON.stringify(this.formEdit.value));
+    alert("Criar telefonePessoa \n" + JSON.stringify(this.formAdd.value));
   }
 
 
@@ -79,4 +75,3 @@ export class EditPage implements OnInit {
   }
 
 }
-

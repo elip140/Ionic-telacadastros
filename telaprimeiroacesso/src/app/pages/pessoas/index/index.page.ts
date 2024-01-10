@@ -5,7 +5,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 
-import { PessoaData } from 'src/app/models';
+import { Pessoa } from 'src/app/models';
 import { PessoaService } from 'src/app/services/pessoa/pessoa.service';
 
 import { Title } from '@angular/platform-browser';
@@ -19,9 +19,9 @@ import { Title } from '@angular/platform-browser';
 export class IndexPage implements OnInit {
   displayedColumns: string[] = ['id', 'nome', 'rg', 'cpf', 'datanasc', 'email', 'tipo', 'data', 'actions'];
   columnsToDisplayWithExpand = ['expand', ...this.displayedColumns];
-  expandedElement: PessoaData | null;
+  expandedElement: Pessoa | null;
 
-  dataSource: MatTableDataSource<PessoaData>;
+  dataSource: MatTableDataSource<Pessoa>;
 
 
   @ViewChild(MatPaginator) paginator: MatPaginator;

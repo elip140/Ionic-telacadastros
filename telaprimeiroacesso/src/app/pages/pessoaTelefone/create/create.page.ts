@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 // Models
-import { PessoaData } from 'src/app/models';
+import { Pessoa } from 'src/app/models';
 import { PessoaService } from 'src/app/services/pessoa/pessoa.service';
 
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 
 
 @Component({
@@ -15,15 +16,17 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 })
 export class CreatePage implements OnInit {
 
-  pessoa: PessoaData;
+  pessoa: Pessoa;
   public formAdd: FormGroup;
 
-  constructor(private route: ActivatedRoute, private formBuilder: FormBuilder, private pessoaService: PessoaService) {
+  constructor(private route: ActivatedRoute, private formBuilder: FormBuilder, private pessoaService: PessoaService, private titleService: Title) {
     this.route.paramMap.subscribe(params => {
+      this.titleService.setTitle('Adicionar Telefone - DirectCondo'); 
       let id = params.get('id');
 
       if (id !== null) {
         this.pessoa = this.pessoaService.GetPessoa(parseInt(id));
+        this.titleService.setTitle(this.pessoa.nome+' - Adicionar Telefone - DirectCondo'); 
       }
 
       // Form de Adicionar pessoaTelefone

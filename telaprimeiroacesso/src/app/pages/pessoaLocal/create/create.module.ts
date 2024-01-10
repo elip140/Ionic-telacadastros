@@ -4,18 +4,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { DeletePageRoutingModule } from './delete-routing.module';
+import { CreatePageRoutingModule } from './create-routing.module';
 
-import { DeletePage } from './delete.page';
+import { CreatePage } from './create.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    DeletePageRoutingModule,
-    ReactiveFormsModule
+    CreatePageRoutingModule,
+    ReactiveFormsModule 
   ],
-  declarations: [DeletePage]
+  declarations: [CreatePage]
 })
-export class DeletePageModule {}
+export class CreatePageModule {}

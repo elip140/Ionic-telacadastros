@@ -83,4 +83,29 @@ html {
     --ion-color: #31708f;
     background-image: linear-gradient(to bottom,#d9edf7 0,#c4e3f3 100%);
 }
+
+
+// Outras Classes
+
+.info {
+    font-size: 1.2rem;
+}
+
+// Codigo para manter o floating label no centro do input .input-label-placement-floating
+.input-label-placement-floating {
+    &:not(.has-value):not(.has-focus) label {
+		div.label-text-wrapper{
+			transform: translateY(50%);
+        	transition: transform 0.2s ease;
+		}
+    }
+}
+
+// Codigo para manter o floating label no centro do select .select-label-placement-floating
+.select-label-placement-floating {
+    &:not(.has-value):not(.select-expanded) div {
+        transform: translateY(-50%);
+        transition: transform 0.2s ease;
+    }
+}
   

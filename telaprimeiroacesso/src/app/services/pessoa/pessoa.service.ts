@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from '../http-service.service';
 
-import { PessoaData, Telefone } from 'src/app/models';
+import { Local, Pessoa, Telefone } from 'src/app/models';
 
 @Injectable({
   providedIn: 'root'
@@ -10,13 +10,14 @@ export class PessoaService {
 
   constructor() { }
 
-  GetPessoa(id:number): PessoaData {
+  GetPessoa(id:number): Pessoa {
     return TestePessoa(id);
   }
 
-  GetPessoas(): Array<PessoaData>{
+  GetPessoas(): Array<Pessoa>{
     return Array.from({ length: 100 }, (_, k) => TestePessoa(k + 1));
   }
+
 
   GetPessoaTelefone(id: number): Telefone{
     const TIPOS: string[] = ['RESIDENCIAL', 'COMERCIAL', 'CELULAR',];
@@ -29,11 +30,22 @@ export class PessoaService {
   }
 
 
+  GetPessoaLocal(id:number): Local{
+    var local = {id:id, local:Random(1,20)+"A"};
+    return local;
+  }
+
+  GetPessoaLocals(id:number): Array<Local>{
+    return Array.from({ length: 100 }, (_, k) => this.GetPessoaLocal(k + 1));
+  }
+
+  
+
 }
 
 // Funções para Mockup de UI
 // Gera uma pessoa aleatória para testes
-function TestePessoa(id: number = 0): PessoaData {
+function TestePessoa(id: number = 0): Pessoa {
   const nome = NAMES[Math.round(Math.random() * (NAMES.length - 1))] + ' ' + NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) + '.';
   const rg = Random(100000000, 999999999).toString();
   const cpf = Random(100000000000, 999999999999).toString();

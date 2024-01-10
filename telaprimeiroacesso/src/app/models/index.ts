@@ -1,10 +1,10 @@
-export * from './PessoaData';
+export * from './Pessoa';
 
 export * from './Telefone';
-export * from './Unidade';
-export * from './Angenda';
+export * from './Local';
+export * from './Agenda';
 export * from './Empresa';
 export * from './Endereco';
-export * from './Unidade';
+export * from './Local';
 export * from './Veiculo';
 export * from './Vinculo';
