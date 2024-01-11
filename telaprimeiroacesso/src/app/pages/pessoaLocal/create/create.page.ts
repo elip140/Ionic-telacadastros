@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 // Models
@@ -7,6 +7,7 @@ import { PessoaService } from 'src/app/services/pessoa/pessoa.service';
 
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
+import { IonModal } from '@ionic/angular';
 
 @Component({
   selector: 'app-create',
@@ -30,6 +31,9 @@ export class CreatePage implements OnInit {
         this.titleService.setTitle(this.pessoa.nome+' - Adicionar Local - DirectCondo'); 
         
         this.locais = this.pessoaService.GetPessoaLocals(parseInt(id));
+        this.locaisSel = this.locais.map(e => {
+          return { value:e.id, text:e.local };
+        });
       }
 
       // Form de Adicionar pessoaTelefone
@@ -56,8 +60,6 @@ export class CreatePage implements OnInit {
     alert("Criar telefonePessoa \n" + JSON.stringify(this.formAdd.value));
   }
 
-
-
   // Variaveis de Validação do formulario
   public isSubimitted: boolean = false;
 
@@ -66,12 +68,35 @@ export class CreatePage implements OnInit {
     TelefoneTipo: [
       { type: 'required', message: '(Tipo do Telefone é requirido)' }
     ],
-    DDD: [
-      { type: 'required', message: '(DDD é requirido)' }
-    ],
-    Telefone: [
-      { type: 'required', message: '(Telefone é requirido)' }
-    ],
   }
 
+
+  // Funções Para o SelectFilter 
+  locaisSel: Array<any> = []; // Todos os locais formatado para o select
+  selectedLocal: string = ""; // Todos os locais selecionados
+  selectedLocalText: string = 'Nenhum Local Selecionado'; // Texto do da seleção do Local
+
+  @ViewChild('modal', { static: true }) modal!: IonModal;
+
+  private formatData(data: string) {
+    if (data!=null) {
+      const local = this.locais.find((l) => l.id.toString() == data);
+      if(local!=null && local.local!=null){
+        return local.local;
+      }
+    }
+
+    return "Local Invalido Selecionado";
+  }
+
+  selectionChanged(local: string) {
+    this.selectedLocal = local;
+    this.selectedLocalText = this.formatData(this.selectedLocal);
+    this.modal.dismiss();
+  }
+}
+
+export interface Item {
+  text: string;
+  value: string;
 }

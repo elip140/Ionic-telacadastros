@@ -78,3 +78,25 @@
     </ion-row>
   </ion-grid>
 </ion-content>
+
+<ion-content color="light">
+  <ion-list [inset]="true">
+    <ion-item [button]="true" [detail]="false" id="select-local">
+      <ion-label>Local</ion-label>
+      <div slot="end" id="selected-local">{{ selectedLocalText }}</div>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-modal trigger="select-local" #modal>
+  <ng-template>
+    <app-typeahead
+      class="ion-page"
+      title="Selecione o Local a ser Adicionado"
+      [items]="locaisSel"
+      [selectedItem]="selectedLocal"
+      (selectionChange)="selectionChanged($event)"
+      (selectionCancel)="modal.dismiss()"
+    ></app-typeahead>
+  </ng-template>
+</ion-modal>
