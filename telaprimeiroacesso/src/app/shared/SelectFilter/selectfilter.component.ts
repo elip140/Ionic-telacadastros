@@ -2,16 +2,16 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import type { OnInit } from '@angular/core';
 
 @Component({
-    selector: 'app-typeahead',
+    selector: 'app-selectfilter',
     templateUrl: 'selectfilter.component.html',
 })
 export class SelectFilterComponent implements OnInit {
     @Input() items: Item[] = [];
-    @Input() selectedItem: string = "";
+    @Input() selectedItem: Item;
     @Input() title = 'Selecione o Item';
 
     @Output() selectionCancel = new EventEmitter<void>();
-    @Output() selectionChange = new EventEmitter<string>();
+    @Output() selectionChange = new EventEmitter<Item>();
 
     filteredItems: Item[] = [];
 
@@ -28,9 +28,9 @@ export class SelectFilterComponent implements OnInit {
         this.selectionCancel.emit();
     }
 
-    confirmChanges() {
+    /*confirmChanges() {
         this.selectionChange.emit(this.selectedItem);
-    }
+    }*/
 
     searchbarInput(ev: any) {
         this.filterList(ev.target.value);

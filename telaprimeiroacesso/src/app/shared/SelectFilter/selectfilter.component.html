@@ -17,7 +17,7 @@
     <ion-radio-group value="selection" (ionChange)="handleChange($event)" [(ngModel)]="selectedItem">
         <ion-list id="modal-list" [inset]="true">
             <ion-item *ngFor="let item of filteredItems; trackBy: trackItems">
-                <ion-radio [value]="item.value" (ionChange)="checkboxChange($event)">{{ item.text }}</ion-radio>
+                <ion-radio [value]="item" (ionChange)="checkboxChange($event)">{{ item.text }}</ion-radio>
             </ion-item>
             <div [hidden]="filteredItems.length!=0">
                 <ion-item>

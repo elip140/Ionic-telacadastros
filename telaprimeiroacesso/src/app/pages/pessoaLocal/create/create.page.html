@@ -40,13 +40,16 @@
                     <ion-row class="ion-justify-content-center">
                       <ion-col size="12" size-md="6" class="ion-md-margin-bottom">
                         <div>
-                          <ion-select formControlName="TelefoneTipo" interface="popover" label-placement="floating" fill="outline" #TelefoneTipo color="secondary">
+                          <!--<ion-select formControlName="TelefoneTipo" interface="popover" label-placement="floating" fill="outline" #TelefoneTipo color="secondary" id="select-local">
                             <div slot="label">Local</div>
-                            <ion-select-option *ngFor="let l of locais" [value]="l.id">{{ l.local }}</ion-select-option>
-                          </ion-select>
-                          <small *ngFor="let validation of validation_messages.TelefoneTipo">
+                            --<ion-select-option *ngFor="let l of locais" [value]="l.id">{{ l.local }}</ion-select-option>
+                          </ion-select>-->
+                          <ion-input formControlName="Local" interface="popover" label-placement="floating" fill="outline" #Local color="secondary" id="select-local" [readonly]="true">
+                            <div slot="label">Local</div>
+                          </ion-input>
+                          <small *ngFor="let validation of validation_messages.Local">
                             <ion-text color="danger"
-                              *ngIf="isSubimitted && formAdd.get('TelefoneTipo')?.hasError(validation.type)">
+                              *ngIf="isSubimitted && formAdd.get('Local')?.hasError(validation.type)">
                               {{ validation.message }}
                             </ion-text>
                           </small>
@@ -79,24 +82,15 @@
   </ion-grid>
 </ion-content>
 
-<ion-content color="light">
-  <ion-list [inset]="true">
-    <ion-item [button]="true" [detail]="false" id="select-local">
-      <ion-label>Local</ion-label>
-      <div slot="end" id="selected-local">{{ selectedLocalText }}</div>
-    </ion-item>
-  </ion-list>
-</ion-content>
-
 <ion-modal trigger="select-local" #modal>
   <ng-template>
-    <app-typeahead
+    <app-selectfilter
       class="ion-page"
       title="Selecione o Local a ser Adicionado"
       [items]="locaisSel"
-      [selectedItem]="selectedLocal"
+      [selectedItem]="selectedLocalItem"
       (selectionChange)="selectionChanged($event)"
       (selectionCancel)="modal.dismiss()"
-    ></app-typeahead>
+    ></app-selectfilter>
   </ng-template>
 </ion-modal>

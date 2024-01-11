@@ -21,6 +21,12 @@ export class CreatePage implements OnInit {
 
   locais: Array<Local> = [];
 
+  // Variaveis Para o SelectFilter 
+  locaisSel: Array<any> = []; // Todos os locais formatado para o select
+  selectedLocal: Local; // Todos os locais selecionados
+  selectedLocalItem: any;
+  selectedLocalText: string = 'Nenhum Local Selecionado'; // Texto do da seleção do Local
+
   constructor(private route: ActivatedRoute, private formBuilder: FormBuilder, private pessoaService: PessoaService, private titleService: Title) {
     this.route.paramMap.subscribe(params => {
       this.titleService.setTitle('Adicionar Local - DirectCondo'); 
@@ -39,7 +45,7 @@ export class CreatePage implements OnInit {
       // Form de Adicionar pessoaTelefone
       this.formAdd = this.formBuilder.group(
         {
-          TelefoneTipo: new FormControl("", Validators.compose([
+          Local: new FormControl("", Validators.compose([
             Validators.required
           ])),
         }
@@ -50,14 +56,17 @@ export class CreatePage implements OnInit {
   ngOnInit() {
   }
 
-  // Criar telefonePessoa
+  // Criar pessoaLocal
   CreateBtn() {
     this.isSubimitted = true;
 
     if (!this.formAdd.valid)
       return;
 
-    alert("Criar telefonePessoa \n" + JSON.stringify(this.formAdd.value));
+    if(!this.selectedLocal==null)
+      return;
+
+    alert("Criar pessoaLocal \n" + JSON.stringify(this.selectedLocal));
   }
 
   // Variaveis de Validação do formulario
@@ -65,38 +74,21 @@ export class CreatePage implements OnInit {
 
   // Menssagens de validação customizadas
   public validation_messages = {
-    TelefoneTipo: [
-      { type: 'required', message: '(Tipo do Telefone é requirido)' }
+    Local: [
+      { type: 'required', message: '(O Local é requirido)' }
     ],
   }
 
 
-  // Funções Para o SelectFilter 
-  locaisSel: Array<any> = []; // Todos os locais formatado para o select
-  selectedLocal: string = ""; // Todos os locais selecionados
-  selectedLocalText: string = 'Nenhum Local Selecionado'; // Texto do da seleção do Local
-
+  // Funções para o uso do SelectFilter
   @ViewChild('modal', { static: true }) modal!: IonModal;
 
-  private formatData(data: string) {
-    if (data!=null) {
-      const local = this.locais.find((l) => l.id.toString() == data);
-      if(local!=null && local.local!=null){
-        return local.local;
-      }
-    }
+  selectionChanged(item: any) {
+    this.selectedLocalItem = item;
+    this.selectedLocal = {id: item.value, local:item.text};
 
-    return "Local Invalido Selecionado";
-  }
+    this.formAdd.patchValue({Local: this.selectedLocal.local});
 
-  selectionChanged(local: string) {
-    this.selectedLocal = local;
-    this.selectedLocalText = this.formatData(this.selectedLocal);
     this.modal.dismiss();
   }
-}
-
-export interface Item {
-  text: string;
-  value: string;
 }
