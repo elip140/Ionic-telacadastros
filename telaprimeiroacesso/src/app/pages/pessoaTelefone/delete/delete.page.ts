@@ -50,8 +50,8 @@ export class DeletePage implements OnInit {
   ngOnInit() {
   }
 
-  // Criar telefonePessoa
-  CreateBtn() {
+  // Deletar telefonePessoa
+  DeleteBtn() {
     this.isSubimitted = true;
 
     if (!this.formDel.valid)

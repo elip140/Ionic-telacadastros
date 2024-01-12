@@ -8,3 +8,6 @@ export * from './Endereco';
 export * from './Local';
 export * from './Veiculo';
 export * from './Vinculo';
+
+// Relacionamentos de Pessoa
+export * from './PessoaRelacionamentos/PessoaUnidade';

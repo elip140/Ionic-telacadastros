@@ -24,8 +24,7 @@ export class CreatePage implements OnInit {
   // Variaveis Para o SelectFilter 
   locaisSel: Array<any> = []; // Todos os locais formatado para o select
   selectedLocal: Local; // Todos os locais selecionados
-  selectedLocalItem: any;
-  selectedLocalText: string = 'Nenhum Local Selecionado'; // Texto do da seleção do Local
+  selectedLocalItem: any; // Local Atualmente selecionado no Items em formato de Item
 
   constructor(private route: ActivatedRoute, private formBuilder: FormBuilder, private pessoaService: PessoaService, private titleService: Title) {
     this.route.paramMap.subscribe(params => {
@@ -36,10 +35,11 @@ export class CreatePage implements OnInit {
         this.pessoa = this.pessoaService.GetPessoa(parseInt(id));
         this.titleService.setTitle(this.pessoa.nome+' - Adicionar Local - DirectCondo'); 
         
-        this.locais = this.pessoaService.GetPessoaLocals(parseInt(id));
+        this.locais = this.pessoaService.GetLocals();
         this.locaisSel = this.locais.map(e => {
           return { value:e.id, text:e.local };
         });
+        
       }
 
       // Form de Adicionar pessoaTelefone

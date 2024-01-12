@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from '../http-service.service';
 
-import { Local, Pessoa, Telefone } from 'src/app/models';
+import { Local, Pessoa, Telefone, PessoaLocal } from 'src/app/models';
 
 @Injectable({
   providedIn: 'root'
@@ -19,23 +19,33 @@ export class PessoaService {
   }
 
 
+  // Relacionamento Pessoa - Telefone
   GetPessoaTelefone(id: number): Telefone{
     const TIPOS: string[] = ['RESIDENCIAL', 'COMERCIAL', 'CELULAR',];
     var Telefone = {id:id, tipo:TIPOS[Random(0, 2)], ddd:Random(10, 99).toString(), telefone:Random(1000000, 9999999).toString()};
     return Telefone;
   }
-
   GetPessoaTelefones(): Array<Telefone>{
     return Array.from({ length: 100 }, (_, k) => this.GetPessoaTelefone(k + 1));
   }
+  
 
-
-  GetPessoaLocal(id:number): Local{
-    var local = {id:id, local:Random(1,20)+"A"};
+  // Funções que provalvemente serão movidas para um LocalService
+  GetLocal(lid:number): Local{
+    var local = {id:lid, local:Random(1,20)+"A"};
     return local;
   }
+  GetLocals(): Array<Local>{
+    return Array.from({ length: 100 }, (_, k) => this.GetLocal(k + 1));
+  }
 
-  GetPessoaLocals(id:number): Array<Local>{
+
+  // Relacionamento Pessoa - Local
+  GetPessoaLocal(plid:number): PessoaLocal{
+    var plocal = {id:plid, pessoaId:Random(1,100), localId:Random(1,10)};
+    return plocal;
+  }
+  GetPessoaLocals(): Array<PessoaLocal>{
     return Array.from({ length: 100 }, (_, k) => this.GetPessoaLocal(k + 1));
   }
 

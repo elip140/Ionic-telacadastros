@@ -6,7 +6,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { CreatePageRoutingModule } from './create-routing.module';
 
-import { SelectFilterComponent } from 'src/app/shared/SelectFilter/selectfilter.component';
+import { SelectFilterModule } from 'src/app/shared/SelectFilter/selectfilter.module';
 
 import { CreatePage } from './create.page';
 
@@ -17,7 +17,8 @@ import { CreatePage } from './create.page';
     IonicModule,
     CreatePageRoutingModule,
     ReactiveFormsModule,
+    SelectFilterModule,
   ],
-  declarations: [CreatePage, SelectFilterComponent]
+  declarations: [CreatePage]
 })
 export class CreatePageModule {}

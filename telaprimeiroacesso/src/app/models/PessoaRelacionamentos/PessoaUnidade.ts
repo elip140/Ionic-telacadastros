@@ -1,4 +1,5 @@
 export interface PessoaLocal{
+    id: number;
     pessoaId: number,
-    LocalId: number,
+    localId: number,
 }

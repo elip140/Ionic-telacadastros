@@ -50,8 +50,8 @@ export class EditPage implements OnInit {
   ngOnInit() {
   }
 
-  // Criar telefonePessoa
-  CreateBtn() {
+  // Editar telefonePessoa
+  EditBtn() {
     this.isSubimitted = true;
 
     if (!this.formEdit.valid)
