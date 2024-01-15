@@ -79,7 +79,19 @@ const routes: Routes = [
     path: 'pessoaLocal/delete/:id',
     loadChildren: () => import('./pages/pessoaLocal/delete/delete.module').then( m => m.DeletePageModule),
     canActivate: [UsuarioGuard]
+  },  {
+    path: 'delete',
+    loadChildren: () => import('./pages/pessoaEndereco/delete/delete.module').then( m => m.DeletePageModule)
   },
+  {
+    path: 'create',
+    loadChildren: () => import('./pages/pessoaEndereco/create/create.module').then( m => m.CreatePageModule)
+  },
+  {
+    path: 'edit',
+    loadChildren: () => import('./pages/pessoaEndereco/edit/edit.module').then( m => m.EditPageModule)
+  },
+
 
 
 
