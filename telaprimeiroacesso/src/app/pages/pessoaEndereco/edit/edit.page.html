@@ -1,13 +1,222 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>edit</ion-title>
+  <ion-toolbar color="primeiro">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Editar Endereço</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" color="fundo">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">edit</ion-title>
+      <ion-title size="large">Editar Endereço</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size-md="11" size="12">
+
+        <ion-card>
+          <ion-card-header class="ion-text-center" color="secondary">
+            <ion-card-title><i class="bi bi-house-gear"></i> Editar Endereço</ion-card-title>
+          </ion-card-header>
+
+          <ion-card-content class="ion-margin">
+            <ion-grid>
+              <ion-row class="info">
+                <ion-col>
+                  <form [formGroup]="formAdd">
+                    <ion-row class="ion-text-center ion-margin-bottom">
+                      <ion-col>
+                        <label class="ion-text-center">
+                          Editar Endereço para a pessoa {{ pessoa.nome }}
+                        </label>
+                      </ion-col>
+
+                    </ion-row>
+
+                    <ion-row>
+                      <ion-col size="12" size-md="4" class="ion-md-margin-bottom">
+                        <div>
+                          <ion-select formControlName="EnderecoTipo" interface="popover" label-placement="floating"
+                            fill="outline" #Endereco Tipo color="secondary">
+                            <div slot="label">Tipo</div>
+                            <ion-select-option value=""></ion-select-option>
+                            <ion-select-option value="RESIDENCIAL">Residencial</ion-select-option>
+                            <ion-select-option value="COMERCIAL">Comercial</ion-select-option>
+                            <ion-select-option value="OUTROS">Outros</ion-select-option>
+                          </ion-select>
+                          <small *ngFor="let validation of validation_messages.EnderecoTipo">
+                            <ion-text color="danger"
+                              *ngIf="isSubimitted && formAdd.get('EnderecoTipo')?.hasError(validation.type)">
+                              {{ validation.message }}
+                            </ion-text>
+                          </small>
+                        </div>
+                      </ion-col>
+
+                      <ion-col size="12" size-md="4" class="ion-md-margin-bottom">
+                        <div>
+                          <ion-input formControlName="CEP" labelPlacement="floating" fill="outline" #DDD
+                            color="secondary">
+                            <div slot="label">CEP</div>
+                          </ion-input>
+                          <small *ngFor="let validation of validation_messages.CEP">
+                            <ion-text color="danger"
+                              *ngIf="isSubimitted && formAdd.get('CEP')?.hasError(validation.type)">
+                              {{ validation.message }}
+                            </ion-text>
+                          </small>
+                        </div>
+                      </ion-col>
+
+                      <ion-col size="12" size-md="4" class="ion-md-margin-bottom">
+                        <div>
+                          <ion-select formControlName="Estado" interface="popover" label-placement="floating"
+                            fill="outline" #Estado color="secondary">
+                            <div slot="label">Estado</div>
+                            <ion-select-option value=""></ion-select-option>
+                            <ion-select-option value="AC">Acre</ion-select-option>
+                            <ion-select-option value="AL">Alagoas</ion-select-option>
+                            <ion-select-option value="AP">Amapá</ion-select-option>
+                            <ion-select-option value="AM">Amazonas</ion-select-option>
+                            <ion-select-option value="BA">Bahia</ion-select-option>
+                            <ion-select-option value="CE">Ceará</ion-select-option>
+                            <ion-select-option value="ES">Espírito Santo</ion-select-option>
+                            <ion-select-option value="GO">Goiás</ion-select-option>
+                            <ion-select-option value="MA">Maranhão</ion-select-option>
+                            <ion-select-option value="MT">Mato Grosso</ion-select-option>
+                            <ion-select-option value="MS">Mato Grosso do Sul</ion-select-option>
+                            <ion-select-option value="MG">Minas Gerais</ion-select-option>
+                            <ion-select-option value="PA">Pará</ion-select-option>
+                            <ion-select-option value="PB">Paraíba</ion-select-option>
+                            <ion-select-option value="PR">Paraná</ion-select-option>
+                            <ion-select-option value="PE">Pernambuco</ion-select-option>
+                            <ion-select-option value="PI">Piauí</ion-select-option>
+                            <ion-select-option value="RJ">Rio de Janeiro</ion-select-option>
+                            <ion-select-option value="RN">Rio Grande do Norte</ion-select-option>
+                            <ion-select-option value="RS">Rio Grande do Sul</ion-select-option>
+                            <ion-select-option value="RO">Rondônia</ion-select-option>
+                            <ion-select-option value="RR">Roraima</ion-select-option>
+                            <ion-select-option value="SC">Santa Catarina</ion-select-option>
+                            <ion-select-option value="SP">São Paulo</ion-select-option>
+                            <ion-select-option value="SE">Sergipe</ion-select-option>
+                            <ion-select-option value="TO">Tocantins</ion-select-option>
+                            <ion-select-option value="DF">Distrito Federal</ion-select-option>
+                          </ion-select>
+                          <small *ngFor="let validation of validation_messages.Estado">
+                            <ion-text color="danger"
+                              *ngIf="isSubimitted && formAdd.get('Estado')?.hasError(validation.type)">
+                              {{ validation.message }}
+                            </ion-text>
+                          </small>
+                        </div>
+                      </ion-col>
+
+                    </ion-row>
+
+                    <ion-row>
+                      <ion-col size="12" size-md="8" class="ion-md-margin-bottom">
+                        <div>
+                          <ion-input formControlName="Endereco" labelPlacement="floating" fill="outline" #Telefone
+                            color="secondary" maxlength="12">
+                            <div slot="label">Endereco</div>
+                          </ion-input>
+                          <small *ngFor="let validation of validation_messages.Endereco">
+                            <ion-text color="danger"
+                              *ngIf="isSubimitted && formAdd.get('Endereco')?.hasError(validation.type)">
+                              {{ validation.message }}
+                            </ion-text>
+                          </small>
+                        </div>
+                      </ion-col>
+
+                      <ion-col size="12" size-md="4" class="ion-md-margin-bottom">
+                        <div>
+                          <ion-input formControlName="Numero" labelPlacement="floating" fill="outline" #Numero
+                            color="secondary" maxlength="12">
+                            <div slot="label">Número</div>
+                          </ion-input>
+                          <small *ngFor="let validation of validation_messages.Numero">
+                            <ion-text color="danger"
+                              *ngIf="isSubimitted && formAdd.get('Numero')?.hasError(validation.type)">
+                              {{ validation.message }}
+                            </ion-text>
+                          </small>
+                        </div>
+                      </ion-col>
+                    </ion-row>
+
+                    <ion-row>
+                      <ion-col size="12" size-md="4" class="ion-md-margin-bottom">
+                        <div>
+                          <ion-input formControlName="Complemento" labelPlacement="floating" fill="outline" #Complemento
+                            color="secondary" maxlength="12">
+                            <div slot="label">Complemento</div>
+                          </ion-input>
+                          <small *ngFor="let validation of validation_messages.Complemento">
+                            <ion-text color="danger"
+                              *ngIf="isSubimitted && formAdd.get('Complemento')?.hasError(validation.type)">
+                              {{ validation.message }}
+                            </ion-text>
+                          </small>
+                        </div>
+                      </ion-col>
+
+                      <ion-col size="12" size-md="4" class="ion-md-margin-bottom">
+                        <div>
+                          <ion-input formControlName="Bairro" labelPlacement="floating" fill="outline" #Bairro
+                            color="secondary" maxlength="12">
+                            <div slot="label">Bairro</div>
+                          </ion-input>
+                          <small *ngFor="let validation of validation_messages.Bairro">
+                            <ion-text color="danger"
+                              *ngIf="isSubimitted && formAdd.get('Bairro')?.hasError(validation.type)">
+                              {{ validation.message }}
+                            </ion-text>
+                          </small>
+                        </div>
+                      </ion-col>
+
+                      <ion-col size="12" size-md="4" class="ion-md-margin-bottom">
+                        <div>
+                          <ion-input formControlName="Cidade" labelPlacement="floating" fill="outline" #Cidade
+                            color="secondary" maxlength="12">
+                            <div slot="label">Cidade</div>
+                          </ion-input>
+                          <small *ngFor="let validation of validation_messages.Cidade">
+                            <ion-text color="danger"
+                              *ngIf="isSubimitted && formAdd.get('Cidade')?.hasError(validation.type)">
+                              {{ validation.message }}
+                            </ion-text>
+                          </small>
+                        </div>
+                      </ion-col>
+                    </ion-row>
+
+                  </form>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-card-content>
+
+          <ion-footer>
+            <ion-toolbar color="light">
+              <ion-row>
+                <ion-col class="ion-text-center ion-text-md-end">
+                  <ion-button color="secondary" (click)="EditarBtn()">
+                    <i class="bi bi-save"></i>
+                    <ion-label style="padding-left: 0.3rem;">Salvar</ion-label>
+                  </ion-button>
+                </ion-col>
+              </ion-row>
+            </ion-toolbar>
+          </ion-footer>
+        </ion-card>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

@@ -7,59 +7,18 @@ import { Observable } from 'rxjs/internal/Observable';
 @Injectable({
   providedIn: 'root'
 })
-export class UsuarioService {
-  private baseUrl = 'http://www.adsportal.com.br:5000/api/Account/Login';
+export class UsuarioService2 {
+  private baseUrl = 'http://www.adsportal.com.br/DirectCondoAPI/api/';
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router) { }
 
-  }
-
-  Login(email: string, senha: string) {
-    const body = {
-      "id": 0,
-      "email": "teste@gmail.com",
-      "password": "123456",
-      "roles": [
-        "admin"
-      ]
-    };
-
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-        'Content-Length': 0,
-      })
-    }
-
-    localStorage.setItem('token', "TOKEN");
-    localStorage.setItem('usuario', email);
-    localStorage.setItem('logado', JSON.stringify(true));
-    this.router.navigate(['/home']).then(() => location.reload());
-
-    /*this.http.post<any>(this.baseUrl, body, httpOptions).subscribe(data => {
-      alert(data);
-    });*/
-
-
-  }
-
-  /*Login(email:string, senha:string) {
+  Login(email:string, senha:string) {
+    var conUrl:string =  "Pessoa/Login";
     const headers = new HttpHeaders({
-      'Content-Length': 97,
       'Content-Type': 'application/json',
     });
 
-    const body = {
-      "id": 0,
-      "email": "teste@gmail.com",
-      "password": "123456",
-      "roles": [
-        "admin"
-      ]
-    };
-
-    this.http.post(this.baseUrl, body, { headers }).subscribe({
+    this.http.post(this.baseUrl+conUrl+"?email="+email+"&senha="+senha, { headers }).subscribe({
       next: (response: any) => {
         console.log('POST Login request was successful', JSON.stringify(response));
         if(!response.success){
@@ -78,15 +37,15 @@ export class UsuarioService {
       },
     })
     
-  }*/
-
-  Deslogar() {
-    localStorage.clear();
-    this.router.navigate(['login']).then(() => location.reload());
-
   }
 
-  GetUsuarioLogado(): string {
+  Deslogar() {
+      localStorage.clear();
+      this.router.navigate(['login']).then(() => location.reload());
+      
+  }
+
+  GetUsuarioLogado(): string{
     let usu = {
       email: localStorage.getItem('usuario') || "",
       token: localStorage.getItem('token') || "",
@@ -95,7 +54,7 @@ export class UsuarioService {
     return JSON.stringify(usu);
   }
 
-  GetUsuarioNomeLogado(): string {
+  GetUsuarioNomeLogado(): string{
     return localStorage.getItem('usuario') || "";
   }
 
@@ -106,6 +65,6 @@ export class UsuarioService {
   GetLogado(): boolean {
     return localStorage.getItem('logado') ? true : false;
   }
-
-
+  
+  
 }

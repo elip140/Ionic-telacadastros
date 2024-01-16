@@ -10,7 +10,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 
 // Fotos
-import { PhotoService } from 'src/app/services/photo.service';
+import { PhotoService } from 'src/app/services/photo/photo.service';
 import { IonModal } from '@ionic/angular';
 import { OverlayEventDetail } from '@ionic/core/components';
 

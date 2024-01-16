@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from '../http-service.service';
 
-import { Local, Pessoa, Telefone, PessoaLocal } from 'src/app/models';
+import { Local, Pessoa, Telefone, PessoaLocal, Endereco } from 'src/app/models';
 
 @Injectable({
   providedIn: 'root'
@@ -47,6 +47,19 @@ export class PessoaService {
   }
   GetPessoaLocals(): Array<PessoaLocal>{
     return Array.from({ length: 100 }, (_, k) => this.GetPessoaLocal(k + 1));
+  }
+
+
+  // Relacionamento Pessoa - Endereco
+  GetPessoaEndereco(peid:number): Endereco{
+    const TIPOS: string[] = ['RESIDENCIAL', 'COMERCIAL', 'OUTROS',];
+    const ESTADO: string[] = ['AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO', 'DF']
+
+    var end = { id: peid, tipo: TIPOS[Random(0, 2)], cep: Random(10000, 200000).toString(), endereco: "Rua Teste", numero: Random(1, 200).toString(), complemento: "Teste", bairro: "Teste2", cidade: "ITATIBA", estado: ESTADO[Random(0, (ESTADO.length - 1))] } as unknown as Endereco;
+    return end;
+  }
+  GetPessoaEnderecos(): Array<Endereco>{
+    return Array.from({ length: 100 }, (_, k) => this.GetPessoaEndereco(k + 1));
   }
 
   

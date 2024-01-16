@@ -313,7 +313,7 @@
           <ion-card-content>
             <div class="ion-margin">
               <ion-row class="ion-justify-content-end">
-                <ion-button color="primary">+</ion-button>
+                <ion-button color="primary" [routerLink]="['/pessoaEndereco/create', pessoa.id]">+</ion-button>
               </ion-row>
               <ion-row *ngIf="enderecoSource.data.length!=0" class="mat-elevation-z8">
                 <mat-table [dataSource]="enderecoSource" matSort class="mat-table" #enderecoTable
@@ -370,10 +370,10 @@
                     </mat-header-cell>
                     <mat-cell *matCellDef="let row" class="ion-justify-content-center" [style.flex]="'2 0 0%'">
                       <div>
-                        <ion-button color="" [routerLink]="['./edit', row.id]">
+                        <ion-button color="" [routerLink]="['/pessoaEndereco/edit', row.id]">
                           <i class="bi bi-pencil-fill"></i>
                         </ion-button>
-                        <ion-button color="danger" [routerLink]="['/delete', row.id]">
+                        <ion-button color="danger" [routerLink]="['/pessoaEndereco/delete', row.id]">
                           <i class="bi bi-trash-fill"></i>
                         </ion-button>
                       </div>

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { UsuarioGuard } from './services/usuario.guard';
-import { NaologadoGuard } from './services/naologado.guard';
+import { UsuarioGuard } from './services/guard/usuario.guard';
+import { NaologadoGuard } from './services/guard/naologado.guard';
 
 const routes: Routes = [
   {
@@ -79,23 +79,24 @@ const routes: Routes = [
     path: 'pessoaLocal/delete/:id',
     loadChildren: () => import('./pages/pessoaLocal/delete/delete.module').then( m => m.DeletePageModule),
     canActivate: [UsuarioGuard]
-  },  {
-    path: 'delete',
-    loadChildren: () => import('./pages/pessoaEndereco/delete/delete.module').then( m => m.DeletePageModule)
+  },
+
+  // Telas PessoaEndereço
+  {
+    path: 'pessoaEndereco/create/:id',
+    loadChildren: () => import('./pages/pessoaEndereco/create/create.module').then( m => m.CreatePageModule),
+    canActivate: [UsuarioGuard]
   },
   {
-    path: 'create',
-    loadChildren: () => import('./pages/pessoaEndereco/create/create.module').then( m => m.CreatePageModule)
+    path: 'pessoaEndereco/edit/:id',
+    loadChildren: () => import('./pages/pessoaEndereco/edit/edit.module').then( m => m.EditPageModule),
+    canActivate: [UsuarioGuard]
   },
   {
-    path: 'edit',
-    loadChildren: () => import('./pages/pessoaEndereco/edit/edit.module').then( m => m.EditPageModule)
+    path: 'pessoaEndereco/delete/:id',
+    loadChildren: () => import('./pages/pessoaEndereco/delete/delete.module').then( m => m.DeletePageModule),
+    canActivate: [UsuarioGuard]
   },
-
-
-
-
-
 
 ];
 
