@@ -65,17 +65,4 @@ export class DeletePage implements OnInit {
   // Variaveis de Validação do formulario
   public isSubimitted: boolean = false;
 
-  // Menssagens de validação customizadas
-  public validation_messages = {
-    TelefoneTipo: [
-      { type: 'required', message: '(Tipo do Telefone é requirido)' }
-    ],
-    DDD: [
-      { type: 'required', message: '(DDD é requirido)' }
-    ],
-    Telefone: [
-      { type: 'required', message: '(Telefone é requirido)' }
-    ],
-  }
-
 }

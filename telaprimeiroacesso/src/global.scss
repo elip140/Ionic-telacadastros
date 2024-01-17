@@ -91,6 +91,11 @@ html {
     font-size: 1.2rem;
 }
 
+.title{
+    color: var(--ion-color-dark);
+    //font-weight: bold;
+}
+
 // Codigo para manter o floating label no centro do input .input-label-placement-floating
 .input-label-placement-floating {
     &:not(.has-value):not(.has-focus) label {

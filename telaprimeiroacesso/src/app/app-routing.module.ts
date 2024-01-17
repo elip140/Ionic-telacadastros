@@ -50,53 +50,68 @@ const routes: Routes = [
   // Telas PessoaTelefone
   {
     path: 'pessoaTelefone/create/:id',
-    loadChildren: () => import('./pages/pessoaTelefone/create/create.module').then( m => m.CreatePageModule),
+    loadChildren: () => import('./pages/pessoaRelacionamentos/pessoaTelefone/create/create.module').then( m => m.CreatePageModule),
     canActivate: [UsuarioGuard]
   },
   {
     path: 'pessoaTelefone/edit/:id',
-    loadChildren: () => import('./pages/pessoaTelefone/edit/edit.module').then( m => m.EditPageModule),
+    loadChildren: () => import('./pages/pessoaRelacionamentos/pessoaTelefone/edit/edit.module').then( m => m.EditPageModule),
     canActivate: [UsuarioGuard]
   },
   {
     path: 'pessoaTelefone/delete/:id',
-    loadChildren: () => import('./pages/pessoaTelefone/delete/delete.module').then( m => m.DeletePageModule),
+    loadChildren: () => import('./pages/pessoaRelacionamentos/pessoaTelefone/delete/delete.module').then( m => m.DeletePageModule),
     canActivate: [UsuarioGuard]
   },
 
   // Telas PessoaLocal
   {
     path: 'pessoaLocal/create/:id',
-    loadChildren: () => import('./pages/pessoaLocal/create/create.module').then( m => m.CreatePageModule),
+    loadChildren: () => import('./pages/pessoaRelacionamentos/pessoaLocal/create/create.module').then( m => m.CreatePageModule),
     canActivate: [UsuarioGuard]
   },
   {
     path: 'pessoaLocal/edit/:id',
-    loadChildren: () => import('./pages/pessoaLocal/edit/edit.module').then( m => m.EditPageModule),
+    loadChildren: () => import('./pages/pessoaRelacionamentos/pessoaLocal/edit/edit.module').then( m => m.EditPageModule),
     canActivate: [UsuarioGuard]
   },
   {
     path: 'pessoaLocal/delete/:id',
-    loadChildren: () => import('./pages/pessoaLocal/delete/delete.module').then( m => m.DeletePageModule),
+    loadChildren: () => import('./pages/pessoaRelacionamentos/pessoaLocal/delete/delete.module').then( m => m.DeletePageModule),
     canActivate: [UsuarioGuard]
   },
 
   // Telas PessoaEndereço
   {
     path: 'pessoaEndereco/create/:id',
-    loadChildren: () => import('./pages/pessoaEndereco/create/create.module').then( m => m.CreatePageModule),
+    loadChildren: () => import('./pages/pessoaRelacionamentos/pessoaEndereco/create/create.module').then( m => m.CreatePageModule),
     canActivate: [UsuarioGuard]
   },
   {
     path: 'pessoaEndereco/edit/:id',
-    loadChildren: () => import('./pages/pessoaEndereco/edit/edit.module').then( m => m.EditPageModule),
+    loadChildren: () => import('./pages/pessoaRelacionamentos/pessoaEndereco/edit/edit.module').then( m => m.EditPageModule),
     canActivate: [UsuarioGuard]
   },
   {
     path: 'pessoaEndereco/delete/:id',
-    loadChildren: () => import('./pages/pessoaEndereco/delete/delete.module').then( m => m.DeletePageModule),
+    loadChildren: () => import('./pages/pessoaRelacionamentos/pessoaEndereco/delete/delete.module').then( m => m.DeletePageModule),
     canActivate: [UsuarioGuard]
   },
+
+  // Telas PessoaVeiculos
+  {
+    path: 'pessoaVeiculo/create/:id',
+    loadChildren: () => import('./pages/pessoaRelacionamentos/pessoaVeiculo/create/create.module').then( m => m.CreatePageModule)
+  },
+  {
+    path: 'pessoaVeiculo/edit/:id',
+    loadChildren: () => import('./pages/pessoaRelacionamentos/pessoaVeiculo/edit/edit.module').then( m => m.EditPageModule)
+  },
+  {
+    path: 'pessoaVeiculo/delete/:id',
+    loadChildren: () => import('./pages/pessoaRelacionamentos/pessoaVeiculo/delete/delete.module').then( m => m.DeletePageModule)
+  },
+
 
 ];
 

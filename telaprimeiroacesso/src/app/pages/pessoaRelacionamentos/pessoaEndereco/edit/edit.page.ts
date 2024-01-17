@@ -16,7 +16,7 @@ import { Title } from '@angular/platform-browser';
 export class EditPage implements OnInit {
   pessoa: Pessoa;
   endereco: Endereco;
-  public formAdd: FormGroup;
+  public formEdit: FormGroup;
 
   constructor(private route: ActivatedRoute, private formBuilder: FormBuilder, private pessoaService: PessoaService, private titleService: Title) {
     this.route.paramMap.subscribe(params => {
@@ -31,7 +31,7 @@ export class EditPage implements OnInit {
       }
 
       // Form de Adicionar pessoaEndereco
-      this.formAdd = this.formBuilder.group(
+      this.formEdit = this.formBuilder.group(
         {
           EnderecoTipo: new FormControl(this.endereco.tipo, Validators.compose([
             Validators.required
@@ -63,10 +63,10 @@ export class EditPage implements OnInit {
   EditarBtn() {
     this.isSubimitted = true;
 
-    if (!this.formAdd.valid)
+    if (!this.formEdit.valid)
       return;
 
-    alert("Editar endereçoPessoa \n" + JSON.stringify(this.formAdd.value));
+    alert("Editar endereçoPessoa \n" + JSON.stringify(this.formEdit.value));
   }
 
 
