@@ -112,6 +112,21 @@ const routes: Routes = [
     loadChildren: () => import('./pages/pessoaRelacionamentos/pessoaVeiculo/delete/delete.module').then( m => m.DeletePageModule)
   },
 
+  // Telas PessoaVinculo
+  {
+    path: 'pessoaVinculo/create/:id',
+    loadChildren: () => import('./pages/pessoaRelacionamentos/pessoaVinculo/create/create.module').then( m => m.CreatePageModule)
+  },
+  {
+    path: 'pessoaVinculo/edit/:id',
+    loadChildren: () => import('./pages/pessoaRelacionamentos/pessoaVinculo/edit/edit.module').then( m => m.EditPageModule)
+  },
+  {
+    path: 'pessoaVinculo/delete/:id',
+    loadChildren: () => import('./pages/pessoaRelacionamentos/pessoaVinculo/delete/delete.module').then( m => m.DeletePageModule)
+  },
+
+
 
 ];
 

@@ -8,13 +8,13 @@ import { Observable } from 'rxjs/internal/Observable';
   providedIn: 'root'
 })
 export class UsuarioService {
-  private baseUrl = 'http://www.adsportal.com.br:5000/api/Account/Login';
+  private baseUrl = 'https://www.adsportal.com.br:5000/api/Account/Login';
 
   constructor(private http: HttpClient, private router: Router) {
 
   }
 
-  Login(email: string, senha: string) {
+  /*Login(email: string, senha: string) {
     const body = {
       "id": 0,
       "email": "teste@gmail.com",
@@ -27,26 +27,24 @@ export class UsuarioService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
-        'Content-Length': 0,
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
       })
     }
 
-    localStorage.setItem('token', "TOKEN");
+    this.http.post(this.baseUrl, body, httpOptions).subscribe(data => {
+      alert(data);
+    });
+
+  }*/
+
+  /*localStorage.setItem('token', "TOKEN");
     localStorage.setItem('usuario', email);
     localStorage.setItem('logado', JSON.stringify(true));
-    this.router.navigate(['/home']).then(() => location.reload());
+    this.router.navigate(['/home']).then(() => location.reload());*/
 
-    /*this.http.post<any>(this.baseUrl, body, httpOptions).subscribe(data => {
-      alert(data);
-    });*/
-
-
-  }
-
-  /*Login(email:string, senha:string) {
+  Login(email:string, senha:string) {
     const headers = new HttpHeaders({
-      'Content-Length': 97,
       'Content-Type': 'application/json',
     });
 
@@ -78,7 +76,7 @@ export class UsuarioService {
       },
     })
     
-  }*/
+  }
 
   Deslogar() {
     localStorage.clear();

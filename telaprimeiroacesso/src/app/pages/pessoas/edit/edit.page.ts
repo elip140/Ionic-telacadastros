@@ -113,46 +113,23 @@ export class EditPage implements OnInit {
       }
 
       // Card de Local
-      var dataUn = this.LocalSource.data;
-      for (var i = 1; i <= 100; i++) {
-        dataUn.push({ id: i, local: i + "B" });
-      }
-      this.LocalSource.data = dataUn;
+      this.LocalSource.data = this.pessoaService.GetLocals();
 
       // Card de Telefone
-      var tel = this.telefoneSource.data;
-      for (var i = 1; i <= 100; i++) {
-        tel.push({ id: i, tipo: "CELULAR", ddd: "11", telefone: "3123-3123" + i });
-      }
-      this.telefoneSource.data = tel;
+      this.telefoneSource.data = this.pessoaService.GetPessoaTelefones();
 
       // Card de Endereço
-      var end = this.enderecoSource.data;
-      for (var i = 1; i <= 100; i++) {
-        end.push({ id: i, tipo: "RESIDENCIA", cep: "12345-" + i, endereco: "RUA LOREM IPSUM DOLOR SIT AMET", numero: i, bairro: "LOREM IPSUM", cidade: "ITATIBA DO SUL", complemento: "Qtd 1 lt 1" });
-      }
-      this.enderecoSource.data = end;
+      this.enderecoSource.data = this.pessoaService.GetPessoaEnderecos();
 
       // Card de Veiculos
-      var vei = this.veiculoSource.data;
-      for (var i = 1; i <= 100; i++) {
-        vei.push({ id: i, fabricante: "Teste", modelo: "202" + i, cor: "TESTE", placa: "EEE-2" + i, renavan: "Teste" });
-      }
-      this.veiculoSource.data = vei;
+      this.veiculoSource.data = this.pessoaService.GetPessoaVeiculos();
 
       // Card de Vinculo
-      var vin = this.vinculoSource.data;
+      /*var vin = this.vinculoSource.data;
       for (var i = 1; i <= 100; i++) {
         vin.push({ id: i, nome: "Teste Teste Teste" + i, tipo: "DEPENDENTE", descricao: "LOREM IPSUM DOLOR SIT AMET" });
       }
-      this.vinculoSource.data = vin;
-
-      // Card de Vinculo
-      var vin = this.vinculoSource.data;
-      for (var i = 1; i <= 100; i++) {
-        vin.push({ id: i, nome: "Teste Teste Teste" + i, tipo: "DEPENDENTE", descricao: "LOREM IPSUM DOLOR SIT AMET" });
-      }
-      this.vinculoSource.data = vin;
+      this.vinculoSource.data = vin;*/
 
       // Card de Empresa
       var emp = this.empresaSource.data;

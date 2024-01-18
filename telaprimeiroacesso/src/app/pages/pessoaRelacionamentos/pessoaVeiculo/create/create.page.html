@@ -20,7 +20,7 @@
 
         <ion-card>
           <ion-card-header class="ion-text-center" color="secondary">
-            <ion-card-title><i class="bi bi-telephone-plus"></i> Adicionar Veículo</ion-card-title>
+            <ion-card-title><i class="bi bi-car-front"></i> Adicionar Veículo</ion-card-title>
           </ion-card-header>
 
           <ion-card-content class="ion-margin">
@@ -34,57 +34,89 @@
                           Adicionar veículo para a pessoa {{ pessoa.nome }}
                         </label>
                       </ion-col>
-
                     </ion-row>
 
                     <ion-row>
-                      <ion-col size="12" size-md="5" class="ion-md-margin-bottom">
+                      <ion-col size="12" size-md="6" class="ion-md-margin-bottom">
                         <div>
-                          <ion-select formControlName="TelefoneTipo" interface="popover" label-placement="floating" fill="outline" #TelefoneTipo color="secondary">
-                            <div slot="label">Tipo</div>
-                            <ion-select-option value=""></ion-select-option>
-                            <ion-select-option value="RESIDENCIAL">Residencial</ion-select-option>
-                            <ion-select-option value="COMERCIAL">Comercial</ion-select-option>
-                            <ion-select-option value="CELULAR">Celular</ion-select-option>
-                          </ion-select>
-                          <small *ngFor="let validation of validation_messages.TelefoneTipo">
-                            <ion-text color="danger"
-                              *ngIf="isSubimitted && formAdd.get('TelefoneTipo')?.hasError(validation.type)">
-                              {{ validation.message }}
-                            </ion-text>
-                          </small>
-                        </div>
-                      </ion-col>
-
-                      <ion-col size="12" size-md="2" class="ion-md-margin-bottom">
-                        <div>
-                          <ion-input formControlName="DDD" labelPlacement="floating" fill="outline" #DDD
-                            color="secondary" maxlength="2">
-                            <div slot="label">DDD</div>
+                          <ion-input formControlName="Fabricante" labelPlacement="floating" fill="outline" #Fabricante
+                            color="secondary">
+                            <div slot="label">Fabricante</div>
                           </ion-input>
-                          <small *ngFor="let validation of validation_messages.DDD">
+                          <small *ngFor="let validation of validation_messages.Fabricante">
                             <ion-text color="danger"
-                              *ngIf="isSubimitted && formAdd.get('DDD')?.hasError(validation.type)">
+                              *ngIf="isSubimitted && formAdd.get('Fabricante')?.hasError(validation.type)">
                               {{ validation.message }}
                             </ion-text>
                           </small>
                         </div>
                       </ion-col>
 
-                      <ion-col size="12" size-md="5" class="ion-md-margin-bottom" >
+                      <ion-col size="12" size-md="6" class="ion-md-margin-bottom" >
                         <div>
-                          <ion-input formControlName="Telefone" labelPlacement="floating" fill="outline" #Telefone
+                          <ion-input formControlName="Renavan" labelPlacement="floating" fill="outline" #Renavan
+                            color="secondary">
+                            <div slot="label">Renavan</div>
+                          </ion-input>
+                          <small *ngFor="let validation of validation_messages.Renavan">
+                            <ion-text color="danger"
+                              *ngIf="isSubimitted && formAdd.get('Renavan')?.hasError(validation.type)">
+                              {{ validation.message }}
+                            </ion-text>
+                          </small>
+                        </div>
+                      </ion-col>
+                    </ion-row>
+
+                    <ion-row>
+                      
+
+                      <ion-col size="12" size-md="4" class="ion-md-margin-bottom">
+                        <div>
+                          <ion-input formControlName="Modelo" labelPlacement="floating" fill="outline" #Modelo
+                            color="secondary">
+                            <div slot="label">Modelo</div>
+                          </ion-input>
+                          <small *ngFor="let validation of validation_messages.Modelo">
+                            <ion-text color="danger"
+                              *ngIf="isSubimitted && formAdd.get('Modelo')?.hasError(validation.type)">
+                              {{ validation.message }}
+                            </ion-text>
+                          </small>
+                        </div>
+                      </ion-col>
+
+                      <ion-col size="12" size-md="4" class="ion-md-margin-bottom" >
+                        <div>
+                          <ion-input formControlName="Placa" labelPlacement="floating" fill="outline" #Placa
+                            color="secondary">
+                            <div slot="label">Placa</div>
+                          </ion-input>
+                          <small *ngFor="let validation of validation_messages.Placa">
+                            <ion-text color="danger"
+                              *ngIf="isSubimitted && formAdd.get('Placa')?.hasError(validation.type)">
+                              {{ validation.message }}
+                            </ion-text>
+                          </small>
+                        </div>
+                      </ion-col>
+
+                      <ion-col size="12" size-md="4" class="ion-md-margin-bottom" >
+                        <div>
+                          <ion-input formControlName="Cor" labelPlacement="floating" fill="outline" #Cor
                             color="secondary" maxlength="12">
-                            <div slot="label">Telefone</div>
+                            <div slot="label">Cor</div>
                           </ion-input>
-                          <small *ngFor="let validation of validation_messages.Telefone">
+                          <small *ngFor="let validation of validation_messages.Cor">
                             <ion-text color="danger"
-                              *ngIf="isSubimitted && formAdd.get('Telefone')?.hasError(validation.type)">
+                              *ngIf="isSubimitted && formAdd.get('Cor')?.hasError(validation.type)">
                               {{ validation.message }}
                             </ion-text>
                           </small>
                         </div>
                       </ion-col>
+
+                      
 
                     </ion-row>
                   </form>

@@ -1,6 +1,9 @@
 export interface Vinculo{
     id: number;
-    nome?: string;
-    tipo?: string;
-    descricao?: string;
+    pessoaId:number
+    vinculoId:number;
+
+    vinculo?:string;
+    pessoaTipo?:string;
+    grauDeParentesco?:string;
 }

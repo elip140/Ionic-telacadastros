@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpService } from '../http-service.service';
 
-import { Local, Pessoa, Telefone, PessoaLocal, Endereco, Veiculo } from 'src/app/models';
+import { Local, Pessoa, Telefone, PessoaLocal, Endereco, Veiculo, Vinculo } from 'src/app/models';
 
 @Injectable({
   providedIn: 'root'
@@ -65,11 +65,21 @@ export class PessoaService {
 
   // Relacionamento Pessoa - Veiculo
   GetPessoaVeiculo(pvid:number): Veiculo{
-    var veiculo = {id:pvid, fabricante:"Teste de 1", modelo:"Teste", placa:"EEE-"+Random(1000, 9999), cor:"Vermelho", renavan:"ALGO???"};
+    var veiculo = {id:pvid, fabricante:"Teste de 1", modelo:Random(1990, 2024).toString(), placa:"EEE-"+Random(1000, 9999), cor:"Vermelho", renavan:"ALGO???"};
     return veiculo;
   }
   GetPessoaVeiculos(): Array<Veiculo>{
     return Array.from({ length: 100 }, (_, k) => this.GetPessoaVeiculo(k + 1));
+  }
+
+
+  // Relacionamento Pessoa - Veiculo
+  GetPessoaVinculo(pvid:number): Vinculo{
+    var vin = {id:pvid, pessoaId:Random(1,100), vinculoId:Random(1,100), vinculo:NAMES[Random(0, NAMES.length)], pessoaTipo:Random(1990, 2024).toString(), grauDeParentesco:"EEE-"+Random(1000, 9999)};
+    return vin;
+  }
+  GetPessoaVinculos(): Array<Vinculo>{
+    return Array.from({ length: 100 }, (_, k) => this.GetPessoaVinculo(k + 1));
   }
   
 
@@ -122,6 +132,14 @@ const NAMES: string[] = [
   'Mia',
   'Thomas',
   'Elizabeth',
+];
+
+const PESSOATIPO: string[] = [
+
+];
+
+const GRAU: string[] = [
+
 ];
 
 function Random(min: number, max: number): number {

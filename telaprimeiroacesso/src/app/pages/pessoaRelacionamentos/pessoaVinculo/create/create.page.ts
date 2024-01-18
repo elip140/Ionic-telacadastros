@@ -19,12 +19,12 @@ export class CreatePage implements OnInit {
 
   constructor(private route: ActivatedRoute, private formBuilder: FormBuilder, private pessoaService: PessoaService, private titleService: Title) {
     this.route.paramMap.subscribe(params => {
-      this.titleService.setTitle('Adicionar Veículo - DirectCondo'); 
+      this.titleService.setTitle('Adicionar Vínculo - DirectCondo'); 
       let id = params.get('id');
 
       if (id !== null) {
         this.pessoa = this.pessoaService.GetPessoa(parseInt(id));
-        this.titleService.setTitle(this.pessoa.nome+' - Adicionar Veículo - DirectCondo'); 
+        this.titleService.setTitle(this.pessoa.nome+' - Adicionar Vínculo - DirectCondo'); 
       }
 
       // Form de Adicionar pessoaTelefone
