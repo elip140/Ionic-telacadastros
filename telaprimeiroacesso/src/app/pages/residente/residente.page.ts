@@ -3,6 +3,7 @@ import { HttpService } from 'src/app/services/http-service.service';
 
 //import { DatePipe } from '@angular/common';
 import { Title } from '@angular/platform-browser';
+import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-residente',
@@ -11,102 +12,101 @@ import { Title } from '@angular/platform-browser';
 })
 export class ResidentePage implements OnInit {
 
-  pessoa:any = {
-    Nome:"",
-    Rg:"",
-    Cpf:"",
-    DataNasc:"",
-    Email:"",
-    Tipo:""
+  pessoa: any = {
+    Nome: "",
+    Rg: "",
+    Cpf: "",
+    DataNasc: "",
+    Email: "",
+    Tipo: ""
   }
 
-  visitas:any = [];
-  vinculos:any = [];
-  entregas:any = [];
+  visitas: any = [];
+  vinculos: any = [];
+  entregas: any = [];
 
-  constructor(private titleService: Title, private http:HttpService){
-    this.titleService.setTitle('Residente - DirectCondo'); 
+  constructor(private titleService: Title, private http: HttpService) {
+    this.titleService.setTitle('Residente - DirectCondo');
     //12100795007	
     //45123415874
     this.RequestInfo("45123415874");
-    this.ColocarVinculos([{Nome:"TesteV2", Tipo:"Teste", Agenda:"02"}]);
-    this.ColocarEntregas([{Nome:"TesteV2", Agenda:"02"}]);
+    this.ColocarVinculos([{ Nome: "TesteV2", Tipo: "Teste", Agenda: "02" }]);
+    this.ColocarEntregas([{ Nome: "TesteV2", Agenda: "02" }]);
   }
 
   ngOnInit() {
   }
 
-  OnKeyUpCpf(event: any){
-    var input:String = event.target.value;
+  OnKeyUpCpf(event: any) {
+    var input: String = event.target.value;
     // Remove todos os caracteres com exceção dos números
-    var cpf:string = input.replace(/[^0-9]/g, '');
+    var cpf: string = input.replace(/[^0-9]/g, '');
 
-    var cpfCount:number = cpf.length;
-    
-    if(cpfCount>=10){
+    var cpfCount: number = cpf.length;
+
+    if (cpfCount >= 10) {
       this.RequestInfo(cpf);
     }
 
   }
 
-  RequestInfo(cpf:any){
-    this.http.PessoaDados(cpf).subscribe(
-      (response) => {
+  RequestInfo(cpf: any) {
+    this.http.PessoaDados(cpf).subscribe({
+      next: (response: any) => {
         console.log('POST PessoaDados request was successful', JSON.stringify(response));
         this.ColocarDados(response);
 
-        this.http.MeusVisitantes(response.PessoaID).subscribe(
-          (response) => {
-            console.log('POST MeusVisitantes request was successful', JSON.stringify(response));
+        this.http.MeusVisitantes(response.pessoaID).subscribe({
+          next: (response: any) => {
             var dateHoje = new Date(Date.now());
             var hoje = new Date(dateHoje.getFullYear(), dateHoje.getMonth(), dateHoje.getDate());
 
-            response.forEach((e:any) => {
-              //e.Data = '26/10/2023';
-              var partesData = e.Data.split('/');
-              var data = new Date(parseInt(partesData[2], 10), parseInt(partesData[1], 10)-1, parseInt(partesData[0], 10));
+            response.forEach((e: any) => {
+              //e.data = '23/01/2024';
+              var partesData = e.data.split('/');
+              var data = new Date(parseInt(partesData[2], 10), parseInt(partesData[1], 10) - 1, parseInt(partesData[0], 10));
 
-              if(!(hoje<data || hoje>data)){
-                let newItem = { Nome: e.NomeVisitante, Data: e.Data, Hora: e.Hora };
+              if (!(hoje < data || hoje > data)) {
+                let newItem = { Nome: e.nomeVisitante, Data: e.data, Hora: e.hora };
                 this.visitas.push(newItem);
               }
             });
           },
-          (error) => {
-            console.error('Error no Request');
+          error: () => {
+            console.error('Erro no Request');
             //, JSON.stringify(error)
             return;
-          }
-        );
+          },
+        });
       },
-      (error) => {
-        console.error('Error no Request');
+      error: () => {
+        console.error('Erro no Request');
         //, JSON.stringify(error)
         return;
-      }
-    );
+      },
+    });
   }
 
-  ColocarDados(json:any){
-    this.pessoa.Nome = json.Nome;
-    this.pessoa.Rg = json.RG;
-    this.pessoa.Cpf = json.CPF;
-    this.pessoa.DataNasc = json.DataNasc;
-    this.pessoa.Email = json.Email;
-    this.pessoa.Tipo = json.Tipo;
+  ColocarDados(json: any) {
+    this.pessoa.Nome = json.nome;
+    this.pessoa.Rg = json.rg;
+    this.pessoa.Cpf = json.cpf;
+    //this.pessoa.DataNasc = json.DataNasc;
+    this.pessoa.Email = json.email;
+    //this.pessoa.Tipo = json.Tipo;
   }
 
-  ColocarVinculos(json:any){
+  ColocarVinculos(json: any) {
     this.vinculos = [];
-    json.forEach((e:any) => {
+    json.forEach((e: any) => {
       let newItem = { Nome: e.Nome, Tipo: e.Tipo, Agenda: e.Agenda };
       this.vinculos.push(newItem);
     });
   }
 
-  ColocarEntregas(json:any){
+  ColocarEntregas(json: any) {
     this.entregas = [];
-    json.forEach((e:any) => {
+    json.forEach((e: any) => {
       let newItem = { Nome: e.Nome, Agenda: e.Agenda };
       this.entregas.push(newItem);
     });

@@ -13,6 +13,7 @@ import { Title } from '@angular/platform-browser';
   selector: 'app-create',
   templateUrl: './create.page.html',
   styleUrls: ['./create.page.scss'],
+  host: {'tipo': 'pessoaTelefone'},
 })
 export class CreatePage implements OnInit {
 

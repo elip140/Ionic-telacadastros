@@ -2,11 +2,10 @@ import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/c
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 
-/*@Injectable()
+@Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
     intercept(req: HttpRequest<any>, next: HttpHandler, ): Observable<HttpEvent<any>> {
-
         const idToken = localStorage.getItem('token');
 
         if (idToken) {
@@ -21,4 +20,4 @@ export class AuthInterceptor implements HttpInterceptor {
             return next.handle(req);
         }
     }
-}*/
+}

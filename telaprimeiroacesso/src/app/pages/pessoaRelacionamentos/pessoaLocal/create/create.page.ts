@@ -13,6 +13,7 @@ import { IonModal } from '@ionic/angular';
   selector: 'app-create',
   templateUrl: './create.page.html',
   styleUrls: ['./create.page.scss'],
+  host: {'tipo': 'pessoaLocal'},
 })
 export class CreatePage implements OnInit {
 

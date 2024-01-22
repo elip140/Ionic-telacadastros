@@ -14,7 +14,7 @@ export class UsuarioService {
 
   }
 
-  /*Login(email: string, senha: string) {
+  Login(email: string, senha: string) {
     const body = {
       "id": 0,
       "email": "teste@gmail.com",
@@ -32,40 +32,16 @@ export class UsuarioService {
       })
     }
 
-    this.http.post(this.baseUrl, body, httpOptions).subscribe(data => {
-      alert(data);
-    });
-
-  }*/
-
-  /*localStorage.setItem('token', "TOKEN");
-    localStorage.setItem('usuario', email);
-    localStorage.setItem('logado', JSON.stringify(true));
-    this.router.navigate(['/home']).then(() => location.reload());*/
-
-  Login(email:string, senha:string) {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-    });
-
-    const body = {
-      "id": 0,
-      "email": "teste@gmail.com",
-      "password": "123456",
-      "roles": [
-        "admin"
-      ]
-    };
-
-    this.http.post(this.baseUrl, body, { headers }).subscribe({
+    this.http.post(this.baseUrl, body, httpOptions).subscribe({
       next: (response: any) => {
         console.log('POST Login request was successful', JSON.stringify(response));
-        if(!response.success){
-          alert(response.message);
-          return;
-        }
 
-        localStorage.setItem('token', "TOKEN");
+        /*if(!response.success){
+          alert("Teste"+response.message);
+          return;
+        }*/
+
+        localStorage.setItem('token', response.tokenDescriptor);
         localStorage.setItem('usuario', email);
         localStorage.setItem('logado', JSON.stringify(true));
         this.router.navigate(['/home']).then(() => location.reload());
@@ -74,14 +50,12 @@ export class UsuarioService {
         console.error('Error no Request');
         return;
       },
-    })
-    
+    });
   }
 
   Deslogar() {
     localStorage.clear();
     this.router.navigate(['login']).then(() => location.reload());
-
   }
 
   GetUsuarioLogado(): string {
@@ -104,6 +78,10 @@ export class UsuarioService {
   GetLogado(): boolean {
     return localStorage.getItem('logado') ? true : false;
   }
+
+  /*GetToken(): string {
+
+  }*/
 
 
 }
