@@ -1,6 +1,8 @@
 export interface Telefone {
-    id: number;
-    tipo?: string;
+    pessoaId: number;
     ddd?: string;
     telefone?: string;
+    tipo?: string;
+    observacao?: string;
+    mensagem?: string;
 }

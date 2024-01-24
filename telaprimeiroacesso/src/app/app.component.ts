@@ -22,8 +22,8 @@ export class AppComponent {
   logado: boolean = false;
 
   constructor(private usu: UsuarioService) {
-    //this.email = usu.GetUsuarioNomeLogado();
-    this.email = usu.GetTokenLogado();
+    //usu.GetTokenLogado();
+    this.email = usu.GetUsuarioNomeLogado();
     this.logado = usu.GetLogado();
 
     // Todos os links para eles serem pesquisados

@@ -116,7 +116,10 @@ export class EditPage implements OnInit {
       this.LocalSource.data = this.pessoaService.GetLocals();
 
       // Card de Telefone
-      this.telefoneSource.data = this.pessoaService.GetPessoaTelefones();
+      this.pessoaService.GetPessoaTelefones(this.pessoa.id.toString()).then(e => {
+        this.telefoneSource.data = e;
+      });
+      
 
       // Card de Endereço
       this.enderecoSource.data = this.pessoaService.GetPessoaEnderecos();
