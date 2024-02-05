@@ -6,6 +6,7 @@ import { Title } from '@angular/platform-browser';
 import { JsonPipe } from '@angular/common';
 import { Pessoa, Telefone } from 'src/app/models';
 import { PessoaService } from 'src/app/services/pessoa/pessoa.service';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
   selector: 'app-residente',
@@ -29,11 +30,11 @@ export class ResidentePage implements OnInit {
   entregas: any = [];
   telefones:Telefone[] = [];
 
-  constructor(private titleService: Title, private http: HttpService, private pessoaService:PessoaService) {
+  constructor(private titleService: Title, private http: HttpService, private pessoaService:PessoaService, private usuario:UsuarioService) {
     this.titleService.setTitle('Residente - DirectCondo');
-    //12100795007	
-    //45123415874
-    this.RequestInfo("45123415874");
+
+    this.pessoa.id = this.usuario.GetPessoaId();
+    this.RequestInfo(this.pessoa.id);
     this.ColocarVinculos([{ Nome: "TesteV2", Tipo: "Teste", Agenda: "02" }]);
     this.ColocarEntregas([{ Nome: "TesteV2", Agenda: "02" }]);
   }
@@ -41,21 +42,8 @@ export class ResidentePage implements OnInit {
   ngOnInit() {
   }
 
-  OnKeyUpCpf(event: any) {
-    var input: String = event.target.value;
-    // Remove todos os caracteres com exceção dos números
-    var cpf: string = input.replace(/[^0-9]/g, '');
-
-    var cpfCount: number = cpf.length;
-
-    if (cpfCount >= 10) {
-      this.RequestInfo(cpf);
-    }
-
-  }
-
-  RequestInfo(cpf: any) {
-    this.http.PessoaDados(cpf).subscribe({
+  RequestInfo(id: number) {
+    this.http.VerificaID(id).subscribe({
       next: (response: any) => {
         console.log('POST PessoaDados request was successful', JSON.stringify(response));
         this.ColocarDados(response);

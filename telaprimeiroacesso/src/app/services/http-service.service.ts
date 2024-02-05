@@ -45,10 +45,17 @@ export class HttpService {
   }
 
   PessoaDados(cpf:string): Observable<any> {
-    console.log("Teste de REQUEST PessoaDados + "+cpf);
     var conUrl:string =  "Pessoa/PessoaDados";
 
     return this.http.post(this.baseUrl+conUrl+"?CPF="+cpf, this.headers).pipe(
+      catchError((error) => this.HandlePostError(error))
+    );
+  }
+
+  VerificaID(id:number): Observable<any> {
+    var conUrl:string =  "Pessoa/VerificaID";
+
+    return this.http.post(this.baseUrl+conUrl+"?id="+id, this.headers).pipe(
       catchError((error) => this.HandlePostError(error))
     );
   }

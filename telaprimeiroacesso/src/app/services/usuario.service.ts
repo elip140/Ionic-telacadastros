@@ -44,7 +44,8 @@ export class UsuarioService {
         localStorage.setItem('token', response.tokenDescriptor);
         localStorage.setItem('usuario', email);
         localStorage.setItem('logado', JSON.stringify(true));
-        this.router.navigate(['/home']).then(() => location.reload());
+        localStorage.setItem('pessoaId', response.id);
+        this.router.navigate(['/residente']).then(() => location.reload());
       },
       error: () => {
         console.error('Error no Request');
@@ -77,6 +78,10 @@ export class UsuarioService {
 
   GetLogado(): boolean {
     return localStorage.getItem('logado') ? true : false;
+  }
+
+  GetPessoaId(): number {
+    return parseInt(localStorage.getItem('pessoaId')|| "0"); 
   }
 
   /*GetToken(): string {
