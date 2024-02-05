@@ -19,15 +19,15 @@
           <div class="info">
             <ion-row>
               <ion-col size="6" class="title ion-text-end"><ion-label>Nome</ion-label></ion-col>
-              <ion-col size="6"><ion-label>{{ pessoa.Nome }} </ion-label></ion-col>
+              <ion-col size="6"><ion-label>{{ pessoa.nome }} </ion-label></ion-col>
             </ion-row>
             <ion-row>
               <ion-col size="6" class="title ion-text-end"><ion-label>Rg</ion-label></ion-col>
-              <ion-col size="6"><ion-label>{{ pessoa.Rg }} </ion-label></ion-col>
+              <ion-col size="6"><ion-label>{{ pessoa.rg }} </ion-label></ion-col>
             </ion-row>
             <ion-row>
               <ion-col size="6" class="title ion-text-end"><ion-label>CPF</ion-label></ion-col>
-              <ion-col size="6"><ion-label>{{ pessoa.Cpf }} </ion-label></ion-col>
+              <ion-col size="6"><ion-label>{{ pessoa.cpf }} </ion-label></ion-col>
             </ion-row>
             <!--<ion-row>
               <ion-col size="6" class="title ion-text-end"><ion-label>Data Nascimento </ion-label></ion-col>
@@ -35,7 +35,17 @@
             </ion-row>-->
             <ion-row>
               <ion-col size="6" class="title ion-text-end"><ion-label>E-mail </ion-label></ion-col>
-              <ion-col size="6"><ion-label>{{ pessoa.Email }} </ion-label></ion-col>
+              <ion-col size="6"><ion-label>{{ pessoa.email }} </ion-label></ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="6" class="title ion-text-end"><ion-label>Telefones  </ion-label></ion-col>
+              <ion-col size="6">
+                <ion-label *ngIf="telefones.length>0">
+                  <div *ngFor="let tel of telefones">
+                    ({{ tel.ddd }}) {{ tel.telefone }}
+                  </div>
+                </ion-label>
+              </ion-col>
             </ion-row>
             <!--<ion-row>
               <ion-col size="6" class="title ion-text-end"><ion-label>Tipo </ion-label></ion-col>

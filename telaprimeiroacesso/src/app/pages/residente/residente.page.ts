@@ -4,6 +4,8 @@ import { HttpService } from 'src/app/services/http-service.service';
 //import { DatePipe } from '@angular/common';
 import { Title } from '@angular/platform-browser';
 import { JsonPipe } from '@angular/common';
+import { Pessoa, Telefone } from 'src/app/models';
+import { PessoaService } from 'src/app/services/pessoa/pessoa.service';
 
 @Component({
   selector: 'app-residente',
@@ -12,20 +14,22 @@ import { JsonPipe } from '@angular/common';
 })
 export class ResidentePage implements OnInit {
 
-  pessoa: any = {
-    Nome: "",
-    Rg: "",
-    Cpf: "",
-    DataNasc: "",
-    Email: "",
-    Tipo: ""
+  pessoa: Pessoa = {
+    id: 0,
+    nome: "",
+    rg: "",
+    cpf: "",
+    datanasc: "",
+    email: "",
+    tipo: ""
   }
 
   visitas: any = [];
   vinculos: any = [];
   entregas: any = [];
+  telefones:Telefone[] = [];
 
-  constructor(private titleService: Title, private http: HttpService) {
+  constructor(private titleService: Title, private http: HttpService, private pessoaService:PessoaService) {
     this.titleService.setTitle('Residente - DirectCondo');
     //12100795007	
     //45123415874
@@ -78,6 +82,10 @@ export class ResidentePage implements OnInit {
             return;
           },
         });
+
+        this.pessoaService.GetPessoaTelefones(response.pessoaID).then(e => {
+          this.telefones = e;
+        });
       },
       error: () => {
         console.error('Erro no Request');
@@ -88,11 +96,13 @@ export class ResidentePage implements OnInit {
   }
 
   ColocarDados(json: any) {
-    this.pessoa.Nome = json.nome;
-    this.pessoa.Rg = json.rg;
-    this.pessoa.Cpf = json.cpf;
+    console.log(json);
+    this.pessoa.id = json.pessoaID;
+    this.pessoa.nome = json.nome;
+    this.pessoa.rg = json.rg;
+    this.pessoa.cpf = json.cpf;
     //this.pessoa.DataNasc = json.DataNasc;
-    this.pessoa.Email = json.email;
+    this.pessoa.email = json.email;
     //this.pessoa.Tipo = json.Tipo;
   }
 
